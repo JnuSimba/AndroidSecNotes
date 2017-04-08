@@ -1,4 +1,7 @@
-## APK、Dalvik字节码和smali文件
+原文 by mustime  
+
+## APK、Dalvik字节码和smali文件  
+
 ###　APK文件    
 大家都应该知道APK文件其实就是一个MIME为ZIP的压缩包，我们修改ZIP后缀名方式可以看到内部的文件结构，例如修改后缀后用RAR打开鳄鱼小顽皮APK能看到的是（Google Play下载的完整版版本）：  
 ```
@@ -335,4 +338,5 @@ ResTypeSpec.java的addResSpec方法78行
 修复：修复resource.arsc头部数据，修改skipCheckChunkTypeInt检测方法逻辑    
 ![](../pictures/apktool2.png)  
  
-
+### Reference  
+[APK反编译之一：基础知识](http://blog.csdn.net/lpohvbe/article/details/7981386)  
