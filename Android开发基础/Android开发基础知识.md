@@ -2,7 +2,7 @@
 1. Android SDK/NDK：Android SDK包含了一个调试器、库、一个模拟器、文档、实例代码和教程。NDK 是支持native app 开发所需的一套支持，即使用c/c++ 开发。  
 2. ADT: 用于Eclipse的Android开发工具（Android Development Tools，ADT）插件是对Eclipse IDE的扩展，用以支持android应用程序的创建和调试。
 3. AVD(Android Virtual Device): AVD是一个模拟器实例，可以用来模拟一个真实的设备。
-4. Activity: Activity(活动）是一个包含应用程序的用户界面窗口。一个应用程序可以有零个或多个活动。Activity 是所有程序的根本，所有程序都运行在Activity之中，Activity具有自己的生命周期，由系统控制生命周期，程序无法改变。
+4. Activity: Activity(活动）是一个包含应用程序的用户界面窗口，一个应用程序可以有零个或多个活动。Activity 是所有程序的根本，所有程序都运行在Activity之中，Activity具有自己的生命周期，由系统控制生命周期，程序无法改变。
 5. Intent：Intent是android中的一种消息通信机制（媒介），专门提供组件互相调用的相关信息，实现调用者和被调用的解耦。
 * 显式Intent：指定了component属性的intent（调用 setComponent）或者setClass（context，class）来指定）。通过指定具体的组件类，调用应用启动对应的组件。
 * 隐式Intent：没有指定component属性的Intent。这些Intent需要包含足够的信息，这些系统才能根据这些信息，在所有的可用组件中，确定满足此Intent的组件。
@@ -13,11 +13,12 @@
 APK文件其实是zip格式，但后缀名修改为APK，通过UnZip解压后，可以看到Dex文件，Dex是Dalvik VM executes的全称，即Android Dalvik执行程序，并非Java的字节码而是Dalvik的字节码。但如AndroidManifest.xml 等文件是查看不到原有内容的，需要用apktool 等工具反编译。
 9. Android 四大组件（Activity，Service，Broadcast Receiver,Content Provider）
 * Activity:应用程序中，一个Activity通常是一个单独的屏幕，它上面可以显示一些控件也可以监听并处理用户的事件做出响应。Activity之间通过Intent进行通信，在Intent的描述结构中，有两个重要的部分：动作和动作对应的数据。
-* Broadcast Receiver:广播接收者（BroadcastReceiver)用于接收广播Intent，广播Intent的发送是通过调用Context.sendBroadCast()、Context.sendOrderedBroadcast()、Context.sendStickyBroadcast() 来实现的，BroadcastReceiver 广泛应用于应用间的交流。
+* Broadcast Receiver:广播接收者（BroadcastReceiver）用于接收广播Intent，广播Intent的发送是通过调用Context.sendBroadCast()、Context.sendOrderedBroadcast()、Context.sendStickyBroadcast() 来实现的，BroadcastReceiver 广泛应用于应用间的交流。  
 通常一个广播Intent可以被订阅了此Intent的多个广播接收者所接收（就像真的收音机一样）。  
 广播（Broadcas）是一种广泛运用的应用程序之间的传输消息的机制。
 而广播接收者（BroadcastReceiver）是对发送出来的广播进行过滤并接收响应的一类组件。  
-* BroadcastReceiver生命周期：每次广播到来时，会重新创建BroadcastReceiver对象，并调用onReceive()方法，执行完以后，该对象即被销毁。当onReceive()方法在10s内没有执行完毕，就会导致ANR。如果需要执行长任务，那么就必须要使用Service。另外在onReceive中使用线程是很危险的事情。因为线程没有执行完，BroadcastReceiver就挂了。注：ANR（Application No Response）：程序无响应的错误信息。  
+* BroadcastReceiver生命周期：每次广播到来时，会重新创建BroadcastReceiver对象，并调用onReceive()方法，执行完以后，该对象即被销毁。当onReceive()方法在10s内没有执行完毕，就会导致ANR。如果需要执行长任务，那么就必须要使用Service。另外在onReceive中使用线程是很危险的事情。因为线程没有执行完，BroadcastReceiver就挂了。  
+注：ANR（Application No Response）：程序无响应的错误信息。  
 * Service：和Activity属于同一级别的组件，不能自己运行只能后台运行，并且可以和其他组件进行交互。Service可以在很多场合的应用中使用，比如播放多媒体的时候启动了其他Activity，这个时候程序要在后台继续播放。  
 一个Service是一段长生命周期的，没有用户界面的程序，可以用来开发如监控类程序。  
 * Content Provider：ContentProvider在android中的作用是对外共享数据，也就是说你可以通过ContentProvider把应用中的数据共享给其他应用访问，其他应用可以通过ContentProvider对你应用的数据进行增删改查。
@@ -58,18 +59,17 @@ Stopped状态:
 例如：  
 //myApp是一个应用级别的全局对象，在应用的任何地方都可以调用这个对象。   
 `MyApp myApp = (MyApp)getApplication();`  
-(4) 使用静态变量传递数据:可以在目标的 Activity 中，声明公开的静态属性，在调用的Activity针对这个属性进行赋值，来进行数据的传递。  
-
+(4) 使用静态变量传递数据:可以在目标的 Activity 中，声明公开的静态属性，在调用的Activity针对这个属性进行赋值，来进行数据的传递。    
 16. 从Activity中返回数据：    　　
-(1) startActivity():用于启动意图。   　　 
-(2) startActivityForResult():启动意图并获取返回结果。在等待返回结果的Activity中必须实现onActivityResult方法。　 　  
+(1) startActivity():用于启动意图。  
+(2) startActivityForResult():启动意图并获取返回结果。在等待返回结果的Activity中必须实现onActivityResult方法。  　 　  
 17. finish方法用来结束Activity的生命周期。　 　  
 
 ## 二、实现DEMO:
-1.利用Intent在两个Activity之间传递数据:
-关键代码 在源码包添加调用者和被调用者的 Activity java类：
+1.利用Intent在两个Activity之间传递数据:  
+关键代码 在源码包添加调用者和被调用者的 Activity java类：  
 
-调用者 Main.java：
+调用者 Main.java：  
 ``` java
 @Override
 public class Main extends Activity {
@@ -104,7 +104,7 @@ public class Main extends Activity {
     }
 }
 ```
-被调用者 OtherActivity.java：
+被调用者 OtherActivity.java：  
 ``` java
 public class OtherActivity extends Activity {
 
@@ -144,9 +144,9 @@ public class OtherActivity extends Activity {
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"/>
 ```
-在Mainifest.xml程序清单中添加Activity的配置。
-全部配置完毕后就完成了一个Activity通过Intent传递信息到另一个Activity的过程。   
-调用者：  
+在Mainifest.xml程序清单中添加Activity的配置。  
+全部配置完毕后就完成了一个Activity通过Intent传递信息到另一个Activity的过程。     
+调用者：    
 ![basic](../pictures/call1.JPG)  
 被调用者：  
 ![basic](../pictures/becall1.JPG)  
