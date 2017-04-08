@@ -20,7 +20,7 @@ Google Play 是一个特殊的应用，它为用户提供查找由第三方开�
 
 在 Linux 内核层配置应用沙箱的过程如下。 在安装过程中，每个包都会被分配一个唯一的用户标识符（UID）和组标识符（GID），在设备的应用生命周期内不会更改。 因此，在 Android 中每个应用都有一个相应的 Linux 用户。 用户名遵循格式`app_x`，并且该用户的 UID 等于`Process.FIRST_APPLICATION_UID + x`，其中`Process.FIRST_APPLICATION_UID`常量对应于`10000`。例如，在图 2.1 中，`ex1.apk`包在安装期间获得了用户名`app 1`，UID 等于 `10001`。
 
-![](img/2-1.jpg)
+![](../pictures/2-1.jpg)
 
 图 2.1：Android 安全架构
 
