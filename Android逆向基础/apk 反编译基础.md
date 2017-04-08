@@ -6,18 +6,18 @@
 大家都应该知道APK文件其实就是一个MIME为ZIP的压缩包，我们修改ZIP后缀名方式可以看到内部的文件结构，例如修改后缀后用RAR打开鳄鱼小顽皮APK能看到的是（Google Play下载的完整版版本）：  
 ```
 Where's My Water.zip\
-	* asset\                        <资源目录1：asset和res都是资源目录但有所区别，见下面说明>
-	* lib\                             <so库存放位置，一般由NDK编译得到，常见于使用游戏引擎或JNI native调用的工程中>
-	* |---armeabi\                |---<so库文件分为不同的CPU架构>
-	* |---armeabi-v7a\
-	* META-INF\                  <存放工程一些属性文件，例如Manifest.MF>
-	* res\                           <资源目录2：asset和res都是资源目录但有所区别，见下面说明> 
-	* |---drawable\               |---<图片和对应的xml资源>
-	* |---layout\                   |---<定义布局的xml资源>
-	* |---... 
-	* AndroidManifest.xml     <Android工程的基础配置属性文件>
-	* classes.dex                 <Java代码编译得到的Dalvik VM能直接执行的文件，下面有介绍>
-	* resources.arsc             <对res目录下的资源的一个索引文件，保存了原工程中strings.xml等文件内容>
+* asset\                        <资源目录1：asset和res都是资源目录但有所区别，见下面说明>
+* lib\                             <so库存放位置，一般由NDK编译得到，常见于使用游戏引擎或JNI native调用的工程中>
+* |---armeabi\                |---<so库文件分为不同的CPU架构>
+* |---armeabi-v7a\
+* META-INF\                  <存放工程一些属性文件，例如Manifest.MF>
+* res\                           <资源目录2：asset和res都是资源目录但有所区别，见下面说明> 
+* |---drawable\               |---<图片和对应的xml资源>
+* |---layout\                   |---<定义布局的xml资源>
+* |---... 
+* AndroidManifest.xml     <Android工程的基础配置属性文件>
+* classes.dex                 <Java代码编译得到的Dalvik VM能直接执行的文件，下面有介绍>
+* resources.arsc             <对res目录下的资源的一个索引文件，保存了原工程中strings.xml等文件内容>
 ```
 无关紧要地注：asset和res资源目录的不同在于：  
 1. res目录下的资源文件在编译时会自动生成索引文件（R.Java），在Java代码中用R.xxx.yyy来引用；而asset目录下的资源文件不需要生成索引，在Java代码中需要用AssetManager来访问；  
@@ -34,17 +34,17 @@ Dalvik是google专门为Android操作系统设计的一个虚拟机，经过深�
 #### 一、smali的数据类型
 在smali中，数据类型和Android中的一样，只是对应的符号有变化：  
 ```
-	* B---byte
-	* C---char
-	* D---double
-	* F---float
-	* I---int
-	* J---long
-	* S---short
-	* V---void
-	* Z---boolean
-	* [XXX---array
-	* Lxxx/yyy---object
+* B---byte
+* C---char
+* D---double
+* F---float
+* I---int
+* J---long
+* S---short
+* V---void
+* Z---boolean
+* [XXX---array
+* Lxxx/yyy---object
 ```
 这里解析下最后两项，数组的表示方式是：在基本类型前加上前中括号“[”，例如int数组和float数组分别表示为：[I、[F；对象的表示则以L作为开头，格式是LpackageName/objectName;（注意必须有个分号跟在最后），例如String对象在smali中为：Ljava/lang/String;，其中java/lang对应java.lang包，String就是定义在该包中的一个对象。  
 或许有人问，既然类是用LpackageName/objectName;来表示，那类里面的内部类又如何在smali中引用呢？答案是：LpackageName/objectName$subObjectName;。也就是在内部类前加“$”符号，关于“$”符号更多的规则将在后面谈到。  
@@ -302,7 +302,7 @@ smali中的函数和成员变量一样也分为两种类型，但是不同于成
 10. .end method  
 ```
   这是onDestroy()函数，它的作用大家都知道。首先看到函数内第一句：.locals 0，这句话很重要，标明了你在这个函数中最少要用到的本地寄存器的个数。在这里，由于只需要调用一个父类的onDestroy()处理，所以只需要用到p0，所以使用到的本地寄存器数为0。如果不清楚这个规则，很容易在植入代码后忘记修改.locals 的值，那么回编译后运行时将会得到一个VerifyError错误，而且极难发现问题所在。我正是被这个问题困扰了很多次，最后研究发现.locals的值有这个规律，于是在文档查证了一下果然是这个问题。例如我往onDestroy()增加一句：this.existed = true;那么应该改为（注意修改.locals的值为1——使用到了v0这一个本地寄存器）：  
-```
+``` smali
 
 1. .method protected onDestroy()V  
 2.     .locals 1  
