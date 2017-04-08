@@ -1,7 +1,7 @@
 原文 by mustime  
 
-## APK、Dalvik字节码和smali文件  
-###APK文件    
+## APK、Dalvik字节码和smali文件   
+### APK文件
 大家都应该知道APK文件其实就是一个MIME为ZIP的压缩包，我们修改ZIP后缀名方式可以看到内部的文件结构，例如修改后缀后用RAR打开鳄鱼小顽皮APK能看到的是（Google Play下载的完整版版本）：  
 ```
 Where's My Water.zip\
@@ -23,7 +23,7 @@ Where's My Water.zip\
 2. 一般来说，除了音频和视频资源（需要放在raw或asset下），使用Java开发的Android工程使用到的资源文件都会放在res下；使用C++游戏引擎（或使用Lua binding等）的资源文件均需要放在asset下。    
 因为Where's My Water是使用迪斯尼公司自家的DMO游戏引擎开发，所以游戏中用到的所有资源文件都存放在asset下，除了应用图标这些资源仍需要放在res下。  
 
-###Dalvik字节码        
+### Dalvik字节码
 Dalvik是google专门为Android操作系统设计的一个虚拟机，经过深度的优化。虽然Android上的程序是使用java来开发的，但是Dalvik和标准的java虚拟机JVM还是两回事。Dalvik VM是基于寄存器的，而JVM是基于栈的；Dalvik有专属的文件执行格式dex（dalvik executable），而JVM则执行的是java字节码。Dalvik VM比JVM速度更快，占用空间更少。  
 通过Dalvik的字节码我们不能直接看到原来的逻辑代码，这时需要借助如Apktool或dex2jar+jd-gui工具来帮助查看。但是，注意的是最终我们修改APK需要操作的文件是.smali文件，而不是导出来的Java文件重新编译（况且这基本上不可能）。  
 
