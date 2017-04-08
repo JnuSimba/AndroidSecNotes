@@ -297,7 +297,7 @@ Dalvik指令集有一条指令用来抛出异常
 `.field protected asyncRunner:Lnet/smalinuxer/mopp/httpd/NanoHTTPD$AsyncRunner;`  
 
 ## 0x07.方法
-## 0x071.直接方法
+### 0x071.直接方法
 一般的静态属性以 #direct methods开头 有如下格式:  
 ```
 .method <访问权限>[修饰关键字]<方法原型>
@@ -443,8 +443,8 @@ name = null
 ```
 标注了内部类范围为oncreate
 
-###　0x082.其他注解
-没什么用处
+### 0x082.其他注解
+没什么用处  
 
 ## 0x09.R文件
 R为自动生成的文件,包括了R.smali,R$attr.smali,R$dimen.smali,R$drawable.smali,R$id.smali,R$layout.smali,R$menu.smali,R$string.smali,R$style.smali 其中还有BuildConfig.smali,这个也是自动生成的文件。  
