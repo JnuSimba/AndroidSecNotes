@@ -235,12 +235,44 @@ class InnerClassDemo5
 ## 七.访问权限
 
 包与包之间的类进行访问，被访问的包中的类必须是public的，被访问的包中的类的方法也必须是public的。
+<table border="1">
+  <tr>
+<th></th>
+   <th>public</th>
+   <th>protected</th>
+<th>default</th>
+   <th>private</th>
+  </tr>
+  <tr>
+<td>同一类中</td>
+   <td>Y</td>
+   <td>Y</td>
+<td>Y</td>
+   <td>Y</td>
+  </tr>
+  <tr>
+<td>同一包中</td>
+   <td>Y</td>
+   <td>Y</td>
+<td>Y</td>
+   <td>N</td>
+  </tr>
+<tr>
+<td>子类中</td>
+   <td>Y</td>
+   <td>Y</td>
+<td>N</td>
+<td>N</td>
+  </tr>
+<tr>
+<td>不同包中</td>
+   <td>Y</td>
+   <td>N</td>
+<td>N</td>
+   <td>N</td>
+  </tr>
+</table>
 
-&nbsp;&nbsp;&nbsp;&nbsp; public &nbsp;&nbsp; protected  &nbsp;&nbsp;  default &nbsp;&nbsp;  private  
-同一类中    - [x]              - [x]                    - [x]                       - [x]
-同一包中    - [x]             - [x]                    - [x]          
-子类中      - [x]             - [x]             
-不同包中    - [x]
 
 ## 八.线程
 
