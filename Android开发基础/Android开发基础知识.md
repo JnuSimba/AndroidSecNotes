@@ -1,4 +1,4 @@
-## 一、基础知识:
+## 一、基础知识
 1. Android SDK/NDK：Android SDK包含了一个调试器、库、一个模拟器、文档、实例代码和教程。NDK 是支持native app 开发所需的一套支持，即使用c/c++ 开发。  
 2. ADT: 用于Eclipse的Android开发工具（Android Development Tools，ADT）插件是对Eclipse IDE的扩展，用以支持android应用程序的创建和调试。
 3. AVD(Android Virtual Device): AVD是一个模拟器实例，可以用来模拟一个真实的设备。
@@ -47,9 +47,9 @@ Paused状态:
 在这种状态下，该Activity被部分遮蔽（被其他在前台的半透明或不覆盖整个屏幕的活动遮住）。此状态不接受用户输入，并且不能执行任何代码。  
 Stopped状态:  
 在这种状态下，该活动是完全隐藏，不可见的，可视为存在于后台。虽然停止，活动实例和所有成员变量如状态信息将被保留，但不能执行任何代码。  
-（1）当程序第一次运行时用户会看到主Activity，主Activity可以通过启动其他的Activity进行相关操作。  
-（2）当启动其他的Activity时当前的Activity将会停止，新的Activity将会压入栈中，同时获取用户焦点，这时就可在这个Activity上操作了。        
- （3）根据栈的先进后出原则，当用户按Back键时，当前这个Activity销毁，前一个Activity重新恢复。  
+(1)当程序第一次运行时用户会看到主Activity，主Activity可以通过启动其他的Activity进行相关操作。  
+(2)当启动其他的Activity时当前的Activity将会停止，新的Activity将会压入栈中，同时获取用户焦点，这时就可在这个Activity上操作了。        
+(3)根据栈的先进后出原则，当用户按Back键时，当前这个Activity销毁，前一个Activity重新恢复。  
 15. Activity 之间传递数据的几种方式：  
 (1) 将数据封装在Intent变量中。（使用Intent传递对象有一个局限性，就是不能传递不能序列化的对象）  
 (2) 使用系统的剪切板来传递数据。  
@@ -65,7 +65,7 @@ Stopped状态:
 (2) startActivityForResult():启动意图并获取返回结果。在等待返回结果的Activity中必须实现onActivityResult方法。  　 　  
 17. finish方法用来结束Activity的生命周期。　 　  
 
-## 二、实现DEMO:
+## 二、实现DEMO
 1.利用Intent在两个Activity之间传递数据:  
 关键代码 在源码包添加调用者和被调用者的 Activity java类：  
 
@@ -150,3 +150,7 @@ public class OtherActivity extends Activity {
 ![basic](../pictures/call1.JPG)  
 被调用者：  
 ![basic](../pictures/becall1.JPG)  
+### android:id
+
+这是视图的唯一标识符。可以在程序代码中通过该标识符引用对象，例如对这个对象进行读和修改的操作。  
+当需要从 XML 里引用资源对象时，必须使用 @ 符号。紧随 @ 之后的是资源的类型（这里是 id），然后是资源的名字（这里使用的是 button/msg）。+ 号只在第一次定义一个资源 ID 的时候需要，它是告诉 SDK——此资源 ID 需要被创建。在应用程序被编译之后，SDK 就可以直接使用这个 ID。
