@@ -76,4 +76,4 @@ Android 提供了各种方式来调用应用的组件。 我们可以通过使�
 
 图 5.1：保护第三方应用组件的权限实施
 
-`ActivityManagerService`负责调用应用的组件。 为了保证应用组件的安全性，在用于调用组件的框架方法（例如，5.1 节中描述的`startActivity`）中，放置特殊的钩子。 这些钩子检查应用是否有权调用组件。 这些检查以`PackageManagerServer`类的`CheckUidPermission`方法结束（参见清单 4.6）。 因此，发生在 Android 框架层的实际的权限实施，可以看做 Android 操作系统的受信任部分。 因此，应用不能绕过检查。 有关如何调用组件和权限检查的更多信息，请参见[8]。
+`ActivityManagerService`负责调用应用的组件。 为了保证应用组件的安全性，在用于调用组件的框架方法（例如，5.1 节中描述的`startActivity`）中，放置特殊的钩子。 这些钩子检查应用是否有权调用组件。 这些检查以`PackageManagerServer`类的`CheckUidPermission`方法结束（参见清单 4.6）。 因此，发生在 Android 框架层的实际的权限实施，可以看做 Android 操作系统的受信任部分。 因此，应用不能绕过检查。 有关如何调用组件和权限检查的更多信息，请参见[permissions](https://developer.android.com/guide/topics/security/permissions.html)。
