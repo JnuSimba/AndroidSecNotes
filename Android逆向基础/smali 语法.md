@@ -224,8 +224,8 @@ Dalvik指令集有一条指令用来抛出异常
 其中基础字节码后面的-type可以是-int、-long、-float、-double。后面3类指令与之类似。    
 至此Dalvik虚拟机支持的所有指令都介绍完了。在Android4.0系统以前，每个指令的字节码只在用一个字节，取值范围是0×0~-0x0ff，在 Android4.0系统中，有扩充了一部分指令，这些指令被成为扩展指令，如果指令后添加了jumbo后缀，增加了寄存器与常量的取值范围。    
 
-## 0x02.类与包
-### 0x021.类与继承与包
+## 0x05.类与包
+### 0x051.类与继承与包
 一般的smali文件都遵循了一套语法规范.在smali文件的头3行描述了当前类的一些信息.格式如下  
 ```
 .class <访问权限>  [修辞关键字] <包名/类名>   
@@ -240,7 +240,7 @@ Dalvik指令集有一条指令用来抛出异常
 .source "MainActivity.java"
 ``` 
 注:.source可能为空   
-### 0x022.接口
+### 0x052.接口
 如果一个类实现了一个接口将会以# interfaces开头  
 `.implements <接口名>`
 
@@ -249,7 +249,7 @@ Dalvik指令集有一条指令用来抛出异常
 # interfaces
 .implements Ljava/lang/Thread
 ```
-### 0x023.注解与泛型
+### 0x053.注解与泛型
 ```
 .annotation [注解属性] <注解类名>
  [注解字段 = 值]
@@ -279,25 +279,25 @@ Dalvik指令集有一条指令用来抛出异常
 ```
 原 : `@com.droider.anno.MyAnnoField(info = "Hello World")`
 
-### 0x024.内部类
+### 0x054.内部类
 内部类将会成为另外一个smali文件 文件格式 : [外部类]$[内部类].smali 例如:Manifest$permission.smali  
 在small中,内部类会自动保存外部类的引用,引用层数向下则指针标识加一  
-## 0x03.属性
-### 0x031.静态属性
+## 0x06.属性
+### 0x061.静态属性
 一般的静态属性以 #static fields开头,#为注释进行标注 有如下格式: 
 `.field <访问权限> static [修饰关键字] <字段名>:<字段类型>` 
 例如:  
 `.field private static final CONTENT_DISPOSITION_ATTRIBUTE_PATTERN:Ljava/util/regex/Pattern;`
 
-###　0x032.实体属性
-一般的静态属性以 #instance fields开头 有如下格式:  
-`.field <访问权限> [修饰关键字] <字段名>:<字段类型>`  
+### 0x062.实体属性  
+一般的静态属性以 #instance fields开头 有如下格式:   
+`.field <访问权限> [修饰关键字] <字段名>:<字段类型>`    
 
 例如:  
-`.field protected asyncRunner:Lnet/smalinuxer/mopp/httpd/NanoHTTPD$AsyncRunner;`
+`.field protected asyncRunner:Lnet/smalinuxer/mopp/httpd/NanoHTTPD$AsyncRunner;`  
 
-## 0x04.方法
-## 0x041.直接方法
+## 0x07.方法
+## 0x071.直接方法
 一般的静态属性以 #direct methods开头 有如下格式:  
 ```
 .method <访问权限>[修饰关键字]<方法原型>
@@ -427,8 +427,8 @@ invoke-direct {v7, v8}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
 throw v7
 .end method
 ```
-## 0x05.注解
-### 0x051.内部类注解
+## 0x08.注解
+### 0x081.内部类注解
 当产生一个内部类一定会存在EnclosingMethod的注解,这个注解是用来标注内部类范围,还有一个InnerClass的注解,表明该类是内部类, 例:  
 ```
 # annotations
@@ -443,10 +443,10 @@ name = null
 ```
 标注了内部类范围为oncreate
 
-###　0x052.其他注解
+###　0x082.其他注解
 没什么用处
 
-## 0x06.R文件
+## 0x09.R文件
 R为自动生成的文件,包括了R.smali,R$attr.smali,R$dimen.smali,R$drawable.smali,R$id.smali,R$layout.smali,R$menu.smali,R$string.smali,R$style.smali 其中还有BuildConfig.smali,这个也是自动生成的文件。  
 
 
