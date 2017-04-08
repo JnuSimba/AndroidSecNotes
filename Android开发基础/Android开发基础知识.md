@@ -60,7 +60,7 @@ Stopped状态:
 //myApp是一个应用级别的全局对象，在应用的任何地方都可以调用这个对象。   
 `MyApp myApp = (MyApp)getApplication();`  
 (4) 使用静态变量传递数据:可以在目标的 Activity 中，声明公开的静态属性，在调用的Activity针对这个属性进行赋值，来进行数据的传递。    
-16. 从Activity中返回数据：       　　
+16. 从Activity中返回数据：  
 (1) startActivity():用于启动意图。  
 (2) startActivityForResult():启动意图并获取返回结果。在等待返回结果的Activity中必须实现onActivityResult方法。  　 　  
 17. finish方法用来结束Activity的生命周期。　 　  
