@@ -1,7 +1,7 @@
 ## 0x00 科普
 内容提供器用来存放和获取数据并使这些数据可以被所有的应用程序访问。它们是应用程序之间共享数据的唯一方法；不包括所有Android软件包都能访问的公共储存区域。  
 
-Android为常见数据类型（音频，视频，图像，个人联系人信息，等等）装载了很多内容提供器。你可以看到在android.provider包里列举了一些。你还能查询这些提供器包含了什么数据。  
+Android为常见数据类型（音频，视频，图像，个人联系人信息，等等）装载了很多内容提供器。你可以看到在android.provider包里列举了一些，你还能查询这些提供器包含了什么数据。  
 
 当然，对某些敏感内容提供器，必须获取对应的权限来读取这些数据。  
 如果你想公开你自己的数据，你有两个选择：你可以创建你自己的内容提供器（一个ContentProvider子类）或者你可以给已有的提供器添加数据，前提是存在一个控制同样类型数据的内容提供器且你拥有读写权限。  
@@ -73,7 +73,7 @@ signature：这些权限仅授予那些和本程序应用了相同密钥来签�
 signatureOrSystem:与signature类似，除了一点，系统中的程序也需要有资格来访问。这样允许定制Android系统应用也能获得权限，这种保护等级有助于集成系统编译过程。  
 
 ### API
-Contentprovider 组件在API-17（android4.2）及以上版本由以前的exported 属性默认ture 改为默认false。
+Contentprovider 组件在API-17（android4.2）及以上版本由以前的exported 属性默认ture 改为默认false。  
 Contentprovider 无法在android2.2（API-8）申明为私有。
 ```
 <!-- *** POINT 1 *** Do not (Cannot) implement Private Content Provider in Android 2.2 (API Level 8) or earlier. -->
@@ -108,10 +108,10 @@ Contentprovider 无法在android2.2（API-8）申明为私有。
 
 ## 0x04 测试方法
 1、反编译查看AndroidManifest.xml（drozer扫描）文件定位content provider是否导出，是否配置权限，确定authority  
-drozer:
+drozer:  
 `run app.provider.info -a cn.etouch.ecalendar`
 
-2、反编译查找path，关键字addURI、hook api 动态监测推荐使用zjdroid
+2、反编译查找path，关键字addURI、hook api 动态监测推荐使用zjdroid  
 3、确定authority 和path 后根据业务编写POC、使用drozer、使用小工具Content Provider Helper、adb shell // 没有对应权限会提示错误
 ```
 adb shell：
@@ -121,7 +121,7 @@ adb shell content insert --uri content://settings/secure --bind name:s:new_setti
 adb shell content update --uri content://settings/secure --bind value:s:newer_value --where "name='new_setting'"
 adb shell content delete --uri content://settings/secure --where "name='new_setting'"
 ```
-drozer：
+drozer：  
 `run app.provider.query content://telephony/carriers/preferapn --vertical`
 
 ## 0x05 案例
@@ -204,7 +204,7 @@ public void GJContentProviderFileOperations(){
 
 }
 ```
-Override openFile method
+Override openFile method  
 错误写法1：
 ``` java
 private static String IMAGE_DIRECTORY = localFile.getAbsolutePath();
