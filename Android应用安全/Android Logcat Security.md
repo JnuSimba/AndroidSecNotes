@@ -164,7 +164,7 @@ public final static boolean DEBUG = true;
 * intent.setData(URL)的URL   
 ![](../pictures/androidcat11.png)
 
-5、即使不用System.out/err 程序也有可能输出相关信息，如使用 `Exception.printStackTrace() `
+5、即使不用System.out/err 程序也有可能输出相关信息，如使用 `Exception.printStackTrace() `  
 6、ProGuard 不能移除如下log：("result:" + value).    
 `Log.d(TAG, "result:" + value);  `
 
