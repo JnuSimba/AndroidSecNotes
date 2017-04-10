@@ -1,4 +1,4 @@
-
+原文 by 瘦蛟舞
 ## 0x00 科普
 development version ：开发版，正在开发内测的版本，会有许多调试日志。  
 release version ： 发行版，签名后开发给用户的正式版本，日志量较少。  
@@ -11,13 +11,13 @@ android.permission.READ_LOGS:app 读取日志权限，android 4.1 之前版本�
 
 测试方法是非常简单的，可以使用sdk 中的小工具monitor 或者ADT 中集成的 logcat 来查看日志，将工具目录加入环境变量用起来比较方便。当然如果你想更有bigger 也可以使用 adb logcat。android 整体日志信息量是非常大的，想要高效一些就必须使用filter 来过滤一些无关信息，filter 是支持正则的，可以做一些关键字匹配比如 password、token、email 等。本来准备想做个小工具自动化收集，但是觉得这东西略鸡肋没太大必要，故本文的重点也是在如何安全地使用logcat 方面。  
 ![](../pictures/androidcat1.jpg)
-![](../pictures/androidcat2.jpg)
+![](../pictures/androidcat2.jpg)  
 当然也可以自己写个app 在直接在手机上抓取logcat，不过前面提到因为android系统原因如果手机是android4.1 或者之后版本，即使在manifest.xml 中加入了如下申请也是无法读取到其他应用的 log的。  
 `<uses-permission android:name="android.permission.READ_LOGS"/>`  
-![](../pictures/androidcat3.jpg)
+![](../pictures/androidcat3.jpg)  
 
 root 权限可以随便看logcat，所以“logcat 信息泄露”漏洞因谷歌在4.1上的动作变得很鸡肋了。  
-![](../pictures/androidcat4.jpg)
+![](../pictures/androidcat4.jpg)  
 
 ## 0x02 smali注入logcat
 将敏感数据在加密前打印出来就是利用静态 smali 注入插入了logcat 方法。 使用APK 反编译后用smali 注入非常方便，但要注意随意添加寄存器可能破坏本身逻辑，新手建议不添加寄存器直接使用已有的寄存器。  
@@ -31,7 +31,7 @@ Log.e()/w()/i()：建议打印操作日志
 Log.d()/v()：建议打印开发日志  
 1、敏感信息不应用 Log.e()/w()/i(), System.out/err 打印。  
 2、如果需要打印一些敏感信息建议使用 Log.d()/v()。（前提：release版本将被自动去除）  
-```
+``` java
 @Override
 public void onCreate(Bundle savedInstanceState) {
 super.onCreate(savedInstanceState);
@@ -47,7 +47,7 @@ Log.v(LOG_TAG, "sensitive information (VERBOSE)");
 }
 ```
 3、Log.d()/v()的返回值不应被使用。（仅做开发调试观测）  
-```
+``` java
 Examination code which Log.v() that is specifeied to be deleted is not deketed
 int i = android.util.Log.v("tag", "message");
 System.out.println(String.format("Log.v() returned %d. ", i)); //Use the returned value of Log.v() for examination
@@ -66,12 +66,13 @@ eclipse中配置ProGuard
 ## 0x04 native code
 android.util.Log 的构造函数是私有的，并不会被实例化，只是提供了静态的属性和方法。   
 而android.util.Log 的各种Log 记录方法的实现都依赖于native 的实现 println_native()，Log.v()/Log.d()/Log.i()/Log.w()/Log.e() 最终都是调用了 println_native()。    
-```
+``` java
 Log.e(String tag, String msg)
 public static int v(String tag, String msg) {
     return println_native(LOG_ID_MAIN, VERBOSE, tag, msg);
 }
-
+```
+``` c
 println_native(LOG_ID_MAIN, VERBOSE, tag, msg)
 /*
  * In class android.util.Log:
@@ -107,7 +108,7 @@ return res;
 }
 ```
 其中__android_log_buf_write() 又调用了write_to_log 函数指针。
-```
+``` c
 static int __write_to_log_init(log_id_t log_id, struct iovec *vec, size_t nr)
 {
 #ifdef HAVE_PTHREADS
@@ -148,29 +149,29 @@ static int __write_to_log_init(log_id_t log_id, struct iovec *vec, size_t nr)
 总的来说println_native() 的操作就是打开设备文件然后写入数据。
 
 ## 0x05 其他注意
-1、使用Log.d()/v() 打印异常对象。（如SQLiteException 可能导致sql注入的问题）
-2、使用android.util.Log 类的方法输出日志，不推荐使用 System.out/err
-3、使用 BuildConfig.DEBUG ADT的版本不低于21
-public final static boolean DEBUG = true;
+1、使用Log.d()/v() 打印异常对象。（如SQLiteException 可能导致sql注入的问题）  
+2、使用android.util.Log 类的方法输出日志，不推荐使用 System.out/err  
+3、使用 BuildConfig.DEBUG ADT的版本不低于21  
+public final static boolean DEBUG = true;  
 
-在release 版本中会被自动设置为false
-if (BuildConfig.DEBUG) android.util.Log.d(TAG, "Log output information");
+在release 版本中会被自动设置为false  
+`if (BuildConfig.DEBUG) android.util.Log.d(TAG, "Log output information");`  
 
-4、启动Activity 的时候，ActivityManager会输出intent 的信息如下：
+4、启动Activity 的时候，ActivityManager会输出intent 的信息如下：  
 
 * 目标包名
 * 目标类名
-* intent.setData(URL)的URL  
+* intent.setData(URL)的URL   
 ![](../pictures/androidcat11.png)
 
-5、即使不用System.out/err 程序也有可能输出相关信息，如使用 Exception.printStackTrace()
-6、ProGuard 不能移除如下log：("result:" + value).
-Log.d(TAG, "result:" + value);
+5、即使不用System.out/err 程序也有可能输出相关信息，如使用 `Exception.printStackTrace() `
+6、ProGuard 不能移除如下log：("result:" + value).    
+`Log.d(TAG, "result:" + value);  `
 
-当遇到此类情况应该使用BulidConfig（注意ADT版本）
-if (BuildConfig.DEBUG) Log.d(TAG, "result:" + value);
+当遇到此类情况应该使用BulidConfig（注意ADT版本）  
+`if (BuildConfig.DEBUG) Log.d(TAG, "result:" + value);`
 
-7、不应将日志输出到sdscard 中，这样会让日志变得全局可读
+7、不应将日志输出到sdscard 中，这样会让日志变得全局可读  
 
 ## 0x06 日志工具类
 ``` java
