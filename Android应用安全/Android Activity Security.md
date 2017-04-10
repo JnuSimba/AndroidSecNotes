@@ -331,6 +331,6 @@ webview addJavascript 接口远程代码执行漏洞最早发现于2012年（CVE
 ## 0x06 参考  
 http://www.jssec.org/dl/android_securecoding_en.pdf  
 http://www.cis.syr.edu/~wedu/Research/paper/webview_acsac2011.pdf  
-
+https://github.com/mzlogin/awesome-adb
 
 
