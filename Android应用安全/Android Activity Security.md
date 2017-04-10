@@ -1,4 +1,4 @@
-
+原文 by 瘦蛟舞  
 ## 0x00 科普
 Android 每一个Application 都是由Activity、Service、content Provider 和 Broadcast Receiver 等Android 的基本组件所组成，其中Activity 是实现应用程序的主体，它承担了大量的显示和交互工作，甚至可以理解为一个"界面"就是一个Activity。 
 Activity 是为用户操作而展示的可视化用户界面，比如说，一个activity 可以展示一个菜单项列表供用户选择，或者显示一些包含说明的照片。  
