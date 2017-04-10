@@ -74,7 +74,7 @@ android3.1 以及之后版本广播接收器不能在启动应用前注册。可
 intent-filter节点与exported 属性设置组合建议
 
 ![](../pictures/androidbr5.jpg)  
-1. 私有广播接收器设置exported='false'，并且不配置intent-filter。(私有广播接收器依然能接收到同UID的广播)
+1. 私有广播接收器设置exported='false'，并且不配置intent-filter。(私有广播接收器依然能接收到同UID的广播)  
 `<receiver android:name=".PrivateReceiver" android:exported="false" />`
 
 2. 对接收来的广播进行验证
@@ -97,7 +97,7 @@ setPackage(String packageName)
 `dz> run app.broadcast.info -a android -i`  
 
 2、查找静态广播接收器：反编译后查看配置文件查找广播接收器组件，注意exported属性  
-3、查找发送广播内的信息检索sendBroadcast与sendOrderedBroadcast，注意setPackage方法于receiverPermission变量。
+3、查找发送广播内的信息检索sendBroadcast与sendOrderedBroadcast，注意setPackage方法于receiverPermission变量。  
 发送测试广播  
 ```
 adb shell：
