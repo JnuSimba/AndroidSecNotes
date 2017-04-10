@@ -8,9 +8,7 @@
 
 左图是startService() 创建service，右图是bindService() 创建service。 startService 与bindService 都可以启动Service，那么它们之间有什么区别呢？它们两者的区别就是使Service 的周期改变。
 
-由startService 启动的Service必须要有stopService 来结束 Service，不调用stopService 则会造成Activity 结束了而Service 还运行着。bindService 启动的Service 可以由unbindService 来结束，也可以
-
-在Activity 结束之后(onDestroy) 自动结束。
+由startService 启动的Service必须要有stopService 来结束 Service，不调用stopService 则会造成Activity 结束了而Service 还运行着。bindService 启动的Service 可以由unbindService 来结束，也可以在Activity 结束之后(onDestroy) 自动结束。
 
 ### 关键方法
 
@@ -76,30 +74,27 @@ AIDL(Android 接口定义语言)执行把对象分解为操作系统能够理解
 
 
 ### 注意
-如果你打算只在本应用内使用自己的service，那么你不需指定任何intent 过滤器．不使用intent 过滤器，你必须使用一个明确指定service 的类名的intent 来启动你的service．
-另外，你也可以通过包含android:exported属性，并指定其值为“false”来保证你的service是私有的．即使你的service使用了intent过滤器，也会起作用．
-当一个service被启动后，它的生命期就不再依赖于启动它的组件并且可以独立运行于后台，即使启动它的组件死翘翘了．所以，service应该工作完成后调用stopSelf() 自己停止掉，或者其它组件也
-可以调用stopService() 停止service． 如果service没有提供绑定功能，传给startService() 的intent是应用组件与service之间唯一的通讯方式．然而，如果你希望service回发一个结果，那么启动这个
-
-service 的客户端可以创建一个用于广播(使用getBroadcast())的PendingIntent 然后放在intent 中传给service，service然后就可以使用广播来回送结果．
+如果你打算只在本应用内使用自己的service，那么你不需指定任何intent 过滤器．不使用intent 过滤器，你必须使用一个明确指定service 的类名的intent 来启动你的service．  
+另外，你也可以通过包含android:exported属性，并指定其值为“false”来保证你的service是私有的．即使你的service使用了intent过滤器，也会起作用．  
+当一个service被启动后，它的生命期就不再依赖于启动它的组件并且可以独立运行于后台，即使启动它的组件死翘翘了．所以，service应该工作完成后调用stopSelf() 自己停止掉，或者其它组件也可以调用stopService() 停止service． 如果service没有提供绑定功能，传给startService() 的intent是应用组件与service之间唯一的通讯方式．然而，如果你希望service回发一个结果，那么启动这个service 的客户端可以创建一个用于广播(使用getBroadcast())的PendingIntent 然后放在intent 中传给service，service然后就可以使用广播来回送结果．
 
 ## 0x02 安全建议
 ### service分类
 ![](../pictures/androidser2.jpg)  
 
-私有service:不能被其他应用调用,相对安全
-公开service:可以被任意应用调用
-合作service:只能被信任合作公司的应用调用
-内部service:只能被内部应用调用
+私有service:不能被其他应用调用,相对安全  
+公开service:可以被任意应用调用  
+合作service:只能被信任合作公司的应用调用  
+内部service:只能被内部应用调用  
 
 ### intent-filter与exported组合建议
 ![](../pictures/androidser3.jpg)  
 
-总结:
-exported属性明确定义
-私有service不定义intent-filter并且设置exported为false
-公开的service设置exported为true,intent-filter可以定义或者不定义
-内部/合作service设置exported为true,intent-filter不定义
+总结:  
+exported属性明确定义  
+私有service不定义intent-filter并且设置exported为false  
+公开的service设置exported为true,intent-filter可以定义或者不定义  
+内部/合作service设置exported为true,intent-filter不定义  
 
 
 ### rule book
