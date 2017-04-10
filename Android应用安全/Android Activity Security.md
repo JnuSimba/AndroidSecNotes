@@ -84,7 +84,7 @@ http://developer.android.com/intl/zh-cn/guide/topics/manifest/permission-element
 
 normal:默认值。低风险权限，只要申请了就可以使用，安装时不需要用户确认。  
 dangerous：像WRITE_SETTING  和SEND_SMS 等权限是有风险的，因为这些权限能够用来重新配置设备或者导致话费，使用此protectionLevel来标识用户可能关注的一些权限。  
-Android将会在安装程序时，警示用户关于这些权限的需求，具体的行为可能依据Android 版本或者所安装的移动设备而有所变化。
+Android将会在安装程序时，警示用户关于这些权限的需求，具体的行为可能依据Android 版本或者所安装的移动设备而有所变化。  
 signature：这些权限仅授予那些和本程序应用了相同密钥来签名的程序。  
 signatureOrSystem:与signature类似，除了一点，系统中的程序也需要有资格来访问，这样允许定制Android 系统应用也能获得权限，这种保护等级有助于集成系统编译过程。  
 ``` xml
