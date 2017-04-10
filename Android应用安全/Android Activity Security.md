@@ -142,7 +142,7 @@ Activity类型和使用方式决定了其风险和防御方式,故将Activity分
 8、当putExtra() 包含敏感信息目的应是app内的activity  
 9、谨慎处理返回数据，即可数据来自相同应用  
 
-###　public activity
+### public activity
 公开暴露的Activity 组件，可以被任意应用启动  
 
 创建activity：  
@@ -237,8 +237,8 @@ public void onCreate(Bundle savedInstanceState) {
 }
 ```
 ### 案例4：隐式启动intent 包含敏感数据
-暂缺可公开案例,攻击模型如下图。
-![](../pictures/androidac7.jpg)  
+暂缺可公开案例,攻击模型如下图。  
+![](../pictures/androidac7.jpg)    
 
 ### 案例5：Fragment注入(绕过PIN+拒绝服务)
 Fragment 这里只提一下，以后可能另写一篇。
@@ -328,9 +328,9 @@ check();
 webview addJavascript 接口远程代码执行漏洞最早发现于2012年（CVE-2012-6636），2013年出现新攻击方法（CVE-2013-4710），同时在2014年发现在安卓 android/webkit/webview 中默认内置的一个searchBoxJavaBridge_ 接口同时存在远程代码执行漏洞（CVE-2014-1939），开发者可以使用removeJavascriptInterface("searchBoxJavaBridge_") 方法来移除这个默认接口以确保应用安全。
 而前不久，有安全人员发现了两个新的攻击向量（attack vectors ）存在于 android/webkit/AccessibilityInjector.java 中，调用了此组件的应用在开启辅助功能选项中第三方服务的安卓系统中会造成远程代码执行漏洞。这两个接口分别是"accessibility" 和"accessibilityTraversal" ，此漏洞原理与searchBoxJavaBridge_接口远程代码执行相似，均为未移除不安全的默认接口，不过此漏洞需要用户启动系统设置中的第三方辅助服务，利用条件较复杂。  
 
-## 0x06 参考
-http://www.jssec.org/dl/android_securecoding_en.pdf
-http://www.cis.syr.edu/~wedu/Research/paper/webview_acsac2011.pdf
+## 0x06 参考  
+http://www.jssec.org/dl/android_securecoding_en.pdf  
+http://www.cis.syr.edu/~wedu/Research/paper/webview_acsac2011.pdf  
 
 
 
