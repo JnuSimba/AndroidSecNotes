@@ -3,12 +3,12 @@ smali 最早起源于Jasmin,后被aosp采用为android虚拟机字节码,随后j
 他是一种jvm中的assembler语法,在art之前的davilik采用jit来即时翻译它运行.  
 ### 0x011. smali&java&dex之间的关系
 摘自quora
-> But their dex files are available which would be in a totally unreadable.
-So to edit it we need to convert this .dex files to a more understandable form.
-This is where smali comes in. To make it easier to understand I can represent it like this:
-.dex <------------------> .smali <--------------------- java source code
-Converting a .dex file to smali (called baksmaling) gives us readable code in smali language.
-Now if you wonder why can't smali be converted into java source, that's because java is a very developed language and smali is more of an assembly based language. And so while going from java source to smali information is lost and that's why smali can't be used to completely reconstruct java source code
+> But their dex files are available which would be in a totally unreadable.  
+> So to edit it we need to convert this .dex files to a more understandable form.  
+> This is where smali comes in. To make it easier to understand I can represent it like this:  
+> .dex <------------------> .smali <--------------------- java source code  
+> Converting a .dex file to smali (called baksmaling) gives us readable code in smali language.
+> Now if you wonder why can't smali be converted into java source, that's because java is a very developed language and smali is more of an assembly based language. And so while going from java source to smali information is lost and that's why smali can't be used to completely reconstruct java source code
 
 ## 0x02. smali的基本类型
 Dalvik字节码只有两种类型:基本类型和引用类型.这两种类型就可以完整的表示java世界的所有类型.  
