@@ -107,7 +107,7 @@ exported属性明确定义
 
 4. 不应在service创建(onCreate方法被调用)的时候决定是否提供服务,应在 onStartCommand/onBind/onHandleIntent 等方法被调用的时候做判断.
 
-5. 当service又返回数据的时候,应判断数据接收app是否有信息泄露的风险
+5. 当service 有返回数据的时候,应判断数据接收app是否有信息泄露的风险
 
 6. 有明确的服务需调用时使用显式意图
 
