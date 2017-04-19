@@ -13,6 +13,8 @@ Where's My Water.zip\
 * res\                           <资源目录2：asset和res都是资源目录但有所区别，见下面说明> 
 * |---drawable\               |---<图片和对应的xml资源>
 * |---layout\                   |---<定义布局的xml资源>
+* |---menu\					   |--- 存放应用里定义菜单项的文件。
+* |---values\  				  |---存放其他xml资源文件，如string，color定义。strings.xml定义了运行应用时显示的文本
 * |---... 
 * AndroidManifest.xml     <Android工程的基础配置属性文件>
 * classes.dex                 <Java代码编译得到的Dalvik VM能直接执行的文件，下面有介绍>
