@@ -16,7 +16,7 @@ Activity 是为用户操作而展示的可视化用户界面，比如说，一�
 ![](../pictures/androidac1.jpg)  
 
 ### 启动方式
-显式启动  
+#### 显式启动  
 配置文件中注册组件
 ``` xml
 <activity android:name=".ExampleActivity" android:icon="@drawable/app_icon">
@@ -32,12 +32,36 @@ Intent intent = new Intent(this, ExampleActivity.class);
 startActivity(intent);
 ```
 未配置intent-filter的action属性，activity只能使用显式启动，私有Activity推荐使用显式启动。   
-隐式启动  
+#### 隐式启动  
 ```
 Intent intent = new Intent(Intent.ACTION_SEND);
 intent.putExtra(Intent.EXTRA_EMAIL, recipientArray);
 startActivity(intent);
 ```
+隐式调用就是没有明确的指出组件信息，而是通过Filter去过滤出需要的组件。  
+```
+Intent intent = new Intent();
+intent.setAction(Intent.ACTION_BATTERY_LOW);
+intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+intent.setDataAndType(Uri.EMPTY, "video/mpeg");
+startActivity(intent);
+```
+这里就是一个隐式的调用，可以看到我为Intent设置了三个属性Action、Category、Data。  
+然后startActivity(intent) 就会根据我们设置的这三个属性去筛选合适的组件来打开，也就是因为这样，所以有时候当我们APP来分享一个东西的时候，会有很多组件（比如QQ、微信、微博...）来供我们选择，因为他们都满足Filter条件。  
+```
+<activity  android:name=".Activity_B"    
+           android:label="@string/title_activity_activity__b"
+           android:launchMode="singleInstance">  
+  <intent-filter> 
+    <action android:name="android.intent.action.ANSWER" />    
+    <category android:name="android.intent.category.APP_EMAIL" />        
+    <data  android:host="www.mathiasluo.com"   
+           android:scheme="http" />  
+  </intent-filter>
+</activity>
+```
+我们在这里给Activity设置了一个IntentFilter，但是值得注意的是，一个组件可以有多个IntentFilter，在过滤的时候只要有一个符合要求的，就会被视为过滤通过。  
+
 ### 加载模式launch mode
 Activity 有四种加载模式：
 
