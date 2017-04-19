@@ -144,7 +144,7 @@ public class OtherActivity extends Activity {
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"/>
 ```
-在Mainifest.xml程序清单中添加Activity的配置。  
+在Manifest.xml程序清单中添加Activity的配置。  
 全部配置完毕后就完成了一个Activity通过Intent传递信息到另一个Activity的过程。     
 调用者：    
 ![basic](../pictures/call1.JPG)  
