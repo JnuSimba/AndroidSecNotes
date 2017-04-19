@@ -27,19 +27,19 @@ Activity 是为用户操作而展示的可视化用户界面，比如说，一�
 </activity>
 ``` 
 直接使用intent 对象指定application 以及activity 启动
-```
+``` java
 Intent intent = new Intent(this, ExampleActivity.class);
 startActivity(intent);
 ```
 未配置intent-filter的action属性，activity只能使用显式启动，私有Activity推荐使用显式启动。   
 #### 隐式启动  
-```
+``` java
 Intent intent = new Intent(Intent.ACTION_SEND);
 intent.putExtra(Intent.EXTRA_EMAIL, recipientArray);
 startActivity(intent);
 ```
 隐式调用就是没有明确的指出组件信息，而是通过Filter去过滤出需要的组件。  
-```
+``` java
 Intent intent = new Intent();
 intent.setAction(Intent.ACTION_BATTERY_LOW);
 intent.addCategory(Intent.CATEGORY_APP_EMAIL);
@@ -48,7 +48,7 @@ startActivity(intent);
 ```
 这里就是一个隐式的调用，可以看到我为Intent设置了三个属性Action、Category、Data。  
 然后startActivity(intent) 就会根据我们设置的这三个属性去筛选合适的组件来打开，也就是因为这样，所以有时候当我们APP来分享一个东西的时候，会有很多组件（比如QQ、微信、微博...）来供我们选择，因为他们都满足Filter条件。  
-```
+``` xml
 <activity  android:name=".Activity_B"    
            android:label="@string/title_activity_activity__b"
            android:launchMode="singleInstance">  
