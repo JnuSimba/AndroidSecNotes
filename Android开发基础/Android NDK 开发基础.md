@@ -6,9 +6,14 @@
 
 NDK提供了一系列的工具，帮助开发者快速开发C（或C++）的动态库，并能自动将so和java应用一起打包成apk。这些工具对开发者的帮助是巨大的.NDK集成了交叉编译器，并提供了相应的mk文件隔离CPU、平台、ABI等差异，开发人员只需要简单修改mk文件（指出“哪些文件需要编译”、“编译特性要求”等），就可以创建出so。  
 
-NDK可以自动地将so和Java应用一起打包，极大地减轻了开发人员的打包工作。  
+NDK可以自动地将so和Java应用一起打包，极大地减轻了开发人员的打包工作。 
 
-##　为何要用到NDK?
+## NDK两种开发模式
+
+ndk-build 形式; Android Studio 2.2之前的模式
+CMake 形式: CLion C/C++编辑器; AS2.2之后整合了CLion代码, AS就支持了CMake形式的NDK开发 
+
+## 为何要用到NDK
 
 概括来说主要分为以下几种情况：
 
@@ -26,7 +31,7 @@ NDK可以自动地将so和Java应用一起打包，极大地减轻了开发人�
 ## 一、 开发环境的搭建
 
 安装android-ndk开发包，这个开发包可以在google android 官网下载： 通过这个开发包的工具才能将android jni 的C/C++的代码编译成库
-android应用程序开发环境： 包括eclipse、java、 android sdk、 adt等。
+android应用程序开发环境： 包括eclipse、java、 android sdk、 adt等。  
 如何下载和安装android-ndk我这里就不啰嗦了，安装完之后，需要将android-ndk的路劲加到环境变量PATH中：
 
 `sudo gedit /etc/environment`
@@ -180,7 +185,7 @@ braincol@ubuntu:~/workspace/android/NDK/hello-jni$ cd jni/
 braincol@ubuntu:~/workspace/android/NDK/hello-jni/jni$ ls 
 com_example_hellojni_HelloJni.h
 ```
-我们来看看com_example_hellojni_HelloJni.h的内容：
+我们来看看`com_example_hellojni_HelloJni.h`的内容：
 
 com_example_hellojni_HelloJni.h :
 ``` c
@@ -216,7 +221,7 @@ JNIEXPORT jstring JNICALL Java_com_example_hellojni_HelloJni_unimplementedString
 ```
 上面代码中的JNIEXPORT 和 JNICALL 是jni的宏，在android的jni中不需要，当然写上去也不会有错。
 
-从上面的源码中可以看出这个函数名那是相当的长，不过还是很有规律的， 完全按照：java_pacakege_class_mathod 形式来命名。
+从上面的源码中可以看出这个函数名那是相当的长，不过还是很有规律的， 完全按照：`java_pacakege_class_mathod` 形式来命名。
 
 也就是说：
 ```
@@ -232,7 +237,7 @@ Signature: ()Ljava/lang/String;
 ```
 ()表示函数的参数为空（这里为空是指除了`JNIEnv *, jobject` 这两个参数之外没有其他参数，`JNIEnv*, jobject`是所有jni函数必有的两个参数，分别表示jni 环境和对应的java类（或对象）本身），
 
-Ljava/lang/String; 表示函数的返回值是java的String对象。
+`Ljava/lang/String;` 表示函数的返回值是java的String对象。
 
  
 
