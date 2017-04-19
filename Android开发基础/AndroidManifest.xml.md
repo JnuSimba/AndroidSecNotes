@@ -224,3 +224,6 @@ android.permission.DEVICE_POWER
 每个应用均链接到默认的 Android 库，该库中包括用于开发应用（以及通用类，如 Activity、服务、intent、视图、按钮、应用、ContentProvider）的基本软件包。
 
 但是，某些软件包驻留在自己的库中。如果应用使用来自其中任一软件包的代码，则必须明确要求其链接到这些软件包。清单必须包含单独的 `<uses-library>` 元素来命名其中每个库。库名称可在软件包的文档中找到。
+
+## Reference  
+https://developer.android.google.cn/guide/topics/manifest/manifest-intro.html
