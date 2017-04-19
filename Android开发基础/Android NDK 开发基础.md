@@ -10,7 +10,7 @@ NDK可以自动地将so和Java应用一起打包，极大地减轻了开发人�
 
 ## NDK两种开发模式
 
-ndk-build 形式; Android Studio 2.2之前的模式
+ndk-build 形式; Android Studio 2.2之前的模式  
 CMake 形式: CLion C/C++编辑器; AS2.2之后整合了CLion代码, AS就支持了CMake形式的NDK开发 
 
 ## 为何要用到NDK
@@ -31,8 +31,7 @@ CMake 形式: CLion C/C++编辑器; AS2.2之后整合了CLion代码, AS就支持
 ## 一、 开发环境的搭建
 
 安装android-ndk开发包，这个开发包可以在google android 官网下载： 通过这个开发包的工具才能将android jni 的C/C++的代码编译成库
-android应用程序开发环境： 包括eclipse、java、 android sdk、 adt等。  
-如何下载和安装android-ndk我这里就不啰嗦了，安装完之后，需要将android-ndk的路劲加到环境变量PATH中：
+android应用程序开发环境： 包括eclipse、java、 android sdk、 adt，安装完之后，需要将android-ndk的路劲加到环境变量PATH中：  
 
 `sudo gedit /etc/environment`
 
