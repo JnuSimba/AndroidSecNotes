@@ -12,7 +12,7 @@ res：存放我们各种资源文件的地方，有图片，字符串，动画�
 说到这个res目录，另外还有提下这个assets目录，虽然这里没有，但是我们可以自己创建，两者的区别在于是否前者下所有的资源文件都会在R.java文件下生成对应的资源id，而后者并不会。前者我们可以直接通过资源id访问到对应的资源，而后者则需要我们通过AssetManager以二进制流的形式来读取。这个R文件可以理解为字典，res下每个资源都都会在这里生成一个唯一的id。   
 
 接着说下res这个资源目录下的相关目录：  
-下述mipmap的目录，在Eclipse并不存在这个，Eclipse中都是drawable开头的，其实区别不大，只是使用mipmap会在图片缩放在提供一定的性能优化，分辨率不同系统会根据屏幕分辨率来选择hdpi，mdpi，xmdpi，xxhdpi下的对应图片，所以你解压别人的apk可以看到上述目录同一名称的图片，在四个文件夹下都有，只是大小和像素不一样而已。当然，这也不是绝对的，比如我们把所有的图片都丢在了drawable-hdpi下的话,即使手机本该加载ldpi文件夹下的图片资源，但是ldpi下没有，那么加载的还会是hdpi下的图片。另外,还有一种情况:比如是hdpi,mdpi目录下有,ldpi下没有,那么会加载mdpi中的资源，原则是使用最接近的密度级别。如果你想禁止Android不跟随屏幕密度加载不同文件夹的资源,只需在AndroidManifest.xml 文件中添加 android:anyDensity="false" 字段即可。   
+下述mipmap的目录，在Eclipse并不存在这个，Eclipse中都是drawable开头的，其实区别不大，只是使用mipmap会在图片缩放在提供一定的性能优化，分辨率不同系统会根据屏幕分辨率来选择hdpi，mdpi，xmdpi，xxhdpi下的对应图片，所以你解压别人的apk可以看到上述目录同一名称的图片，在四个文件夹下都有，只是大小和像素不一样而已。当然，这也不是绝对的，比如我们把所有的图片都丢在了drawable-hdpi下的话,即使手机本该加载ldpi文件夹下的图片资源，但是ldpi下没有，那么加载的还会是hdpi下的图片。另外,还有一种情况:比如是hdpi、mdpi目录下有，ldpi下没有，那么会加载mdpi中的资源，原则是使用最接近的密度级别。如果你想禁止Android不跟随屏幕密度加载不同文件夹的资源,只需在AndroidManifest.xml 文件中添加 android:anyDensity="false" 字段即可。   
 ### 1.图片资源
 drawable：存放各种位图文件，(.png，.jpg，.9png，.gif等)除此之外可能是一些其他的drawable类型的XML文件  
 mipmap-hdpi：高分辨率，一般我们把图片丢这里  
