@@ -1,6 +1,7 @@
+原文 by coder-pig 
 # 工程项目结构解析：
 
-以android studio（Eclipse + ADT) 举例，我们开发大部分时间都花在下面这个部分上：
+以android studio（Eclipse + ADT) 举例，我们开发大部分时间都花在下面这个部分上：  
 ![](../pictures/project1.jpg)
 
 接下来我们对关键部分进行讲解：  
@@ -8,21 +9,21 @@ java：我们写Java代码的地方，业务功能都在这里实现
 res：存放我们各种资源文件的地方，有图片，字符串，动画，音频等，还有各种形式的XML文件   
 ## 一.res资源文件夹介绍：
 
-PS：说到这个res目录，另外还有提下这个assets目录，虽然这里没有，但是我们可以自己创建，两者的区别在于是否前者下所有的资源文件都会在R.java文件下生成对应的资源id，而后者并不会。前者我们可以直接通过资源id访问到对应的资源，而后者则需要我们通过AssetManager以二进制流的形式来读取。这个R文件可以理解为字典，res下每个资源都都会在这里生成一个唯一的id。   
+说到这个res目录，另外还有提下这个assets目录，虽然这里没有，但是我们可以自己创建，两者的区别在于是否前者下所有的资源文件都会在R.java文件下生成对应的资源id，而后者并不会。前者我们可以直接通过资源id访问到对应的资源，而后者则需要我们通过AssetManager以二进制流的形式来读取。这个R文件可以理解为字典，res下每个资源都都会在这里生成一个唯一的id。   
 
 接着说下res这个资源目录下的相关目录：  
-PS:下述mipmap的目录，在Eclipse并不存在这个，Eclipse中都是drawable开头的，其实区别不大，只是使用mipmap会在图片缩放在提供一定的性能优化，分辨率不同系统会根据屏幕分辨率来选择hdpi，mdpi，xmdpi，xxhdpi下的对应图片，所以你解压别人的apk可以看到上述目录同一名称的图片，在四个文件夹下都有，只是大小和像素不一样而已。当然,这也不是绝对的,比如我们把所有的图片都丢在了drawable-hdpi下的话,即使手机本该加载ldpi文件夹下的图片资源,但是ldpi下没有,那么加载的还会是hdpi下的图片。另外,还有一种情况:比如是hdpi,mdpi目录下有,ldpi下没有,那么会加载mdpi中的资源。原则是使用最接近的密度级别。如果你想禁止Android不跟随屏幕密度加载不同文件夹的资源,只需在AndroidManifest.xml文件中添加android:anyDensity="false"字段即可。   
+下述mipmap的目录，在Eclipse并不存在这个，Eclipse中都是drawable开头的，其实区别不大，只是使用mipmap会在图片缩放在提供一定的性能优化，分辨率不同系统会根据屏幕分辨率来选择hdpi，mdpi，xmdpi，xxhdpi下的对应图片，所以你解压别人的apk可以看到上述目录同一名称的图片，在四个文件夹下都有，只是大小和像素不一样而已。当然,这也不是绝对的,比如我们把所有的图片都丢在了drawable-hdpi下的话,即使手机本该加载ldpi文件夹下的图片资源,但是ldpi下没有,那么加载的还会是hdpi下的图片。另外,还有一种情况:比如是hdpi,mdpi目录下有,ldpi下没有,那么会加载mdpi中的资源。原则是使用最接近的密度级别。如果你想禁止Android不跟随屏幕密度加载不同文件夹的资源,只需在AndroidManifest.xml文件中添加android:anyDensity="false"字段即可。   
 ### 1.图片资源
 drawable：存放各种位图文件，(.png，.jpg，.9png，.gif等)除此之外可能是一些其他的drawable类型的XML文件  
 mipmap-hdpi：高分辨率，一般我们把图片丢这里  
 mipmap-mdpi：中等分辨率，很少，除非兼容的的手机很旧  
 mipmap-xhdpi：超高分辨率，手机屏幕材质越来越好，以后估计会慢慢往这里过渡  
 mipmap-xxhdpi：超超高分辨率，这个在高端机上有所体现    
-###　2.布局资源
+### 2.布局资源
 layout：该目录下存放的就是我们的布局文件，另外在一些特定的机型上，我们做屏幕适配，比如480*320这样的手机，我们会另外创建一套布局，就行：layout-480x320这样的文件夹。  
 ### 3.菜单资源  
 menu：在以前有物理菜单按钮，即menu键的手机上，用的较多，现在用的并不多，菜单项相关的资源xml可在这里编写，不知道谷歌会不会出新的东西来替代菜单了。  
-###　4.values目录
+### 4.values目录
 demens.xml：定义尺寸资源  
 string.xml：定义字符串资源  
 styles.xml：定义样式资源  
@@ -41,7 +42,7 @@ anim：存放补间动画的XML文件
 ## 二.如何去使用这些资源
 
 嗯，知道有什么资源，接下来就来了解该怎么用了。前面也说了，我们所有的资源文件都会在R.java文件下生成一个资源id，我们可以通过这个资源id来完成资源的访问，使用情况有两种：Java代码中使用和XML代码中使用  
-###　Java代码中使用
+### Java代码中使用
 ```
 Java 文字：txtName.setText(getResources().getText(R.string.name)); 
 图片：imgIcon.setBackgroundDrawableResource(R.drawable.icon); 
@@ -130,4 +131,7 @@ AndroidManifest.xml配置文件，代码如下：
 除了上述内容外：  
 如果app包含其他组件的话,都要使用类型说明语法在该文件中进行声明  
 `Server:<server>`元素`BroadcastReceiver<receiver>`元素`ContentProvider<provider>`元素`IntentFilter<intent-filter>`元素`</provider></receiver ></server>`  
-②权限的声明: 在该文件中显式地声明程序需要的权限,防止app错误地使用服务, 不恰当地访问资源,最终提高android app的健壮性。  android.permission.SEND_SMS 有这句话表示app需要使用发送信息的权限,安装的时候就会提示用户, 相关权限可以在sdk参考手册查找。  
+②权限的声明: 在该文件中显式地声明程序需要的权限,防止app错误地使用服务, 不恰当地访问资源,最终提高android app的健壮性。  android.permission.SEND_SMS 有这句话表示app需要使用发送信息的权限,安装的时候就会提示用户, 相关权限可以在sdk参考手册查找。 
+
+## Reference
+http://blog.csdn.net/coder_pig/article/details/46963725 
