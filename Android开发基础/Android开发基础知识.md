@@ -154,3 +154,6 @@ public class OtherActivity extends Activity {
 
 这是视图的唯一标识符。可以在程序代码中通过该标识符引用对象，例如对这个对象进行读和修改的操作。  
 当需要从 XML 里引用资源对象时，必须使用 @ 符号。紧随 @ 之后的是资源的类型（这里是 id），然后是资源的名字（这里使用的是 button/msg）。+ 号只在第一次定义一个资源 ID 的时候需要，它是告诉 SDK——此资源 ID 需要被创建。在应用程序被编译之后，SDK 就可以直接使用这个 ID。
+
+## Reference
+http://blog.csdn.net/lantian0802/article/details/21811545

@@ -383,3 +383,6 @@ eclipse中刷新下HelloJni工程，重新编译生成apk，libhello-jni.so共�
 
 hello-jni  
 ![](../pictures/hellojni.png)
+
+## Reference
+http://www.cnblogs.com/hibraincol/archive/2011/05/30/2063847.html
