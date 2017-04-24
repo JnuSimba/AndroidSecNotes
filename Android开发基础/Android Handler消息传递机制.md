@@ -1,4 +1,4 @@
-Android为了线程安全，并不允许我们在UI线程外操作UI；很多时候我们做界面刷新都需要通过Handler来通知UI组件更新。除了用Handler完成界面更新外，还可以使用runOnUiThread()来更新，甚至更高级的事务总线。当然，这里我们只讲解Handler，什么是Handler，执行流程，相关方法，子线程与主线程中使用Handler的区别等。
+Android为了线程安全，并不允许我们在UI线程（主线程）外操作UI；很多时候我们做界面刷新都需要通过Handler来通知UI组件更新。除了用Handler完成界面更新外，还可以使用runOnUiThread()来更新，甚至使用AsyncTask、更高级的事务总线。当然，这里我们只讲解Handler，什么是Handler，执行流程，相关方法，子线程与主线程中使用Handler的区别等。
 
 ## 1.Handler类的引入:
 ![](../pictures/handle1.jpg)
@@ -20,12 +20,13 @@ Android为了线程安全，并不允许我们在UI线程外操作UI；很多时
 
 ## 3.Handler的相关方法:
 ```
-void handleMessage (Message msg):处理消息的方法,通常是用于被重写!
+void handleMessage (Message msg):处理消息的方法,通常是用于被重写
 sendEmptyMessage (int what):发送空消息
 sendEmptyMessageDelayed (int what,long delayMillis):指定延时多少毫秒后发送空信息
 sendMessage (Message msg):立即发送信息
 sendMessageDelayed (Message msg):指定延时多少毫秒后发送信息
-final boolean hasMessage (int what):检查消息队列中是否包含what属性为指定值的消息如果是参数为(int what,Object object):除了判断what属性,还需要判断Object属性是否为指定对象的消息
+final boolean hasMessage (int what):检查消息队列中是否包含what属性为指定值的消息  
+如果是参数为(int what,Object object):除了判断what属性,还需要判断Object属性是否为指定对象的消息
 ```
 
 ## 4.Handler的使用示例：
@@ -100,7 +101,7 @@ public class MainActivity extends Activity {
 ```
 ### 2）Handler写在子线程中
 
-如果是Handler写在了子线程中的话,我们就需要自己创建一个Looper对象了。  
+如果是Handler写在子线程中的话,我们就需要自己创建一个Looper对象了。  
 创建的流程如下:      
 1] 直接调用Looper.prepare()方法即可为当前线程创建Looper对象,而它的构造器会创建配套的MessageQueue;     
 2] 创建Handler对象,重写handleMessage( )方法就可以处理来自于其他线程的信息了;    

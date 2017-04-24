@@ -142,7 +142,7 @@ public class MainActivity extends Activity {
 ## 4）直接使用Activity作为事件监听器
 
 只需要让Activity类实现XxxListener事件监听接口,在Activity中定义重写对应的事件处理器方法  
-eg:Actitity实现了OnClickListener接口,重写了onClick(view)方法，在为某些组建添加该事件监听对象时,直接setXxx.Listener(this)即可  
+eg:Actitity实现了OnClickListener接口,重写了onClick(view)方法，在为某些组件添加该事件监听对象时,直接setXxx.Listener(this)即可  
 实现代码如下：MainAcivity.java:  
 ``` java
 package com.jay.example.innerlisten;    
@@ -174,8 +174,9 @@ public class MainActivity extends Activity implements OnClickListener{
 ```
 ## 5）直接绑定到标签
 
-就是直接在xml布局文件中对应得Activity中定义一个事件处理方法  
-eg:public void myClick(View source) source对应事件源(组件) 接着布局文件中对应要触发事件的组建,设置一个属性:onclick = " myclick"即可  
+就是直接在xml布局文件中对应的Activity中定义一个事件处理方法  
+eg:public void myClick(View source)   
+source对应事件源(组件)， 接着布局文件中对应要触发事件的组件,设置一个属性:onclick = " myclick"即可  
 实现代码如下：MainAcivity.java:  
 ``` java
 package com.jay.example.caller;    

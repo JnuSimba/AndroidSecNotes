@@ -16,7 +16,7 @@ android为GUI组件提供了一些事件处理的回调方法,以View为例,有�
 ④长按组件某个按钮时: boolean onKeyLongPress (int keyCode,KeyEvent event); 
 ⑤键盘快捷键事件发生: boolean onKeyShortcut (int keyCode,KeyEvent event); 
 ⑥在组件上触发轨迹球屏事件: boolean onTrackballEvent (MotionEvent event); 
-⑦当组件的焦点发生改变,和前面的6个不同,这个方法只能够在View中重写。protected void *onFocusChanged (boolean gainFocus, int direction, Rect previously FocusedRect)
+⑦当组件的焦点发生改变,和前面的6个不同,这个方法只能够在View中重写。protected void onFocusChanged (boolean gainFocus, int direction, Rect previously FocusedRect)
 ```
 
 代码示例：我们自定义一个MyButton类继承Button类,然后重写onKeyLongPress方法;接着在xml文件中通过全限定类名调用自定义的view  

@@ -1,6 +1,11 @@
 原文 by 瘦蛟舞 
 ## 0x00 科普
 一个Service 是没有界面且能长时间运行于后台的应用组件．其它应用的组件可以启动一个服务运行于后台，即使用户切换到另一个应用也会继续运行．另外，一个组件可以绑定到一个service 来进行交互，即使这个交互是进程间通讯也没问题．例如，一个service可能处理网络通信，播放音乐，执行文件I/O，或与一个内容提供者交互，所有这些都在后台进行．
+1. Service不是一个单独的进程,它和它的应用程序在同一个进程中  
+2. Service不是一个线程,这样就意味着我们应该避免在Service中进行耗时操作  
+3. Android给我们提供了解决上述问题的替代品IntentService； IntentService是继承于Service并处理异步请求的一个类,  
+在IntentService中有一个工作线程来处理耗时操作，请求的Intent记录会加入队列  
+4. 客户端通过startService(Intent) 来启动IntentService，我们并不需要手动地去控制IntentService，当任务执行完后，IntentService会自动停止; 可以启动IntentService多次,每个耗时操作会以工作队列的方式在IntentService 的onHandleIntent 回调方法中执行，并且每次只会执行一个工作线程，执行完一再到二
 
 ## 0x01 知识要点
 ### 生命周期
