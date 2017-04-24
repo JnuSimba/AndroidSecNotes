@@ -14,6 +14,7 @@ Android为了线程安全，并不允许我们在UI线程外操作UI；很多时
 > Message :Handler接收与处理的消息对象  
 > MessageQueue :消息队列,先进先出管理Message,在初始化Looper对象时会创建一个与之关联的MessageQueue;  
 > Looper :每个线程只能够有一个Looper,管理MessageQueue,不断地从中取出Message分发给对应的Handler处理。  
+
 简单点说：  
 > 当我们的子线程想修改Activity中的UI组件时,我们可以新建一个Handler对象,通过这个对象向主线程发送信息;而我们发送的信息会先到主线程的MessageQueue进行等待,由Looper按先入先出顺序取出,再根据message对象的what属性分发给对应的Handler进行处理。  
 
@@ -31,7 +32,7 @@ final boolean hasMessage (int what):检查消息队列中是否包含what属性�
 
 ### 1）Handler写在主线程中
 
-在主线程中,因为系统已经初始化了一个Looper对象,所以我们直接创建Handler对象,就可以进行信息的发送与处理了。
+在主线程中,因为系统已经初始化了一个Looper对象,所以我们直接创建Handler对象,就可以进行信息的发送与处理了。  
 代码示例：简单的一个定时切换图片的程序,通过Timer定时器,定时修改ImageView显示的内容,从而形成帧动画  
 运行效果图：  
 ![](../pictures/handle3.jpg)  
@@ -99,8 +100,8 @@ public class MainActivity extends Activity {
 ```
 ### 2）Handler写在子线程中
 
-如果是Handler写在了子线程中的话,我们就需要自己创建一个Looper对象了。
-创建的流程如下:    
+如果是Handler写在了子线程中的话,我们就需要自己创建一个Looper对象了。  
+创建的流程如下:      
 1] 直接调用Looper.prepare()方法即可为当前线程创建Looper对象,而它的构造器会创建配套的MessageQueue;     
 2] 创建Handler对象,重写handleMessage( )方法就可以处理来自于其他线程的信息了;    
 3] 调用Looper.loop()方法启动Looper  
