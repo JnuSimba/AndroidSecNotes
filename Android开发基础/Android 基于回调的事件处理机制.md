@@ -4,7 +4,9 @@
 在Android中基于回调的事件处理机制使用场景有两个：  
 ## 1）自定义view
 
-当用户在GUI组件上激发某个事件时,组件有自己特定的方法会负责处理该事件通常用法:继承基本的GUI组件,重写该组件的事件处理方法,即自定义view 注意:在xml布局中使用自定义的view时,需要使用"全限定类名"  
+当用户在GUI组件上激发某个事件时,组件有自己特定的方法会负责处理该事件。  
+通常用法:继承基本的GUI组件,重写该组件的事件处理方法,即自定义view。   
+注意:在xml布局中使用自定义的view时,需要使用"全限定类名"  
 常见View组件的回调方法：  
 android为GUI组件提供了一些事件处理的回调方法,以View为例,有以下几个方法  
 ```
@@ -58,7 +60,16 @@ public  class  MyButton  extends  Button{
 ```
 布局文件：
 ``` xml
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"  xmlns:tools="http://schemas.android.com/tools"  android:layout_width="match_parent"  android:layout_height="match_parent"  tools:context=".MyActivity">  <example.jay.com.mybutton.MyButton  android:layout_width="wrap_content"  android:layout_height="wrap_content"  android:text="按钮"/>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"      
+xmlns:tools="http://schemas.android.com/tools"    
+android:layout_width="match_parent"     
+android:layout_height="match_parent"      
+tools:context=".MyActivity">    
+	<example.jay.com.mybutton.MyButton      
+	android:layout_width="wrap_content"      
+	android:layout_height="wrap_content"      
+	android:text="按钮"/>
+</RelativeLayout>
 ```
 代码解析：  
 因为我们直接重写了Button的三个回调方法,当发生点击事件后就不需要我们在Java文件中进行事件监听器的绑定就可以完成回调,即组件会处理对应的事件,即事件由事件源(组件)自身处理。  
@@ -67,7 +78,7 @@ public  class  MyButton  extends  Button{
 ![](../pictures/callback3.jpg)  
 
 
-综上,就是如果是否向外传播取决于方法的返回值是时true还是false。
+综上,就是如果是否向外传播取决于方法的返回值是时true还是false。  
 代码示例：  
 ``` java
 public  class  MyButton  extends  Button
@@ -88,7 +99,17 @@ public  class  MyButton  extends  Button
 ```
 main.xml:  
 ``` xml
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"  xmlns:tools="http://schemas.android.com/tools"  android:layout_width="match_parent"  android:layout_height="match_parent"  tools:context=".MyActivity">  <example.jay.com.mybutton.MyButton  android:layout_width="wrap_content"  android:layout_height="wrap_content"  android:text="自定义按钮"  android:id="@+id/btn_my"/>  </LinearLayout>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"    
+xmlns:tools="http://schemas.android.com/tools"    
+android:layout_width="match_parent"    
+android:layout_height="match_parent"   
+tools:context=".MyActivity">   
+	<example.jay.com.mybutton.MyButton    
+	android:layout_width="wrap_content"   
+	android:layout_height="wrap_content"    
+	android:text="自定义按钮"    
+	android:id="@+id/btn_my"/> 
+</LinearLayout>
 ```
 MainActivity.java：  
 ``` java
