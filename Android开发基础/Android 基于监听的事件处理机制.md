@@ -16,13 +16,13 @@
 > 事件监听机制是一种委派式的事件处理机制，事件源(组件)事件处理委托给事件监听器，当事件源发生指定事件时,就通知指定事件监听器,执行相应的操作
 
 我们以下面这个：简单的按钮点击,提示Toast信息的程序；使用五种不同的形式来实现。  
-效果图：
+效果图：  
 ![](../pictures/event2.jpg)  
 
 
 ## 1）直接用匿名内部类
 
-平时最常用的一种:直接setXxxListener后,重写里面的方法即可; 通常是临时使用一次,复用性不高。
+平时最常用的一种:直接setXxxListener后,重写里面的方法即可; 通常是临时使用一次,复用性不高。  
 实现代码如下：MainAcivity.java:
 ``` java
 package com.jay.example.innerlisten;    
@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
 ## 2）使用内部类
 
 和上面的匿名内部类不同。   
-使用优点:可以在该类中进行复用,可直接访问外部类的所有界面组件。
+使用优点:可以在该类中进行复用,可直接访问外部类的所有界面组件。  
 实现代码如下：MainAcivity.java:
 ``` java
 package com.jay.example.innerlisten;    
