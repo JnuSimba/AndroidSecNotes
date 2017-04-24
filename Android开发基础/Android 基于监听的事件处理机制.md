@@ -4,23 +4,23 @@
 流程模型图：  
 ![](../pictures/event1.jpg)  
 文字表述：  
-> 事件监听机制中由事件源，事件，事件监听器三类对象组成处理流程如下: 
-> Step 1:为某个事件源(组件)设置一个监听器,用于监听用户操作
-> Step 2:用户的操作,触发了事件源的监听器
-> Step 3:生成了对应的事件对象
-> Step 4:将这个事件源对象作为参数传给事件监听器
-> Step 5:事件监听器对事件对象进行判断,执行对应的事件处理器(对应事件的处理方法)
+> 事件监听机制中由事件源，事件，事件监听器三类对象组成处理流程如下:   
+> Step 1:为某个事件源(组件)设置一个监听器,用于监听用户操作  
+> Step 2:用户的操作,触发了事件源的监听器  
+> Step 3:生成了对应的事件对象  
+> Step 4:将这个事件源对象作为参数传给事件监听器  
+> Step 5:事件监听器对事件对象进行判断,执行对应的事件处理器(对应事件的处理方法)  
 
 归纳：
 
-> 事件监听机制是一种委派式的事件处理机制,事件源(组件)事件处理委托给事件监听器当事件源发生指定事件时,就通知指定事件监听器,执行相应的操作
+> 事件监听机制是一种委派式的事件处理机制，事件源(组件)事件处理委托给事件监听器，当事件源发生指定事件时,就通知指定事件监听器,执行相应的操作
 
-我们以下面这个：简单的按钮点击,提示Toast信息的程序；使用五种不同的形式来实现。
+我们以下面这个：简单的按钮点击,提示Toast信息的程序；使用五种不同的形式来实现。  
 效果图：
 ![](../pictures/event2.jpg)  
 
 
-##　1）直接用匿名内部类
+## 1）直接用匿名内部类
 
 平时最常用的一种:直接setXxxListener后,重写里面的方法即可; 通常是临时使用一次,复用性不高。
 实现代码如下：MainAcivity.java:
@@ -55,7 +55,8 @@ public class MainActivity extends Activity {
 ```
 ## 2）使用内部类
 
-和上面的匿名内部类不同。使用优点:可以在该类中进行复用,可直接访问外部类的所有界面组件。
+和上面的匿名内部类不同。   
+使用优点:可以在该类中进行复用,可直接访问外部类的所有界面组件。
 实现代码如下：MainAcivity.java:
 ``` java
 package com.jay.example.innerlisten;    
@@ -141,7 +142,7 @@ public class MainActivity extends Activity {
 ## 4）直接使用Activity作为事件监听器
 
 只需要让Activity类实现XxxListener事件监听接口,在Activity中定义重写对应的事件处理器方法  
-eg:Actitity实现了OnClickListener接口,重写了onClick(view)方法在为某些组建添加该事件监听对象时,直接setXxx.Listener(this)即可  
+eg:Actitity实现了OnClickListener接口,重写了onClick(view)方法，在为某些组建添加该事件监听对象时,直接setXxx.Listener(this)即可  
 实现代码如下：MainAcivity.java:  
 ``` java
 package com.jay.example.innerlisten;    
@@ -173,7 +174,7 @@ public class MainActivity extends Activity implements OnClickListener{
 ```
 ## 5）直接绑定到标签
 
-就是直接在xml布局文件中对应得Activity中定义一个事件处理方法
+就是直接在xml布局文件中对应得Activity中定义一个事件处理方法  
 eg:public void myClick(View source) source对应事件源(组件) 接着布局文件中对应要触发事件的组建,设置一个属性:onclick = " myclick"即可  
 实现代码如下：MainAcivity.java:  
 ``` java
