@@ -49,3 +49,6 @@ Now with the help of **run-as** binary we can execute commands as com.mwr.exampl
 Now you can extract the data or run an arbitary code using application permission like shown below.  
 ![](../pictures/shellaccess.png)  
 
+12. 开发者后门  
+There are sometimes when developer put a backdoor to a particular application. He/She puts that because he doesn’t want somebody else to access that sensitive piece of Information and sometimes that backdoor is for debugging purposes.  
+通过反编译成 java 源代码，查看某些 activity 也许可以发现一些登录的后门。  
