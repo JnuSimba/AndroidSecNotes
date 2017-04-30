@@ -1,6 +1,6 @@
 ## 一、Weak Server Side Controls
-客户端app 以 api 形式请求server 端服务，server 端的一些缺陷逻辑导致的漏洞，类似传统的 owasp web top 10。
-how to fix
+客户端app 以 api 形式请求server 端服务，server 端的一些缺陷逻辑导致的漏洞，类似传统的 owasp web top 10。  
+how to fix  
 Secure coding and configuration practices must be used on server-side of the mobile application.
 
 ## 二、Insecure Data Storage
@@ -52,8 +52,8 @@ So i will be using a [Xposed Framework](http://repo.xposed.info/module/de.robv.a
 ![](../pictures/pidcat.png)
 
 ### Copy/Paste Buffer Caching
-Android provides clipboard-based framework to provide copy-paste function in android applications. But this creates serious issue when some other application can access the clipboard which contain some sensitive data.
-How To Fix
+Android provides clipboard-based framework to provide copy-paste function in android applications. But this creates serious issue when some other application can access the clipboard which contain some sensitive data.  
+How To Fix  
 Disable copy/paste function for sensitive part of the application. For example, disable copying credit card details.
 
 ### Crash Logs
@@ -107,12 +107,12 @@ How To Fix
 ## 八、Security Decisions via Untrusted Input
 If any of the component is public then it can accessed from another application installed on the same device. In Android a activity/services/content provider/broadcast receiver is public when exported is set to true but a component is also public if the manifest specifies an Intent filter for it.   
 However,developers can explicitly make components private (regardless of any intent filters) by setting the “exported” attribute to false for each component in the manifest file.  
-Developers can also set the “permission” attribute to require a certain permission to access each component, thereby restricting access to the component.
+Developers can also set the “permission” attribute to require a certain permission to access each component, thereby restricting access to the component.  
 
-[Android content provider](./Android%20Content%20Provider%20Security.md)
-[Android activity](./Android%20Activity%20Security.md)
-[Android broadcast](./Android%20Broadcast%20Security.md)
-[Android services](./Android%20Service%20Security.md)
+[Android content provider](./Android%20Content%20Provider%20Security.md)  
+[Android activity](./Android%20Activity%20Security.md)  
+[Android broadcast](./Android%20Broadcast%20Security.md)  
+[Android services](./Android%20Service%20Security.md)  
 
 
 ## 九、 Improper Session Handling
@@ -127,10 +127,10 @@ The secure flag is an option that can be set by the application server when send
 To accomplish this goal, browsers which support the secure flag will only send cookies with the secure flag when the request is going to a HTTPS page. Said in another way, the browser will not send a cookie with the secure flag set over an unencrypted HTTP request.
 
 ## 十、Binary Protections
-可以使用 dex2jar、jdgui 反编译java 源代码。
-Application Code can be obfuscated with the help of [Proguard](https://developer.android.com/tools/help/proguard.html) but it is only able to slow down the adversary from reverse engineering android application, obfuscation doesn’t prevent reverse engineering. You can learn more about proguard [here](https://developer.android.com/tools/help/proguard.html).  
+可以使用 dex2jar、jdgui 反编译java 源代码。  
+Application Code can be obfuscated with the help of [Proguard](https://developer.android.com/tools/help/proguard.html) but it is only able to slow down the adversary from reverse engineering android application, obfuscation doesn’t prevent reverse engineering. You can learn more about proguard [here](https://developer.android.com/tools/help/proguard.html).    
 
-For security conscious application’s application, [Dexguard](http://www.saikoa.com/dexguard) can be used. Dexguard is a commercial version of Proguard. Besides encrypting classes, strings, native libraries, it also adds tamper detection to let your application react accordingly if a hacker has tried to modify it or is accessing it illegitimately. 
+For security conscious application’s application, [Dexguard](http://www.saikoa.com/dexguard) can be used. Dexguard is a commercial version of Proguard. Besides encrypting classes, strings, native libraries, it also adds tamper detection to let your application react accordingly if a hacker has tried to modify it or is accessing it illegitimately.   
 
 
 
