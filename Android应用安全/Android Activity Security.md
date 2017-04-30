@@ -46,7 +46,7 @@ intent.addCategory(Intent.CATEGORY_APP_EMAIL);
 intent.setDataAndType(Uri.EMPTY, "video/mpeg");
 startActivity(intent);
 ```
-这里就是一个隐式的调用，可以看到我为Intent设置了三个属性Action、Category、Data（还有ComponentName、Type、Extras、Flags）。  
+这里就是一个隐式的调用，可以看到我为Intent设置了三个属性Action、Category、Data（还有ComponentName、Type、Extras(一般用于传递参数）、Flags）。  
 然后startActivity(intent) 就会根据我们设置的这三个属性去筛选合适的组件来打开，也就是因为这样，所以有时候当我们APP来分享一个东西的时候，会有很多组件（比如QQ、微信、微博...）来供我们选择，因为他们都满足Filter条件。  
 ``` xml
 <activity  android:name=".Activity_B"    
