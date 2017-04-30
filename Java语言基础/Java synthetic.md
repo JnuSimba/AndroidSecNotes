@@ -36,8 +36,7 @@ class parent$inner
 ```
 所有父对象的非私有成员都通过 `this$0`来访问。 
 
-还有许多用到synthetic 的地方，比如使用了assert 关键字的class会有一个 `synthetic static boolean $assertionsDisabled` 字段   
-`assert condition;` 在class里被编译成：  
+还有许多用到synthetic 的地方，比如使用了assert 关键字的class会有一个 `synthetic static boolean $assertionsDisabled` 字段，`assert condition;` 在class里被编译成：  
 ``` java
 if(!$assertionsDisabled && !condition)   
 {   
