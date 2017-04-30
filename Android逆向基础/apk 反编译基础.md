@@ -52,7 +52,7 @@ Dalvik是google专门为Android操作系统设计的一个虚拟机，经过深�
 * Lxxx/yyy---object
 ```
 这里解析下最后两项，数组的表示方式是：在基本类型前加上前中括号“[”，例如int数组和float数组分别表示为：[I、[F；对象的表示则以L作为开头，格式是LpackageName/objectName;（注意必须有个分号跟在最后），例如String对象在smali中为：Ljava/lang/String;，其中java/lang对应java.lang包，String就是定义在该包中的一个对象。  
-或许有人问，既然类是用LpackageName/objectName;来表示，那类里面的内部类又如何在smali中引用呢？答案是：LpackageName/objectName$subObjectName;。也就是在内部类前加“$”符号，关于“$”符号更多的规则将在后面谈到。  
+或许有人问，既然类是用LpackageName/objectName;来表示，那类里面的内部类又如何在smali中引用呢？答案是：LpackageName/objectName$subObjectName;。也就是在内部类前加“$”符号，如果是匿名内部类，则使用 parent$1、parent$2 的方式命名。  
 #### 二、函数的定义
  函数的定义一般为：  
  Func-Name (Para-Type1Para-Type2Para-Type3...)Return-Type  
@@ -178,8 +178,8 @@ Dalvik是google专门为Android操作系统设计的一个虚拟机，经过深�
 14] .end annotation
 ```
 1-3行定义的是基本信息：这是一个由WMWActivity.java编译得到的smali文件（第3行），它是com.disney.WMW这个package下的一个类（第1行），继承自com.disney.common.BaseActivity（第2行）。  
- 5-6行定义的是接口信息：这个WMWActivity实现了一个com.burstly.lib.ui这个package下（一个广告SDK）的IBurstyAdListener接口。   8-14行定义的则是内部类：它有两个成员内部类——MessageHandler和FinishActivityArgs，内部类将在后面小节中会有提及。  
-
+ 5-6行定义的是接口信息：这个WMWActivity实现了一个com.burstly.lib.ui这个package下（一个广告SDK）的IBurstyAdListener接口。   8-14行定义的则是内部类：它有两个成员内部类——MessageHandler和FinishActivityArgs，内部类将在后面小节中会有提及。    
+注解是Java 的语言特性，android 系统中涉及注解的包有两个，一个是dalvik.annotation，该程序包下的注解不对外开放，仅供核心库与代码测试使用；另一个是 android.annotation。  
   分析完smali文件开头的这些信息，我们已经能在大脑中构造出一个大概这样的Java文件：  
 
 ``` java
