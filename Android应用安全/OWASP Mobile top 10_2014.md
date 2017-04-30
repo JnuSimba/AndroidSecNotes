@@ -83,11 +83,11 @@ Avoid the use of hardcoded keys within your binary
 * Creation and Use of Custom Encryption Protocols、
 There is a Awesome library [Conceal](https://github.com/facebook/conceal) which was developed by Facebook suitable for Applications wanted to Encrypt large files in an efficient manner.
 * Use of Insecure and/or Depcreated algorithms.
-Some of the them are listed below:
-RC4
-MD4
-MD5
-SHA1
+Some of the them are listed below:  
+RC4  
+MD4  
+MD5  
+SHA1  
 
 ## 七、Client Side Injections
 * **Javascript Injection**: The mobile browser is vulnerable
