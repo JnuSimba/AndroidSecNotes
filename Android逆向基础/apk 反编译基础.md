@@ -2,6 +2,7 @@
 
 ## APK、Dalvik字节码和smali文件   
 ### APK文件
+![](../pictures/howtoapk.png)  
 大家都应该知道APK文件其实就是一个MIME为ZIP的压缩包，我们修改ZIP后缀名方式可以看到内部的文件结构，例如修改后缀后用RAR打开鳄鱼小顽皮APK能看到的是（Google Play下载的完整版版本）：  
 ```
 Where's My Water.zip\
@@ -10,6 +11,9 @@ Where's My Water.zip\
 * |---armeabi\                |---<so库文件分为不同的CPU架构>
 * |---armeabi-v7a\
 * META-INF\                  <存放工程一些属性文件，例如Manifest.MF>
+* |---MANIFEST.MF            |---the Manifest File
+* |---CERT.RSA               |---The certificate of the application.
+* |---CERT.SF              |---The list of resources and SHA-1 digest of the corresponding lines in the MANIFEST.MF file.
 * res\                           <资源目录2：asset和res都是资源目录但有所区别，见下面说明> 
 * |---drawable\               |---<图片和对应的xml资源>
 * |---layout\                   |---<定义布局的xml资源>
