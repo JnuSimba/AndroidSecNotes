@@ -32,7 +32,7 @@ systemProp.http.proxyHost=***REMOVED***
 systemProp.https.proxyPort=8080
 systemProp.http.proxyPort=8080
 ```
-10. 测试android 应用安全常用工具
+10. 测试android 应用安全常用工具  
 adb (adb devices | adb shell | adb install | adb uninstall | adb push | adb pull | adb forward）  
 drozer （模拟一个app 的方式与其他app 交互，adb forward tcp:31415 tcp:31415 ）  
 That means for these tasks we won’t be needing a rooted device, and neither drozer need rooted device to run. All the attacks we will do from drozer console will be originated from drozer app to testing application on your device. So it is like attacking your Banking application installed on your phone from a malicious application also installed on the same device.  
@@ -40,7 +40,7 @@ apktool（反编译apk 成 smali 文件等）
 dex2jar （将apk 文件反编译成 jar 文件，即class 文件集合）  
 jdgui（把jar 文件反编译成 java 源文件）  
 
-11. android:debuggable
+11. android:debuggable  
 Look for **android:debuggable** value in the AndroidManifest.xml file.  
 In order to figure out which PID belong to our application, type **adb jdwp** before running the application you wanted to test.  
 Now with the help of **run-as** binary we can execute commands as com.mwr.example.sieve application  

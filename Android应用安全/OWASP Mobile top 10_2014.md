@@ -57,8 +57,8 @@ How To Fix
 Disable copy/paste function for sensitive part of the application. For example, disable copying credit card details.
 
 ### Crash Logs
-If an application crashes during runtime and it saves logs somewhere then those logs can be of help to an attacker especially in cases when android application cannot be reverse engineered.
-How To Fix
+If an application crashes during runtime and it saves logs somewhere then those logs can be of help to an attacker especially in cases when android application cannot be reverse engineered.  
+How To Fix  
 Avoid creating logs when applications crashes and if logs are sent over the network then ensure that they are sent over an SSL channel.
 
 ### Analytics Data Sent To 3rd Parties
