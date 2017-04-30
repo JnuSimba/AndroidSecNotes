@@ -26,6 +26,7 @@ Activity 是为用户操作而展示的可视化用户界面，比如说，一�
 </intent-filter>
 </activity>
 ``` 
+`android.intent.action.MAIN` 表明这个activity 是程序的主activity，`android.intent.category.LAUNCHER` 表示这个activity 可以通过LAUNCHER 来启动。  
 直接使用intent 对象指定application 以及activity 启动
 ``` java
 Intent intent = new Intent(this, ExampleActivity.class);
