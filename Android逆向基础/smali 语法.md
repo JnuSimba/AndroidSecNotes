@@ -131,7 +131,7 @@ Dalvik指令集有一条指令用来抛出异常
 > * goto +AA 无条件跳转到指定偏移处，偏移量AA不能为0
 > * goto/16 +AAAA 无条件跳转到指定偏移处，偏移量AAAA不能为0。
 > * goto/32 +AAAAAAAA 无条件跳转到指定偏移处。
-> * packed-switch vAA,+BBBBBBBB 分支跳转指令。vAA寄存器为switch分支中需要判断的值，BBBBBBBB指向一个packed-switch-payload格式的偏移表，表中的值是有规律递增的。
+> * packed-switch vAA,+BBBBBBBB 分支跳转指令。vAA寄存器为switch分支中需要判断的值，BBBBBBBB指向一个packed-switch-payload格式的偏移表，表中的值是有规律递增的。 Dalvik 中计算偏移是以两个字节为单位的，故偏移表的地址是 当前指令的地址 + 2*BBBBBBBB
 > * sparse-switch vAA,+BBBBBBBB 分支跳转指令。vAA寄存器为switch分支中需要判断的值，BBBBBBBB指向一个sparse-switch-payload格式的偏移表，表中的值是无规律的偏移表，表中的值是无规律的偏移量。
 > * if-test vA,vB,+CCCC 条件跳转指令。比较vA寄存器与vB寄存器的值，如果比较结果满足就跳转到CCCC指定的偏移处。偏移量CCCC不能为0。if-test类型的指令有以下几条： > > * if-eq 如果vA等于vB则跳转。Java语法表示为 if(vA == vB) > > * if-ne 如果vA不等于vB则跳转。Java语法表示为 if(vA != vB) > > * if-lt 如果vA小于vB则跳转。Java语法表示为 if(vA < vB) > > * if-le 如果vA小于等于vB则跳转。Java语法表示为 if(vA <= vB) > > * if-gt 如果vA大于vB则跳转。Java语法表示为 if(vA > vB) > > * if-ge 如果vA大于等于vB则跳转。Java语法表示为 if(vA >= vB)
 > * if-testz vAA,+BBBB 条件跳转指令。拿vAA寄存器与 0 比较，如果比较结果满足或值为0时就跳转到BBBB指定的偏移处。偏移量BBBB不能为0。 if-testz类型的指令有一下几条： > > * if-eqz 如果vAA为 0 则跳转。Java语法表示为 if(vAA == 0) > > * if-nez 如果vAA不为 0 则跳转。Java语法表示为 if(vAA != 0) > > * if-ltz 如果vAA小于 0 则跳转。Java语法表示为 if(vAA < 0) > > * if-lez 如果vAA小于等于 0 则跳转。Java语法表示为 if(vAA <= 0) > > * if-gtz 如果vAA大于 0 则跳转。Java语法表示为 if(vAA > 0) > > * if-gez 如果vAA大于等于 0 则跳转。Java语法表示为 if(vAA >= 0)
