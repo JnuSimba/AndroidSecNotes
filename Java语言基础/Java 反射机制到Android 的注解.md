@@ -6,6 +6,7 @@ JAVA反射机制是在运行状态中，对于任意一个类，都能够知道�
 3) 在运行时判断任意一个类所具有的成员变量和方法；  
 4) 在运行时调用任意一个对象的方法；  
 5) 生成动态代理。  
+
 比如像下面代码：
 ``` java
 //获取类
@@ -45,8 +46,7 @@ Method method = activityClass.getMethod("setContentView", int.class);
 method.invoke(activity, layoutId);
 ```
 getMethod中的第一个参数是methodname，第二个参数是参数类型集合，通过这两个参数得到要执行的Method。  
-method.invoke中的第一个参数是执行这个方法的对象，第二个参数是方法参数。执行该Method.invoke方法的参数是执行这个方法的对象owner，和参数数组args。可以这么理解：owner对象中带有参数args的method方法，返回值是Object，也即是该方法的返回值。  
-在此基础上还有  
+method.invoke中的第一个参数是执行这个方法的对象，第二个参数是方法参数。执行该Method.invoke方法的参数是执行这个方法的对象owner，和参数数组args。可以这么理解：owner对象中带有参数args的method方法，返回值是Object，也即是该方法的返回值。在此基础上还有  
 
 ``` java
 public Object invokeMethod(Object owner, String methodName, Object[] args) throws Exception {  
@@ -93,7 +93,7 @@ java.lang.annotation.Annotation	类的注解
 Annotation（注解）就是Java提供了一种源程序中的元素关联任何信息或者任何元数据（metadata）的途径和方法。  
 Annotation是被动的元数据，永远不会有主动行为，所以我们需要通过使用反射，才能让我们的注解产生意义，即使用反射获取注解信息。   
 相信大家对于这行代码很熟悉了  
-`@Override`
+`@Override`  
 但是肯定很多人都只是知道这行代码是重写父类方法的时候会用到，但并不知道它是什么。  
 其实这就是一种注解，可以理解成它标识了变量或者方法的某种属性。  
 那么看看它的具体实现  
@@ -110,7 +110,7 @@ public @interface Override {
 3) 注解的注解里面的参数  
 ``` java
 @Retention(RetentionPolicy.SOURCE)//注解仅存在于源码中，在class字节码文件中不包含
-@Retention(RetentionPolicy.CLASS)// 默认的保留策略，注解会在class字节码文件中存在，但运行时无法得
+@Retention(RetentionPolicy.CLASS)// 默认的保留策略，注解会在class字节码文件中存在，但运行时无法得到
 @Retention(RetentionPolicy.RUNTIME)// 注解会在class字节码文件中存在，在运行时可以通过反射获取到
 ```
 ``` java
@@ -126,12 +126,12 @@ public @interface Override {
 
 ## Android 中的注解
 之前我们获取控件使用的是这样的代码  
-`TextView text = (TextView) findViewById(R.id.text);`
-当我们的布局比较复杂的时候，获取控件的代码就得写好长，而且都是重复的。这时候注解式绑定就应运而生了，比如XUtils框架等就实现了这些功能。  
-
-实现效果  
+`TextView text = (TextView) findViewById(R.id.text);`  
+当我们的布局比较复杂的时候，获取控件的代码就得写好长，而且都是重复的。这时候注解式绑定就应运而生了，比如XUtils框架等就实现了这些功能。   
 通过注解实现setContentView、findViewById、setOnClickListener  
 
+代码实现：  
+MainActivity.java  
 ``` java
 @ContentView(id = R.layout.activity_main)
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
