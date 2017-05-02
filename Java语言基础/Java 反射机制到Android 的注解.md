@@ -1,3 +1,4 @@
+原文 by efany
 ## Java 的反射机制
 JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法；这种动态获取信息以及动态调用对象的方法的功能称为java语言的反射机制。  
 用处：  
@@ -231,3 +232,6 @@ public class AnnotateUtils {
 }
 ```
 原理就是在AnnotateUtils通过传入的Object对象获得在类中注解了的字段，方法以及类本身，执行对应的操作。
+
+## Reference
+[Android注解与反射机制](http://efany.github.io/2016/04/02/Android%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/)  
