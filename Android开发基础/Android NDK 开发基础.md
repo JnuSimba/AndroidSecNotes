@@ -352,7 +352,7 @@ LOCAL_SRC_FILES变量必须包含将要编译打包进模块中的C或C++源代�
 
 `include $(BUILD_SHARED_LIBRARY)`
 
-BUILD_SHARED_LIBRARY表示编译生成共享库，是编译系统提供的变量，指向一个GNU Makefile脚本，负责收集自从上次调用'include $(CLEAR_VARS)'以来，定义在LOCAL_XXX变量中的所有信息，并且决定编译什么，如何正确地去做。还有 BUILD_STATIC_LIBRARY变量表示生成静态库：lib$(LOCAL_MODULE).a， BUILD_EXECUTABLE 表示生成可执行文件。
+BUILD_SHARED_LIBRARY表示编译生成共享库，是编译系统提供的变量，指向一个GNU Makefile脚本，负责收集自从上次调用'include $(CLEAR_VARS)'以来，定义在LOCAL_XXX变量中的所有信息，并且决定编译什么，如何正确地去做。还有 BUILD_STATIC_LIBRARY变量表示生成静态库：lib$(LOCAL_MODULE).a；BUILD_EXECUTABLE 表示生成可执行文件，可以直接把可执行文件 adb push 到某目录并chmod 给予执行权限，然后 adb shell 直接执行它。
 
  
 #### 3.2 生成.so共享库文件
@@ -389,7 +389,7 @@ hello-jni
 android 脚本可以用来管理 AVD、android 工程，完整命令可以 “android --help” 查看。  
 `android create project -n hellojni -p hellojni -t android-19 -k com.example.hellojni -a HelloJni`  
 命令行解释如下：  
-"-n" 指定android 工程的名称；"-t" 指定生成android 工程的平台版本，也就是`android list` 列出的版本之一；"-p" 指定生成工程的目录名；"-k" 指定 android 工程的包名；"-a" 指定默认activity的名称；`android create project` 会根据默认activity 文件名自动生成相应的java 文件，并生成AndroidMenifest.xml。    
+"-n" 指定android 工程的名称；"-t" 指定生成android 工程的平台版本，也就是`android list` 列出的版本之一；"-p" 指定生成工程的目录名；"-k" 指定 android 工程的包名；"-a" 指定默认activity的名称；`android create project` 会根据默认activity 文件名自动生成相应的java 文件，并生成AndroidManifest.xml。    
 
 
 ## Reference
