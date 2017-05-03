@@ -44,8 +44,8 @@ CMake 形式: CLion C/C++编辑器; AS2.2之后整合了CLion代码, AS就支持
 
 ## 一、 开发环境的搭建
 
-安装android-ndk开发包，这个开发包可以在google android 官网下载： 通过这个开发包的工具才能将android jni 的C/C++的代码编译成库
-android应用程序开发环境： 包括eclipse、java、 android sdk、 adt，安装完之后，需要将android-ndk的路劲加到环境变量PATH中：  
+安装android-ndk开发包，这个开发包可以在google android 官网下载，通过这个开发包的工具才能将android jni 的C/C++的代码编译成库。  
+android应用程序开发环境： 包括eclipse、java、 android sdk、 adt，安装完之后，需要将android-ndk的路径加到环境变量PATH中：  
 
 `sudo gedit /etc/environment`
 
@@ -325,20 +325,20 @@ LOCAL_SRC_FILES := hello-jni.c
 
 include $(BUILD_SHARED_LIBRARY)
 ```
-这个Androd.mk文件很短，下面我们来逐行解释下：
-`LOCAL_PATH := $(call my-dir)`
+这个Androd.mk文件很短，下面我们来逐行解释下：  
+`LOCAL_PATH := $(call my-dir)`  
 
-一个Android.mk 文件首先必须定义好LOCAL_PATH变量。它用于在开发树中查找源文件。在这个例子中，宏函数’my-dir’, 由编译系统提供，用于返回当前路径（即包含Android.mk file文件的目录）。
+一个Android.mk 文件首先必须定义好LOCAL_PATH变量。它用于在开发树中查找源文件。在这个例子中，宏函数’my-dir’, 由编译系统提供，用于返回当前路径（即包含Android.mk file文件的目录）。  
 
-`include $( CLEAR_VARS)`
+`include $( CLEAR_VARS)`  
 
-CLEAR_VARS由编译系统提供，指定让GNU MAKEFILE为你清除许多LOCAL_XXX变量（例如 LOCAL_MODULE, LOCAL_SRC_FILES, LOCAL_STATIC_LIBRARIES, 等等...), 除了LOCAL_PATH 。这是必要的，因为所有的编译控制文件都在同一个GNU MAKE执行环境中，所有的变量都是全局的。
+CLEAR_VARS由编译系统提供，指定让GNU MAKEFILE为你清除许多LOCAL_XXX变量（例如 LOCAL_MODULE, LOCAL_SRC_FILES, LOCAL_STATIC_LIBRARIES, 等等...), 除了LOCAL_PATH 。这是必要的，因为所有的编译控制文件都在同一个GNU MAKE执行环境中，所有的变量都是全局的。  
+ 
+`LOCAL_MODULE := hello-jni`  
 
-`LOCAL_MODULE := hello-jni`
+编译的目标对象，LOCAL_MODULE变量必须定义，以标识你在Android.mk文件中描述的每个模块。名称必须是唯一的，而且不包含任何空格。  
 
-编译的目标对象，LOCAL_MODULE变量必须定义，以标识你在Android.mk文件中描述的每个模块。名称必须是唯一的，而且不包含任何空格。
-
-注意：编译系统会自动产生合适的前缀和后缀，换句话说，一个被命名为'hello-jni'的共享库模块，将会生成'libhello-jni.so'文件。
+注意：编译系统会自动产生合适的前缀和后缀，换句话说，一个被命名为'hello-jni'的共享库模块，将会生成'libhello-jni.so'文件。  
 
 **重要注意事项**：
 
@@ -383,6 +383,14 @@ eclipse中刷新下HelloJni工程，重新编译生成apk，libhello-jni.so共�
 
 hello-jni  
 ![](../pictures/hellojni.png)
+
+## 附：使用 android 脚本生成android 工程
+在使用 ndk-build 工具前，需要先有一个Android 工程，这个工程可以从Android NDK 的 samples 目录下随便复制一份，也可以使用Android SDK 开发包 tools 目录下的 android 脚本生成。  
+android 脚本可以用来管理 AVD、android 工程，完整命令可以 “android --help” 查看。  
+`android create project -n hellojni -p hellojni -t android-19 -k com.example.hellojni -a HelloJni`  
+命令行解释如下：  
+"-n" 指定android 工程的名称；"-t" 指定生成android 工程的平台版本，也就是`android list` 列出的版本之一；"-p" 指定生成工程的目录名；"-k" 指定 android 工程的包名；"-a" 指定默认activity的名称；`android create project` 会根据默认activity 文件名自动生成相应的java 文件，并生成AndroidMenifest.xml。    
+
 
 ## Reference
 http://www.cnblogs.com/hibraincol/archive/2011/05/30/2063847.html
