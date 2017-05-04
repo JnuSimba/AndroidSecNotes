@@ -20,7 +20,19 @@ JNI 开发流程主要分为以下 6 步：
 
 NDK提供了一系列的工具，帮助开发者快速开发C（或C++）的动态库，并能自动将so和java应用一起打包成apk。这些工具对开发者的帮助是巨大的.NDK集成了交叉编译器，并提供了相应的mk文件隔离CPU、平台、ABI等差异，开发人员只需要简单修改mk文件（指出“哪些文件需要编译”、“编译特性要求”等），就可以创建出so。  
 
-NDK可以自动地将so和Java应用一起打包，极大地减轻了开发人员的打包工作。 
+NDK可以自动地将so和Java应用一起打包，极大地减轻了开发人员的打包工作。   
+
+Android NDK 的 `platforms\<android 版本>\arch-arm\usr\include\jni.h` 头文件中，声明了所有可以使用到的 JNI 接口函数。该文件有两个重要的结构体 JNINativeInterface 和 JNIInvokeInterface，JNINativeInterface 是 JNI 本地接口，实际上它是一个接口函数指针表，里面每一项都为JNI 接口的函数指针，所有的原生代码都可以调用这些接口函数；而JNIInvokeInterface 则是JNI 调用接口，该结构目前只有3个保留项与 5个函数指针，这5个函数用于访问全局的JNI 接口，多用于原生多线程程序开发。  
+``` c++
+#if defined(__cplusplus)
+typedef _JNIEnv JNIEnv;
+typedef _JavaVM JavaVM;
+#else
+typedef const struct JNINativeInterface* JNIEnv;
+typedef const struct JNIInvokeInterface* JavaVM;
+#endif
+```
+如果使用C++ 代码来调用JNI 接口函数，JNIEnv 被定义成 _JNIEnv 结构体，该结构体的第一个字段就是一个 JNINativeInterface 结构体的指针。如果是C 代码调用JNI 接口函数，JNIEnv 则直接定义为 JNINativeInterface 结构体的指针。因此，可以把JNIEnv 的首地址解释为 JNINativeInterface 的首地址来使用，那么通过首地址加上索引值就能够找到具体需要调用的 JNI 接口函数，每个函数地址占有4个字节的空间。
 
 ## NDK两种开发模式
 
