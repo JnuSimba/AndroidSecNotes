@@ -1,6 +1,6 @@
 # 第一部分 Linux下ARM汇编语法
 尽管在Linux下使用C或C++编写程序很方便，但汇编源程序用于系统最基本的初始化，如初始化堆栈指针、设置页表、操作 ARM的协处理器等。  
-初始化完成后就可以跳转到C代码执行。需要注意的是，GNU的汇编器遵循AT&T的汇编语法，可以从GNU的站点（www.gnu.org） 上下载有关规范。  
+初始化完成后就可以跳转到C代码执行。需要注意的是，GNU的汇编器遵循AT&T的汇编语法，可以从GNU的站点（www.gnu.org ）上下载有关规范。  
 ## 一. Linux汇编行结构
 任何汇编行都是如下结构：  
 [:] [} @ comment  
@@ -31,6 +31,7 @@ MOV pc, lr @ return from subroutine
 用户可以通过.section伪操作来自定义一个段，格式如下:  
  `.section section_name [, "flags"[, %type[,flag_specific_arguments]]]`
 每一个段以段名为开始, 以下一个段名或者文件结尾为结束。这些段都有缺省的标志(flags)，连接器可以识别这些标志。(与armasm中的AREA相同)。  
+type可以是 @progbits(节中包含数据)，@nobits(节中不含数据，只是占位空间)，@note(节中包含注释信息，不是程序)。    
 下面是ELF格式允许的段标志  
 <标志> 含义  
 a 允许段  
@@ -103,6 +104,8 @@ if 伪操作；
 .global/ .globl 伪操作 ；  
 .type伪操作 ；  
 列表控制语句 ；  
+.abort 停止汇编；  
+comm 申请一段命名空间；  
 区别于gas汇编的通用伪操作，下面是ARM特有的伪操作   ：.reg ，.unreq ，.code ，.thumb ，.thumb_func ，.thumb_set， .ltorg ，.pool  
 1. 数据定义伪操作  
 （1） .byte：单字节定义，如：`.byte 1,2,0b01,0x34,072,'s'` ；   
@@ -131,10 +134,18 @@ if 伪操作；
 （8） .equ/.set：赋值语句, 格式如下:  
   .equ(.set) 变量名,表达式  
   例如:  
-  `.equ abc 3 @让abc=3`
+  `.equ abc 3 @让abc=3`  
+（9） .comm  symbol, length    
+  在bss段申请一段命名空间,该段空间的名称叫symbol, 长度为length，Ld连接器在连接会为它留出空间。    
+ (10) `.previous`：将当前节换回到前一个节与子节，即将下面的指令或数据汇编到当前节之前使用的节与子节中。   
+ (11) `.subsection num`：切换当前字节，即将下面的代码或数据放在由num指定的子节中，节保持不变。  
+ (12) `.fill repeat,size,value`：将value值拷贝repeat次，其中每个value中占用size字节。   
+ (13)space 和 skip  
+  `.space size,fill` 和`.skip size,fill`： 在目标文件的当前位置处留出size字节的空间，并在其中填入值fill，如未指定fill，则填入0。  
+（14）`.org new-lc,fill`： 从new-lc标识的新位置开始存放下边的代码或数据，之前空出来的空间用fill填充。  
 
 2. 函数的定义伪操作  
-（1）函数的定义,格式如下：
+（1）函数的定义,格式如下：  
   函数名:  
   函数体  
   返回语句  
