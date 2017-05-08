@@ -56,18 +56,17 @@ R1=[R0], R2=[R0+#4], R3=[R0+#8], R4=[R0+#12]
 LMDFA/STMFA, LDMEA/STMEA, LDMFD/SDMFD, LDMED/STMED。  
 LMD/STM 表示多寄存器寻址，一次可以传送多个寄存器值。   
 FA/EA/FD/ED ..参考指令集。  
-
 `stmfd sp!, {r1-r7, lr}   @将 r1~r7，lr 压栈` 多用于保存子程序现场。  
 `ldmfd sp!, {r1~r7, lr}   @将 r1~r7, lr 出栈，放入 r1~r7, lr` 多用于恢复子程序现场。  
-8. 块拷贝寻址
+
+8. 块拷贝寻址  
 可实现连续地址数据从存储器的某一位置拷贝至另一位置。   
 LDMIA/STMIA, LDMDA/STMDA, LDMIB/STMIB, LDMDB/STMDB。  
-
 LDM/SDM 表示多寄存器寻址，一次可以传送多个寄存器值。   
 IA, DA, IB, DB ..参考指令集。  
-
 `ldmia r0!, {r1-r3}  @ 从r0指向的区域的值取出来，放到r1-r3中`  
 `stmia r0!, {r1-r3}  @ 将r1-r3的值取出来，放入r0指向的区域`  
+
 9. 相对寻址
 相对寻址以PC的当前值为基址，与偏移值相加，得到最终的地址。
 ``` asm
@@ -98,7 +97,7 @@ STM：实现在多个寄存器的数据保存到一块连续的内存单元之�
 ."^"：(假如寄存器列表含有PC寄存器R15)表示指令执行后SPSR的值自动复制给CPSR，常用于从中断处理函数中返回。  
 反之，默认操作的是用户模式下的寄存器，并非当前特殊模式的寄存器。  
 
-2. 数据处理类指令集
+2. 数据处理类指令集  
 包括数据传送指令MOV，算术逻辑运算符ADD，SUB，BIC，ORR，比较指令CMP，TST等  
 算术  
 ``` asm
@@ -162,7 +161,7 @@ BX Branch with Exchange，带交换的分支。
 BLX Branch with Link and Exchange，带链接和交换的分支。   
 BX和BLX指令用于THUMB模式中，暂时不关注。  
 
-4. 程序状态寄存器访问指令
+4. 程序状态寄存器访问指令  
 通过MSR和MRS配合使用实现对PSR寄存器的访问，通过读-修改-写操作来实现开关中断，切换处理器模式。  
 .MRS：读程序状态寄存器指令，将PSR中的内容读入到寄存器中 `MRS {cond} Rd, PSR` 。 
 .MSR：写程序状态寄存器指令 `MSR {cond} psr_fields #immed_8MSR {cond} psr_fields, Rm`。field指位域，只有在特权模式下才能对PSR进行修改，例如切换到管理模式：`MSR CPSR_c #0xD3`,将0xD3写入CPSR的低8位，此时M[4:0]=0b10011，进入管理模式。  
@@ -173,7 +172,7 @@ BIC R0, R0, #0x1F@清0
 ORR R0, R0, #0xD3@修改模式
 MSR CPSR_cxsf, R0@将修改后的值保存到CPSR
 ```
-5. 协处理器访问指令
+5. 协处理器访问指令  
 协处理器CP15包含了16个32bit的寄存器，主要用于存储管理。  
 .MCR：ARM寄存器到协处理器的数据传送指令 `MCR {cond} P15, 0, Rd, CRn, CRm, {opcode2}`
 Rd：源寄存器  
