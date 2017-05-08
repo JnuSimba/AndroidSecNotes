@@ -402,15 +402,20 @@ ARM7和ARM9都是3级流水线，取指，译指，执行时同时执行的：
 3. Execute（处理指令并将结果写回寄存器）  
 
 而R15（PC）总是指向“正在取指”指令，而不是指向“正在执行”的指令或正在“译码”的指令，那么CPU正在译指的指令地址是PC-4（当ARM状态时，每条指令为4字节），CPU正在执行的指令地址是PC-8，也就是说PC所指向的地址和现在所执行的指令地址相差8，即：PC实际值=当前程序执行位置+8。  
+![](../pictures/arm9_whypc8.jpg)  
+PC（execute）=PC（fetch）+ 8  
+对于PC=PC+8中的两个PC，其实含义不完全一样。其更准确的表达，应该是这样：   
+其中：    
+PC（fetch）：当前正在执行的指令，就是之前取该指令时候的PC的值。  
+PC（execute）：当前指令执行的计算中，如果用到PC，则此时PC的值。   
 
-也就是说：   
-PC， 总是指向当前正在被取指的指令的地址，   
-PC-4，总是指向当前正在被译指的指令的地址，   
-PC-8，总是指向当前的那条指令，即一般说的，正在被执行的指令的地址。   
-指令的Execute执行阶段，如果用到PC的值，那么PC那一时刻，就是PC=PC+8。  
+不同阶段的PC值的关系  
+对应地，在ARM7的三级流水线（取指，译指，执行）和ARM9的五级流水线（取指，译指，执行，存储，写回）中，可以这么说：  
+PC， 总是指向当前正在被取指的指令的地址，  
+PC-4，总是指向当前正在被译指的指令的地址，  
+PC-8，总是指向当前的那条指令，即我们一般说的，正在被执行的指令的地址。  
 
 其他细节具体可参考 [3.4. 为何ARM7中PC=PC+8](http://www.crifan.com/files/doc/docbook/uboot_starts_analysis/release/htmls/why_arm7_pc_8.html)  
-S5PV210使用13级流水线，ARM11为8级。  
 
 ## Reference
 [Whirlwind Tour of ARM Assembly](http://www.coranac.com/tonc/text/asm.htm)   
