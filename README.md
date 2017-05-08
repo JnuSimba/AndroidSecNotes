@@ -34,6 +34,9 @@
 * Android逆向基础
 	- [apk 反编译基础](./Android逆向基础/apk%20反编译基础.md)
 	- [smali 语法](./Android逆向基础/smali%20语法.md)
-	
+	- [ARM 寄存器简介](./Android逆向基础/ARM%20寄存器简介.md)
+	- [ARM 汇编伪指令简介](./Android逆向基础/ARM%20汇编伪指令简介.md)
+	- [ARM 汇编指令简介](./Android逆向基础/ARM%20汇编指令简介.md)
+
 	
 	
