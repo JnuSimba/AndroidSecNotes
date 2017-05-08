@@ -1,311 +1,311 @@
 # ARM 寄存器简介
 ARM处理器共有37个寄存器。其中包括：31个通用寄存器，包括程序计数器(PC)在内，这些寄存器都是32位寄存器；以及6个32位状态寄存器，但目前只使用了其中12位。ARM处理器共有7种不同的处理器模式，在每一种处理器模式中有一组相应的寄存器组。任意时刻(也就是任意的处理器模式下)，可见的寄存器包括15个通用寄存器(R0～R14)、一个或两个状态寄存器及程序计数器(PC)。在所有的寄存器中，有些是各模式共用的同一个物理寄存器，有一些寄存器是各模式自己拥有的独立的物理寄存器。下表列出了各处理器模式下可见的寄存器情况。  
 <table style="width:100%;" border="1" bordercolor="#000000" cellpadding="1" cellspacing="0" height="100">
-  <tbody>
-    <tr>
-      <td>User</td>
+<tbody>
+<tr>
+  <td>User</td>
 
-      <td>System</td>
+  <td>System</td>
 
-      <td>Supervisor</td>
+  <td>Supervisor</td>
 
-      <td>Abort</td>
+  <td>Abort</td>
 
-      <td>Undefined</td>
+  <td>Undefined</td>
 
-      <td>IRQ</td>
+  <td>IRQ</td>
 
-      <td>FIQ</td>
-    </tr>
+  <td>FIQ</td>
+</tr>
 
-    <tr>
-      <td>R0</td>
+<tr>
+  <td>R0</td>
 
-      <td>R0</td>
+  <td>R0</td>
 
-      <td>R0</td>
+  <td>R0</td>
 
-      <td>R0</td>
+  <td>R0</td>
 
-      <td>R0</td>
+  <td>R0</td>
 
-      <td>R0</td>
+  <td>R0</td>
 
-      <td>R0</td>
-    </tr>
+  <td>R0</td>
+</tr>
 
-    <tr>
-      <td>R1</td>
+<tr>
+  <td>R1</td>
 
-      <td>R1</td>
+  <td>R1</td>
 
-      <td>R1</td>
+  <td>R1</td>
 
-      <td>R1</td>
+  <td>R1</td>
 
-      <td>R1</td>
+  <td>R1</td>
 
-      <td>R1</td>
+  <td>R1</td>
 
-      <td>R1</td>
-    </tr>
+  <td>R1</td>
+</tr>
 
-    <tr>
-      <td>R2</td>
+<tr>
+  <td>R2</td>
 
-      <td>R2</td>
+  <td>R2</td>
 
-      <td>R2</td>
+  <td>R2</td>
 
-      <td>R2</td>
+  <td>R2</td>
 
-      <td>R2</td>
+  <td>R2</td>
 
-      <td>R2</td>
+  <td>R2</td>
 
-      <td>R2</td>
-    </tr>
+  <td>R2</td>
+</tr>
 
-    <tr>
-      <td>R3</td>
+<tr>
+  <td>R3</td>
 
-      <td>R3</td>
+  <td>R3</td>
 
-      <td>R3</td>
+  <td>R3</td>
 
-      <td>R3</td>
+  <td>R3</td>
 
-      <td>R3</td>
+  <td>R3</td>
 
-      <td>R3</td>
+  <td>R3</td>
 
-      <td>R3</td>
-    </tr>
+  <td>R3</td>
+</tr>
 
-    <tr>
-      <td>R4</td>
+<tr>
+  <td>R4</td>
 
-      <td>R4</td>
+  <td>R4</td>
 
-      <td>R4</td>
+  <td>R4</td>
 
-      <td>R4</td>
+  <td>R4</td>
 
-      <td>R4</td>
+  <td>R4</td>
 
-      <td>R4</td>
+  <td>R4</td>
 
-      <td>R4</td>
-    </tr>
+  <td>R4</td>
+</tr>
 
-    <tr>
-      <td>R5</td>
+<tr>
+  <td>R5</td>
 
-      <td>R5</td>
+  <td>R5</td>
 
-      <td>R5</td>
+  <td>R5</td>
 
-      <td>R5</td>
+  <td>R5</td>
 
-      <td>R5</td>
+  <td>R5</td>
 
-      <td>R5</td>
+  <td>R5</td>
 
-      <td>R5</td>
-    </tr>
+  <td>R5</td>
+</tr>
 
-    <tr>
-      <td>R6</td>
+<tr>
+  <td>R6</td>
 
-      <td>R6</td>
+  <td>R6</td>
 
-      <td>R6</td>
+  <td>R6</td>
 
-      <td>R6</td>
+  <td>R6</td>
 
-      <td>R6</td>
+  <td>R6</td>
 
-      <td>R6</td>
+  <td>R6</td>
 
-      <td>R6</td>
-    </tr>
+  <td>R6</td>
+</tr>
 
-    <tr>
-      <td>R7</td>
+<tr>
+  <td>R7</td>
 
-      <td>R7</td>
+  <td>R7</td>
 
-      <td>R7</td>
+  <td>R7</td>
 
-      <td>R7</td>
+  <td>R7</td>
 
-      <td>R7</td>
+  <td>R7</td>
 
-      <td>R7</td>
+  <td>R7</td>
 
-      <td>R7</td>
-    </tr>
+  <td>R7</td>
+</tr>
 
-    <tr>
-      <td>R8</td>
+<tr>
+  <td>R8</td>
 
-      <td>R8</td>
+  <td>R8</td>
 
-      <td>R8</td>
+  <td>R8</td>
 
-      <td>R8</td>
+  <td>R8</td>
 
-      <td>R8</td>
+  <td>R8</td>
 
-      <td>R8</td>
+  <td>R8</td>
 
-      <td>R8_fiq</td>
-    </tr>
+  <td>R8_fiq</td>
+</tr>
 
-    <tr>
-      <td>R9</td>
+<tr>
+  <td>R9</td>
 
-      <td>R9</td>
+  <td>R9</td>
 
-      <td>R9</td>
+  <td>R9</td>
 
-      <td>R9</td>
+  <td>R9</td>
 
-      <td>R9</td>
+  <td>R9</td>
 
-      <td>R9</td>
+  <td>R9</td>
 
-      <td>R9_fiq</td>
-    </tr>
+  <td>R9_fiq</td>
+</tr>
 
-    <tr>
-      <td>R10</td>
+<tr>
+  <td>R10</td>
 
-      <td>R10</td>
+  <td>R10</td>
 
-      <td>R10</td>
+  <td>R10</td>
 
-      <td>R10</td>
+  <td>R10</td>
 
-      <td>R10</td>
+  <td>R10</td>
 
-      <td>R10</td>
+  <td>R10</td>
 
-      <td>R10_fiq</td>
-    </tr>
+  <td>R10_fiq</td>
+</tr>
 
-    <tr>
-      <td>R11</td>
+<tr>
+  <td>R11</td>
 
-      <td>R11</td>
+  <td>R11</td>
 
-      <td>R11</td>
+  <td>R11</td>
 
-      <td>R11</td>
+  <td>R11</td>
 
-      <td>R11</td>
+  <td>R11</td>
 
-      <td>R11</td>
+  <td>R11</td>
 
-      <td>R11_fiq</td>
-    </tr>
+  <td>R11_fiq</td>
+</tr>
 
-    <tr>
-      <td>R12</td>
+<tr>
+  <td>R12</td>
 
-      <td>R12</td>
+  <td>R12</td>
 
-      <td>R12</td>
+  <td>R12</td>
 
-      <td>R12</td>
+  <td>R12</td>
 
-      <td>R12</td>
+  <td>R12</td>
 
-      <td>R12</td>
+  <td>R12</td>
 
-      <td>R12_fiq</td>
-    </tr>
+  <td>R12_fiq</td>
+</tr>
 
-    <tr>
-      <td>R13</td>
+<tr>
+  <td>R13</td>
 
-      <td>R13</td>
+  <td>R13</td>
 
-      <td>R13_svc</td>
+  <td>R13_svc</td>
 
-      <td>R13_abt</td>
+  <td>R13_abt</td>
 
-      <td>R13_und</td>
+  <td>R13_und</td>
 
-      <td>R13_irq</td>
+  <td>R13_irq</td>
 
-      <td>R13_fiq</td>
-    </tr>
+  <td>R13_fiq</td>
+</tr>
 
-    <tr>
-      <td>R14</td>
+<tr>
+  <td>R14</td>
 
-      <td>R14</td>
+  <td>R14</td>
 
-      <td>R14_svc</td>
+  <td>R14_svc</td>
 
-      <td>R14_abt</td>
+  <td>R14_abt</td>
 
-      <td>R14_und</td>
+  <td>R14_und</td>
 
-      <td>R14_irq</td>
+  <td>R14_irq</td>
 
-      <td>R14_fiq</td>
-    </tr>
+  <td>R14_fiq</td>
+</tr>
 
-    <tr>
-      <td>PC</td>
+<tr>
+  <td>PC</td>
 
-      <td>PC</td>
+  <td>PC</td>
 
-      <td>PC</td>
+  <td>PC</td>
 
-      <td>PC</td>
+  <td>PC</td>
 
-      <td>PC</td>
+  <td>PC</td>
 
-      <td>PC</td>
+  <td>PC</td>
 
-      <td>PC</td>
-    </tr>
+  <td>PC</td>
+</tr>
 
-    <tr>
-      <td>CPSR</td>
+<tr>
+  <td>CPSR</td>
 
-      <td>CPSR</td>
+  <td>CPSR</td>
 
-      <td>CPSR</td>
+  <td>CPSR</td>
 
-      <td>CPSR</td>
+  <td>CPSR</td>
 
-      <td>CPSR</td>
+  <td>CPSR</td>
 
-      <td>CPSR</td>
+  <td>CPSR</td>
 
-      <td>CPSR</td>
-    </tr>
+  <td>CPSR</td>
+</tr>
 
-    <tr>
-      <td></td>
+<tr>
+  <td></td>
 
-      <td></td>
+  <td></td>
 
-      <td>SPSR_svc</td>
+  <td>SPSR_svc</td>
 
-      <td>SPSR_abt</td>
+  <td>SPSR_abt</td>
 
-      <td>SPSR_und</td>
+  <td>SPSR_und</td>
 
-      <td>SPSR_irq</td>
+  <td>SPSR_irq</td>
 
-      <td>SPSR_fiq</td>
-    </tr>
-  </tbody>
+  <td>SPSR_fiq</td>
+</tr>
+</tbody>
 </table>
 
 ## 1.通用寄存器的分类：
