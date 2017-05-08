@@ -248,7 +248,27 @@ mov pc, lr
 直接操作数前缀: '#' 或 '$'  
 
 # 第二部分 GNU的编译器和调试工具
-## 一. 编译工具
+## 一.APCS规则
+APCS(ARM Process Call Standard)也就是指过程调用规则，定义了一系列规则来保证ARM汇编语言和C程序之间能够协调工作。涉及到的函数参数传递问题，返回值传递以及和函数调用过程中的寄存器的使用，堆栈的使用等问题。  
+1. 寄存器使用
+  APCS中，R0-R3用来传递参数，传递参数给子程序和返回子程序结果；R4-R11保存函数的局部变量（Thumb指令集只能使用R4-R7），R12（IP）也能被用在子程序间传递立即数（ARM状态下）；  
+R13(SP)用来做堆栈指针，保存当前处理器模式的栈顶指针，链接寄存器R14（LR）保存子程序的返回过程。  
+2. 参数传递规则
+当参数个数不超过4个时，可用上述的4个寄存器来传递，否则超过的参数使用栈来传递，对于子程序的返回结果，可用R0-R3来传递。  
+3. 函数的返回值  
+若返回值是32位的整数时，一般通过寄存器R0来传递，如果是64位的整数时，用R0和R1来传递。  
+4. arm-linux-gcc编译器  
+1>.预处理：将预处理输入文件后缀名为".c",".S"，输出为".i"工具：arm-linux-cpp  
+`arm-linux-gcc -E -o *.i  *.c/*.S`  
+2>.编译：完成源代码从高级语言到特定的汇编语言代码的转换工具：ccl  
+`arm-linux-gcc -S -o *.s *c`  
+3>.汇编：将编译得到的".s"文件按照一定的指令集转换成一定格式的机器码工具：arm-linux-as  
+`arm-linux-gcc -c -o *.o  *.c/*s/*.S`  
+4>.链接：将汇编生成的目标文件和系统库的目标文件，库文件组装起来，生成在特定处理器平台运行的可执行文件。工具：arm-linux-ld  
+`arm-linux-gcc -o *.c/*s/*S`
+除了上面的-E， -S， -c, -o选项外，还有-v,-g,-Wall,-Ox,（x=1,2,3...）等选项  
+
+## 二. 编译工具
 1. 编辑工具介绍
 GNU 提供的编译工具包括汇编器as、C编译器gcc、C++编译器g++、连接器ld和二进制转换工具objcopy。基于ARM平台的工具分别为arm-linux-as、arm-linux-gcc、arm-linux-g++、arm-linux-ld和arm-linux-objcopy。  
 GNU的编译器功能非常强大，共有上百个操作选项，这也是这类工具让初学者头痛的原因。不过，实际开发中只需要用到有限的几个，大部分可以采用缺省选项。GNU工具的开发流程如下：编写C、C++语言或汇编源程序，用gcc或g++生成目标文件，编写连接脚本文件，用连接器生成最终目标文件（elf格式），用二进制转换工具生成可下载的二进制代码。  
@@ -296,6 +316,6 @@ example: head.s main.c
  arm-linux-objcopy -O binary -S example_tmp.o example
  arm-linux-objdump -D -b binary -m arm example >ttt.s
 ```
-## 二. 调试工具
+## 三. 调试工具
 Linux 下的GNU调试工具主要是gdb、gdbserver和kgdb。其中gdb和gdbserver可完成对目标板上Linux下应用程序的远程调试。 gdbserver是一个很小的应用程序，运行于目标板上，可监控被调试进程的运行，并通过串口与上位机上的gdb通信。开发者可以通过上位机的gdb输入命令，控制目标板上进程的运行，查看内存和寄存器的内容。gdb5.1.1以后的版本加入了对ARM处理器的支持，在初始化时加入 --target=arm 参数可直接生成基于ARM平台的gdbserver。gdb工具可以从 ftp://ftp.gnu.org/pub/gnu/gdb/ 上下载。  
 对于Linux内核的调试，可以采用kgdb工具，同样需要通过串口与上位机上的gdb通信，对目标板的Linux内核进行调试。可以从 http://oss.sgi.com/projects/kgdb/ 上了解具体的使用方法。  
