@@ -311,11 +311,11 @@ ARM处理器共有37个寄存器。其中包括：31个通用寄存器，包括�
 ## 1.通用寄存器的分类：
 ### a. 未备份寄存器，包括R0-R7  
    对每个未备份寄存器来说，在所有的模式下都是指同一个物理寄存器(例如：Usr下的R0与FIQ下的R0是同一个寄存器)。在异常程序中断造成模式切换时，由于不同模式使用的是相同的物理寄存器，这可能导致数据遭到破坏。未备份寄存器没有被系统作为别的用途，任何场合均可采用未备份寄存器。  
-   R7对应于x86下的BP寄存器，相对与SP，R7就是栈底，在进入新一个栈帧之后先把原来的R7压栈，然后R7保存当前SP。  
+   R7对应于x86下的BP寄存器，相对与SP，R7就是栈底，在进入新一个栈帧之后先把原来的R7压栈，然后R7保存当前BP。  
    R0-R3用于传参数，调用函数的时候，参数先从R0依次传递，R0也用于返回值。  
    R4-R6 没有特殊规定，就是普通的通用寄存器。  
 ### b. 备份寄存器，包括R8-R14  
-   对于备份寄存器R8-R12来说，除FIQ模式下其它模式均使用相同的物理寄存器。在FIQ模式下R8_fiq，R9_fiq，R10_fiq，R11_fiq，R12_fiq，它有自己的物理寄存器。对于R13和R14寄存器每种模式都有自己的物理寄存器(System与Usr的寄存器相同)，当异常中断发生时，系统使用相应模式下的物理寄存器，从而可以避免数据遭到破坏。
+   对于备份寄存器R8-R12来说，除FIQ模式下其它模式均使用相同的物理寄存器。在FIQ模式下R8_fiq，R9_fiq，R10_fiq，R11_fiq，R12_fiq，它有自己的物理寄存器。对于R13和R14寄存器每种模式都有自己的物理寄存器(System与Usr的寄存器相同)，当异常中断发生时，系统使用相应模式下的物理寄存器，从而可以避免数据遭到破坏。  
    R8，R10-R11 没有特殊规定，就是普通的通用寄存器。   
    R9 是操作系统保留。  
    R12 又叫IP(intra-procedure scratch )。  
@@ -335,14 +335,14 @@ ARM处理器共有37个寄存器。其中包括：31个通用寄存器，包括�
 ### a.CPSR(程序状态寄存器，Current Program State Register)  
 CPSR在任何处理器模式下都可以被访问。其结构如下：
 
-  31 30 29 28  ---   7 &nbsp;  6 &nbsp;  5 &nbsp;  4 &nbsp;&nbsp;  3&nbsp; &nbsp;  2&nbsp; &nbsp;  1&nbsp; &nbsp;  0  
+  31 30 29 28  ---   7 &nbsp;  6 &nbsp;  5 &nbsp;  4 &nbsp;&nbsp;  3&nbsp; &nbsp;&nbsp;&nbsp;  2&nbsp;&nbsp; &nbsp;  1&nbsp; &nbsp;  0  
   N &nbsp;&nbsp;  Z&nbsp; &nbsp; C&nbsp; V   ---      I&nbsp;&nbsp;&nbsp;   F&nbsp;&nbsp;T &nbsp;      M4&nbsp;  M3 &nbsp; M2  M1  M0  
 
 N(Negative)、Z(Zero)、C(Carry)以及V(oVerflow)称为条件标志位，ARM指令根据CPSR的条件标志位来选择地执行。
 
 #### CPSR条件标志位
 
-条件标志位 &nbsp;&nbsp;                  含义
+条件标志位 &nbsp;&nbsp;                  含义  
 N  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        N=1 表示运算结果为负数，N=0 表示运算结果为正数。                 
 Z  &nbsp;&nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;                      Z=1 表示运算结果为0， Z=0 表示运算结果为非零。  
 C   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                         C=1 表示运算结果产生了进位。  
