@@ -135,14 +135,13 @@ comm 申请一段命名空间；
   .equ(.set) 变量名,表达式  
   例如:  
   `.equ abc 3 @让abc=3`  
-（9） .comm  symbol, length    
-  在bss段申请一段命名空间,该段空间的名称叫symbol, 长度为length，Ld连接器在连接会为它留出空间。    
+ (9) `.comm  symbol, length`：在bss段申请一段命名空间,该段空间的名称叫symbol, 长度为length，Ld连接器在连接会为它留出空间。    
  (10) `.previous`：将当前节换回到前一个节与子节，即将下面的指令或数据汇编到当前节之前使用的节与子节中。   
  (11) `.subsection num`：切换当前字节，即将下面的代码或数据放在由num指定的子节中，节保持不变。  
  (12) `.fill repeat,size,value`：将value值拷贝repeat次，其中每个value中占用size字节。   
  (13)space 和 skip  
   `.space size,fill` 和`.skip size,fill`： 在目标文件的当前位置处留出size字节的空间，并在其中填入值fill，如未指定fill，则填入0。  
-（14）`.org new-lc,fill`： 从new-lc标识的新位置开始存放下边的代码或数据，之前空出来的空间用fill填充。  
+ (14)`.org new-lc,fill`： 从new-lc标识的新位置开始存放下边的代码或数据，之前空出来的空间用fill填充。  
 
 2. 函数的定义伪操作  
 （1）函数的定义,格式如下：  
