@@ -330,7 +330,7 @@ ARM处理器共有37个寄存器。其中包括：31个通用寄存器，包括�
      
    R13也称为SP堆栈指针(stack pointer，用于存放栈顶指针，类似x86_64中的RSP)。   
    该栈是一块用来存储本地函数的内存区域。当函数被返回时， 存储空间会被回收。 在堆栈上分配空间, 需要从栈寄存器（the stack register）减去。分配一个32位的值, 需要从堆栈指针（the stack pointer）减去4。ARM堆栈结构是从高向低压栈的，因为处理器是32位的ARM，所以每压一次栈，SP就会移动4个字节（32位），也就是sp = sp-4。   
-   R14也称为LR寄存器(linked register)，这个寄存器会保存一个子程序（subroutine/函数）的返回值。当一个子程序被调用时，LR 会被填入程序计数器（PC）。       
+   R14也称为LR寄存器(linked register)，当一个子程序被调用时，LR 会被填入程序计数器（PC）；当一个子程序执行完毕后，PC从 LR 的值恢复，从而返回（到主函数中）。         
    R15也成为程序计数器(program counter，它的值是当前正在执行的指令在内存中的地址，like RIP in x86_64 & EIP in x86）。  
    该寄存器或保存目前正在执行的内存地址。PC 和 LR 都是跟代码有关的寄存器，一个是 Where you are，另外一个是 Where you were。    
     
@@ -410,6 +410,7 @@ PC-8，总是指向当前的那条指令，即一般说的，正在被执行的�
 指令的Execute执行阶段，如果用到PC的值，那么PC那一时刻，就是PC=PC+8。  
 
 其他细节具体可参考 [3.4. 为何ARM7中PC=PC+8](http://www.crifan.com/files/doc/docbook/uboot_starts_analysis/release/htmls/why_arm7_pc_8.html)  
+S5PV210使用13级流水线，ARM11为8级。  
 
 ## Reference
 [Whirlwind Tour of ARM Assembly](http://www.coranac.com/tonc/text/asm.htm)   
