@@ -52,9 +52,10 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 public class Tutorial implements IXposedHookLoadPackage {
 public void handleLoadPackage(final LoadPackageParam lpparam) throws Throwable {
 XposedBridge.log("Loaded app: " + lpparam.packageName);
-}
+	}
 }
 ```
+
 5. 入口assets/xposed_init配置,声明需要加载到 XposedInstaller 的入口类:
 
 `de.robv.android.xposed.mods.tutorial.Tutorial`  //完整类名:包名+类名  
@@ -62,6 +63,7 @@ XposedBridge.log("Loaded app: " + lpparam.packageName);
 
 反编译目标程序,查看Smali代码  
 直接在AOSP(android源码)中查看  
+
 7. XposedBridge to hook it  
 
 指定要 hook 的包名  
@@ -139,15 +141,14 @@ Object... parameterTypesAndCallback
 
 (2)回调方法:  
 
-a.XC_MethodHook   
-b.XC_MethodReplacement  
+`a.XC_MethodHook`   
+`b.XC_MethodReplacement`  
 
 ## 模块开发中的一些细节
 
 1. Dalvik 孵化器 Zygote (Android系统中，所有的应用程序进程以及系统服务进程SystemServer都是由Zygote进程孕育/fork出来的)进程对应的程序是/system/bin/app_process. Xposed 框架中真正起作用的是对方法的 hook。  
-
-
 因为 Xposed 工作原理是在/system/bin 目录下替换文件,在 install 的时候需要 root 权限,但是运行时不需要 root 权限。  
+
 2. log 统一管理,tag 显示包名  
 `Log.d(MYTAG+lpparam.packageName, "hello" + lpparam.packageName);`
 
@@ -173,7 +174,8 @@ super.afterHookedMethod(param);
 ```
 4. context 获取
 
-`fristApplication = (Application) param.thisObject;` 
+`fristApplication = (Application) param.thisObject;`   
+
 5. 注入点选择 application oncreate 程序真正启动函数而是 MainActivity 的 onCreate (该类有可能被重写,所以通过反射得到 oncreate 方法)
 
 ``` java
@@ -196,15 +198,14 @@ if(lpparam.appInfo == null ||
 }else if(lpparam.isFirstApplication && !ZJDROID_PACKAGENAME.equals(lpparam.packageName)){
 ```
 7. hook method
-
 Only methods and constructors can be hooked,Cannot hook interfaces,Cannot hook abstract methods  
 只能 hook 方法和构造方法,不能 hook 接口和抽象方法  
 抽象类中的非抽象方法是可以 hook的, 接口中的方法不能 hook (接口中的method默认是public abstract 抽象的.field 必须是public static final)  
+
 8. 参数中有 自定义类
-
 `public void myMethod (String a, MyClass b) `
-
 通过反射得到自定义类,也可以用[xposedhelpers](https://github.com/rovo89/XposedBridge/wiki/Helpers#class-xposedhelpers) 封装好的方法findMethod/findConstructor/callStaticMethod....  
+
 9. 注入后反射自定义类
 
 ``` java
@@ -227,8 +228,8 @@ protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 }
 });
 ```
-10. hook 一个类的方法,该类是子类并且没有重写父类的方法,此时应该 hook 父类还是子类.(hook 父类方法后,子类若没重写,一样生效.子类重写方法需要另外 hook) (如果子类重写父类方法时候加上 spuer ,hook 父类依旧有效) 
 
+10. hook 一个类的方法,该类是子类并且没有重写父类的方法,此时应该 hook 父类还是子类.(hook 父类方法后,子类若没重写,一样生效.子类重写方法需要另外 hook) (如果子类重写父类方法时候加上 spuer ,hook 父类依旧有效) 
 例如 java.net.HttpURLConnection extends URLConnection  
 方法在父类  
 
@@ -253,6 +254,7 @@ return doExecute(target, request, context);
 android.async.http复写HttpGet导致zjdroid hook org.apache.http.impl.client.AbstractHttpClient execute 无法获取到请求 
 url和method
 ```
+
 11. hook 构造方法
 
 ``` java
@@ -260,6 +262,7 @@ public static XC_MethodHook.Unhook findAndHookConstructor(String className, Clas
 return findAndHookConstructor(findClass(className, classLoader), parameterTypesAndCallback);
 }
 ```
+
 12. 承接4,application 的onCreate 方法被重写,例如阿里的壳,重写为原生 native 方法.   
 解1:通过反射到 application 类重写后的 onCreate 方法再对该方法进行hook  
 解2:hook 构造方法(构造方法被重写,继续解1)  
