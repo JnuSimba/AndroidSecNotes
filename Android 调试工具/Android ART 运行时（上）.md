@@ -277,7 +277,7 @@ size_tclass_size_;
 
 类的实例化是通过TLS（线程局部存储）中的一个函数表中的pAllocObject来进行的。pAllocObject这个函数指针被指向了  art_quick_alloc_object函数。这个函数是与硬件相关的，实际上它又调用了artAllocObjectFromCode函数，又调用了AllocObjectFromCode函数，在完成了一系列检查判断后调用了Class::AllocObject，这个方法很简单，就是一句话：  
 
-`returnRuntime::Current()->GetHeap()->AllocObject(self, this, this->object_size_)`
+`returnRuntime::Current()->GetHeap()->AllocObject(self, this, this->object_size_)`  
 其实是在堆上根据之前LoadClass时指定的类对象的大小分配了一块内存，按照一个Object对象指针返回。  
 
 可以以图形来展示一下：  
