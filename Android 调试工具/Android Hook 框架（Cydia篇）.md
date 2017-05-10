@@ -24,11 +24,11 @@ SDK下载地址：http://asdk.cydiasubstrate.com/zips/cydia_substrate-r2.zip
 与 xposed hook 原理不一样,因为不是开源具体原理我也不清楚. 结果就是一些Anti hook 可能对 xposed 有效而对 Cydia 无效.  
 使用方法  
 
-1.安装框架app：http://www.cydiasubstrate.com/download/com.saurik.substrate.apk  
+1. 安装框架app：http://www.cydiasubstrate.com/download/com.saurik.substrate.apk  
 
-2.创建一个空的Android工程.由于创建的工程将以插件的形式被加载,所以不需要activity.将SDK中的substrate-api.jar复制到project/libs文件夹中.  
+2. 创建一个空的Android工程.由于创建的工程将以插件的形式被加载,所以不需要activity.将SDK中的substrate-api.jar复制到project/libs文件夹中.  
 
-3.配置Manifest文件  
+3. 配置Manifest文件  
 ``` xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
@@ -38,7 +38,7 @@ SDK下载地址：http://asdk.cydiasubstrate.com/zips/cydia_substrate-r2.zip
     <uses-permission android:name="cydia.permission.SUBSTRATE"/>
 </manifest>
 ```
-4.创建一个类,类名为Main.类中包含一个static方法initialize,当插件被加载的时候,该方法中的代码就会运行,完成一些必要的初始化工作.  
+4. 创建一个类,类名为Main.类中包含一个static方法initialize,当插件被加载的时候,该方法中的代码就会运行,完成一些必要的初始化工作.  
 ``` java
 import com.saurik.substrate.MS;
 public class Main {
@@ -47,7 +47,7 @@ public class Main {
     }
 }
 ``` 
-5.hook imei example  
+5. hook imei example  
 ``` java
 import com.saurik.substrate.MS;
 public class Main {
@@ -85,11 +85,11 @@ public class Main {
     }
 }
 ```
-6.在 cydia app 界面中点击 Link Substrate Files 之后重启手机   
+6. 在 cydia app 界面中点击 Link Substrate Files 之后重启手机   
 ![](../pictures/androidcydia1.jpg)  
 
 
-7.使用getimei的小程序验证imei是否被改变  
+7. 使用getimei的小程序验证imei是否被改变  
 ``` java
 public class MainActivity extends ActionBarActivity {
     private static final String tag = "MainActivity";
@@ -119,7 +119,7 @@ public class MainActivity extends ActionBarActivity {
             mText.setText("fail");
     }
 ```
-8.关键api介绍  
+8. 关键api介绍  
 
 MS.hookClassLoad:该方法实现在指定的类被加载的时候发出通知(改变其实现方式?).因为一个类可以在任何时候被加载,所以Substrate提供了一个方法用来检测用户感兴趣的类何时被加载.  
 
