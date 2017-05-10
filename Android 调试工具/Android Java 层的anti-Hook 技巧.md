@@ -286,5 +286,5 @@ Xposed JAR found: /data/data/de.robv.android.xposed.installer/bin/XposedBridge.j
 
 hook PackageManager的getInstalledApplications，把Xposed或者Substrate的包名去掉  
 hook Exception的getStackTrace，把自己的方法去掉  
-hook getModifiers，把flag改成看起来不是native 
+hook getModifiers，把flag改成看起来不是native   
 hook 打开的文件的操作，返回/dev/null或者修改的map文件  
