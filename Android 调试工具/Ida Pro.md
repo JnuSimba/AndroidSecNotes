@@ -167,7 +167,7 @@ Ida双开定位的意思是先用ida静态分析so文件，然后再开一个ida
 
 所以说动态调试的时候可以帮我们了解到很多静态分析很难获取到的信息。这也就是ida双开的意义所在：静态帮助动态定位函数地址，动态帮助静态获取运行时信息。
 
-0x05 Ida动态修改内存数据和寄存器数值
+## 0x05 Ida动态修改内存数据和寄存器数值
 
 我们继续分析自毁程序密码这个app，我们发现该程序会用fopen ()打开/proc/[pid]/status这个文件，随后会用fgets()和strstr()来获取，于是我们在strstr()处下个断点，然后让hex view的数据与R0同步。每次点击继续，我们都会看到strstr传入的参数。当传入的参数变为TracerPid:XXXX的时候我们停一下。因为在正常情况下，TracerPid的值应该是0。但是当被调试的时候就会变成调试器的pid。  
 ![](../pictures/androidida30.jpg)     
@@ -252,8 +252,7 @@ Ida双开定位的意思是先用ida静态分析so文件，然后再开一个ida
 0x0A代表BEQ，”15 00 00”代表跳转的相对地址，因为在arm中pc的值是当前指令的下两条（下一条的下一条）指令的地址，所以我们需要将0x15再加上2。随后就可以计算出最后跳转到的地址： (0x15 + 0x2)*4 + 0x1BCC = 0x1C28。Ida反汇编后的结果也验证了结果是BEQ loc_1C28。
 
 接下来我们想修改汇编代码为00001BCC: BNE loc_1C2C。只需要将”0A”变成”1A”，将”15”变成”16”即可。  
-
-[](../pictures/androidida491.jpg)  
+![](../pictures/androidida491.jpg)   
 ![](../pictures/androidida492.jpg)  
 ![](../pictures/androidida49.jpg)  
 
@@ -285,7 +284,7 @@ Ida双开定位的意思是先用ida静态分析so文件，然后再开一个ida
 
 这里我们拿alictf2014中的apk300作为例子来介绍一下ida脱简单壳的基本流程。 首先我们用调试JNI_OnLoad的技巧将程序在运行前挂起：  
 
-`adb shell am start -D -n com.ali.tg.testapp/.MainActivity`
+`adb shell am start -D -n com.ali.tg.testapp/.MainActivity`  
 ![](../pictures/androidida54.jpg)    
 
 然后在libdvm.so中的dvmDexFileOpenPartial函数上下一个断点：  
