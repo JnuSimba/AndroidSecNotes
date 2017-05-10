@@ -435,7 +435,7 @@ Android.Hook框架Cydia篇(脱壳机制作)
 
 接下来就推荐几个很实用的基于Cydia和Xposed的插件：  
 
-ZjDroid: ZjDroid是基于Xposed Framewrok的动态逆向分析模块，逆向分析者可以通过ZjDroid完成以下工作： 
+ZjDroid: ZjDroid是基于Xposed Framewrok的动态逆向分析模块，逆向分析者可以通过ZjDroid完成以下工作：  
 1、DEX文件的内存dump  
 2、基于Dalvik关键指针的内存BackSmali，有效破解主流加固方案  
 3、敏感API的动态监控   
