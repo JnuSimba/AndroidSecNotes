@@ -203,7 +203,7 @@ __NR_write return: 19
 我们可以看到第一个SysCallNo是162，也就是sleep函数。第二个SysCallNo是4，也就是write函数，因为printf本质就是调用write这个系统调用来完成的。关于system call number对应的具体system call可以参考我在github上的reference文件夹中的systemcalllist.txt文件，里面有对应的列表。我们的hook1程序还对write的参数做了解析，比如1表示stdout，0xadf020表示字符串的地址，19代表字符串的长度。而返回值19表示write成功写入的长度，也就是字符串的长度。  
 
 整个过程用图表达如下：    
-![](../picutures/androidhook1.jpg)  
+![](../pictures/androidhook1.jpg)  
 
 
 ## 0x03 利用Ptrace动态修改内存  
