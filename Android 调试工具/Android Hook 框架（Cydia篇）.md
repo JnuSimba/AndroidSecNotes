@@ -625,12 +625,14 @@ http://androidxref.com/4.4.4_r1/xref/dalvik/vm/DvmDex.cpp
 ``` c
 93 int dvmDexFileOpenFromFd(int fd, DvmDex** ppDvmDex)  //从一个打开的DEX文件,映射到只读共享内存并且解析内容
 //146 int dvmDexFileOpenPartial(const void* addr, int len, DvmDex** ppDvmDex)  //通过地址和长度打开部分DEX文件
-``` c
-http://androidxref.com/4.4.4_r1/xref/dalvik/libdex/DexFile.cpp  
+``` 
+
+http://androidxref.com/4.4.4_r1/xref/dalvik/libdex/DexFile.cpp    
 ```
 289 dexFileParse(const u1* data, size_t length, int flags)  //解析dex文件
 ```
 > 方法openDexFile里通过dvmDexFileOpenFromFd函数调用dexFileParse函数,分析Dex文件里每个类名称和类的代码所在索引,然后dexFileParse调用函数dexParseOptData来把类名称写对象pDexFile->pClassLookup里面,当然也更新了索引
+
 ``` c
 //Substrate entry point
 MSInitialize
