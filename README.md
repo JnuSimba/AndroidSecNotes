@@ -38,5 +38,11 @@
 	- [ARM 汇编伪指令简介](./Android逆向基础/ARM%20汇编伪指令简介.md)
 	- [ARM 汇编指令简介](./Android逆向基础/ARM%20汇编指令简介.md)
 
+* Android 调试工具
+	- [Smali Instrumentation](./Android%20调试工具/Smali%20Instrumentation.md)
+	- [Ida Pro.md](./Android%20调试工具/Ida%20Pro.md)
+	- [Android Hook（上）](./Android%20调试工具/Android%20Hook（上）.md)
+	- [Android Hook（下）](./Android%20调试工具/Android%20Hook（下）.md)
+
 	
 	
