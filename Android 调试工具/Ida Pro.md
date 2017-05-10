@@ -245,15 +245,13 @@ Ida双开定位的意思是先用ida静态分析so文件，然后再开一个ida
 比如说00001BCC: BEQ loc_1C28对应的汇编代码为”15 00 00 0A”。  
 
 ![](../pictures/androidida481.jpg)   
-
-![](../pictures/androidida482.jpg)  
+  
 ![](../pictures/androidida48.jpg)  
 
 0x0A代表BEQ，”15 00 00”代表跳转的相对地址，因为在arm中pc的值是当前指令的下两条（下一条的下一条）指令的地址，所以我们需要将0x15再加上2。随后就可以计算出最后跳转到的地址： (0x15 + 0x2)*4 + 0x1BCC = 0x1C28。Ida反汇编后的结果也验证了结果是BEQ loc_1C28。
 
 接下来我们想修改汇编代码为00001BCC: BNE loc_1C2C。只需要将”0A”变成”1A”，将”15”变成”16”即可。  
 ![](../pictures/androidida491.jpg)   
-![](../pictures/androidida492.jpg)  
 ![](../pictures/androidida49.jpg)  
 
 0x0A代表BEQ，”15 00 00”代表跳转的相对地址，因为在arm中pc的值是当前指令的下两条（下一条的下一条）指令的地址，所以我们需要将0x15再加上2。随后就可以计算出最后跳转到的地址： (0x15 + 0x2)*4 + 0x1BCC = 0x1C28。Ida反汇编后的结果也验证了结果是BEQ loc_1C28。  
