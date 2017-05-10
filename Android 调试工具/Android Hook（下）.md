@@ -435,7 +435,15 @@ Android.Hook框架Cydia篇(脱壳机制作)
 
 接下来就推荐几个很实用的基于Cydia和Xposed的插件：  
 
-ZjDroid: ZjDroid是基于Xposed Framewrok的动态逆向分析模块，逆向分析者可以通过ZjDroid完成以下工作： 1、DEX文件的内存dump 2、基于Dalvik关键指针的内存BackSmali，有效破解主流加固方案 3、敏感API的动态监控 4、指定内存区域数据dump 5、获取应用加载DEX信息。 6、获取指定DEX文件加载类信息。 7、dump Dalvik java堆信息。 8、在目标进程动态运行lua脚本。 https://github.com/halfkiss/ZjDroid  
+ZjDroid: ZjDroid是基于Xposed Framewrok的动态逆向分析模块，逆向分析者可以通过ZjDroid完成以下工作： 
+1、DEX文件的内存dump  
+2、基于Dalvik关键指针的内存BackSmali，有效破解主流加固方案  
+3、敏感API的动态监控   
+4、指定内存区域数据dump   
+5、获取应用加载DEX信息。   
+6、获取指定DEX文件加载类信息。   
+7、dump Dalvik java堆信息。   
+8、在目标进程动态运行lua脚本。 https://github.com/halfkiss/ZjDroid    
 
 XPrivacy: XPrivacy是一款基于Xposed框架的模块应用，可以对所有应用可能泄露隐私的权限进行管理，对禁止可能会导致崩溃的应用采取欺骗策略，提供伪造信息，比如说可以伪造手机的IMEI号码等。 https://github.com/M66B/XPrivacy  
 
@@ -449,7 +457,7 @@ Introspy: Introspy是一款可以追踪分析移动应用的黑盒测试工具�
 
 ![](../pictures/androidhook6.jpg)   
 
-![](../pictures/androidhook10jpg)   
+![](../pictures/androidhook10.jpg)   
 然后我们编译，生成并安装Introspy-Android Core.apk到手机上。然后我们安装上EvilApk400。然后打开Introspy-Android Config勾选com.ali.encryption。    
 
 ![](../pictures/androidhook4.jpg)   
