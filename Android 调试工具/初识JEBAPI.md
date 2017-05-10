@@ -5,16 +5,16 @@
 
 JEB是Android应用静态分析的de facto standard,除去准确的反编译结果、高容错性之外,JEB提供的API也方便了我们编写插件对源文件进行处理,实施反混淆甚至一些更高级的应用分析来方便后续的人工分析.本系列文章的前几篇将对JEB的API使用进行介绍,并实战如何利用开发者留下的蛛丝马迹去反混淆.先来看看我们最终编写的这个自动化反混淆插件实例的效果：  
 
-反混淆前：
-![](../pictures/androidjeb1.jpg)    
+反混淆前：  
+![](../pictures/androidjeb1.jpg)      
 
-![](../pictures/androidjeb2.jpg)   
+![](../pictures/androidjeb2.jpg)    
 
-反混淆后：  
+反混淆后：   
 
-![](../pictures/androidjeb3.jpg)   
+![](../pictures/androidjeb3.jpg)    
 
-![](../pictures/androidjeb4.jpg)   
+![](../pictures/androidjeb4.jpg)    
 
 可以看到很多类名和field名都被恢复出来了. 读者朋友肯定会好奇这是如何做到的, 那我们首先来看下JEB提供API的结构：  
 
