@@ -43,6 +43,12 @@
 	- [Ida Pro.md](./Android%20调试工具/Ida%20Pro.md)
 	- [Android Hook（上）](./Android%20调试工具/Android%20Hook（上）.md)
 	- [Android Hook（下）](./Android%20调试工具/Android%20Hook（下）.md)
+	- [Android Hook 框架（Cydia篇）](./Android%20调试工具/Android%20Hook%20框架（Cydia篇）.md)
+	- [Android Hook 框架（XPosed篇）](./Android%20调试工具/Android%20Hook%20框架（XPosed篇）.md)
+	- [Android Java 层的anti-Hook 技巧](./Android%20调试工具/Android%20Java%20层的anti-Hook%20技巧.md)
+	- [Android 应用程序通用脱壳方法研究](./Android%20调试工具/Android%20应用程序通用脱壳方法研究.md)
+	- [Android ART 运行时（上）](./Android%20调试工具/Android%20ART%20运行时（上）.md)
+	- [Android ART 运行时（下）](./Android%20调试工具/Android%20ART%20运行时（下）.md)
 
 	
 	
