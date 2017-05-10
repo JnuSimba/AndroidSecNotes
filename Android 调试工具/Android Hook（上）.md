@@ -203,7 +203,7 @@ __NR_write return: 19
 我们可以看到第一个SysCallNo是162，也就是sleep函数。第二个SysCallNo是4，也就是write函数，因为printf本质就是调用write这个系统调用来完成的。关于system call number对应的具体system call可以参考我在github上的reference文件夹中的systemcalllist.txt文件，里面有对应的列表。我们的hook1程序还对write的参数做了解析，比如1表示stdout，0xadf020表示字符串的地址，19代表字符串的长度。而返回值19表示write成功写入的长度，也就是字符串的长度。  
 
 整个过程用图表达如下：    
-![](../picutures/androidhook.jpg)  
+![](../picutures/androidhook1.jpg)  
 
 
 ## 0x03 利用Ptrace动态修改内存  
@@ -553,7 +553,7 @@ ptrace_call(pid, dlsym_addr, parameters, 2, &regs);
 ```
 mmap()可以用来将一个文件或者其它对象映射进内存，如果我们把flag设置为MAP_ANONYMOUS并且把参数fd设置为0的话就相当于直接映射一段内容为空的内存。mmap()的函数声明和参数如下：  
 
-`void* mmap(void* start,size_t length,int prot,int flags,int fd,off_t offset);`
+`void* mmap(void* start,size_t length,int prot,int flags,int fd,off_t offset);`  
 start：映射区的开始地址，设置为0时表示由系统决定映射区的起始地址。  
 length：映射区的长度。  
 prot：期望的内存保护标志，不能与文件的打开模式冲突。我们这里设置为RWX。  
@@ -574,7 +574,7 @@ int mzhengHook(char * str){
     return 0;
 }
 ```
-这里我们不光使用printf()还使用了android debug的函数LOGD()用来输出调试结果。所以在编译时我们需要加上LOCAL_LDLIBS := -llog。  
+这里我们不光使用printf()还使用了android debug的函数LOGD()用来输出调试结果。所以在编译时我们需要加上`LOCAL_LDLIBS := -llog` 。  
 
 编译完后，我们使用hook4对target程序进行hook：  
 ``` bash
