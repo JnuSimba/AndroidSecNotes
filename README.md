@@ -66,7 +66,7 @@ Android是一个基于Linux的复杂系统，想要熟练挖掘Android漏洞必�
 * Binder方面可以学习调试几个经典漏洞（[flankerhqd/mediacodecoob](https://link.zhihu.com/?target=https%3A//github.com/flankerhqd/mediacodecoob)， [blackhat](https://www.blackhat.com/asia-16/briefings.html#hey-your-parcel-looks-bad-fuzzing-and-exploiting-parcel-ization-vulnerabilities-in-android)）
 * 文件格式漏洞自然是经典的[stagefright](https://www.exploit-db.com/docs/39527.pdf) 
 * [驱动/内核漏洞3636和1805](https://www.blackhat.com/docs/us-15/materials/us-15-Xu-Ah-Universal-Android-Rooting-Is-Back.pdf)
-* [Chrome V8相关](https://link.zhihu.com/?target=https%3A//github.com/4B5F5F4B/Exploits)
+* [Chrome V8相关](https://github.com/4B5F5F4B/Exploits)  
 * 关注每个月的android security bulletin, 尝试从diff反推漏洞研究如何触发和利用  
 * 代码审计：经典书籍 The art of software security assessment  
 * fuzzing  
