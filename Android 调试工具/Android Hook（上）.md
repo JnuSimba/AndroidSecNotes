@@ -617,6 +617,6 @@ https://github.com/zhengmin1989/TheSevenWeapons
 
 ## 0x07 参考资料
 
-Playing with Ptrace http://www.linuxjournal.com/article/6100 
-System Call Tracing using ptrace  
+Playing with Ptrace http://www.linuxjournal.com/article/6100   
+System Call Tracing using ptrace    
 古河的Libinject http://bbs.pediy.com/showthread.php?t=141355  

@@ -344,4 +344,3 @@ https://github.com/zhengmin1989/TheSevenWeapons
 ## 0x11 参考文章
 
 MSC解题报告 http://bbs.pediy.com/showthread.php?t=197235  
-伪·MSC解题报告http://bbs.pediy.com/showthread.php?p=1349632  
