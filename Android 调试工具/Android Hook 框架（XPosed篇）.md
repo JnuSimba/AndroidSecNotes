@@ -285,8 +285,7 @@ return findAndHookConstructor(findClass(className, classLoader), parameterTypesA
 5) 从服务器读取数据
 * android 提供的 webview
 * 第三方库:volley/android-async-http/xutils (本质是对前两种的方式的延伸,方法的重写可能对接下来的 hook 产生影响)
-不太了解 java 的 hook 前可以先看下基础的代码 [HttpClient以及HttpURLConnection的基本使用](http://www.codefrom.com/paper/Android%20Http%E8%AF%B7%E6%B1%82%E4%B8%A4%E7%A7%8D%E5%B7%A5%E5%85%B7%E7%B1%BB%28HttpClient.HttpURLConnection%29)  
-
+不太了解 java 的 hook 前可以先看下基础的代码。  
 对 HttpClient的 hook 可以参考 贾志军大牛的Zjdroid
 ``` java
 Method executeRequest = RefInvoke.findMethodExact("org.apache.http.impl.client.AbstractHttpClient", ClassLoader.getSystemClassLoader(),
