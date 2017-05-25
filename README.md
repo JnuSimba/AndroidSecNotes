@@ -51,7 +51,7 @@
 	- [Android ART 运行时（下）](./Android%20调试工具/Android%20ART%20运行时（下）.md)
 
 ## 移动app自动化审计
-![](../pictures/appaudit.png)  
+![](../pictures/appaudi.png)  
 
 ## 内核漏洞挖掘
 作者：Flanker Edward  
