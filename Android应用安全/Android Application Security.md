@@ -49,6 +49,11 @@ Now with the help of **run-as** binary we can execute commands as com.mwr.exampl
 Now you can extract the data or run an arbitary code using application permission like shown below.  
 ![](../pictures/shellaccess.png)  
 
-12. 开发者后门  
+12. android:allowBackup  
+allowBackup 风险位置：AndroidMannifest.xml 文件 android:allowBackup 属性  
+allowBackup 风险触发前提条件：未将 AndroidMannifest.xml 文件中的 android:allowBackup 属性值设为 false  
+allowBackup 风险原理：当 allowBackup 标志值为 true 时，即可通过 adb backup 和 adb restore 来备份和恢复应用程序数据  
+
+13. 开发者后门  
 There are sometimes when developer put a backdoor to a particular application. He/She puts that because he doesn’t want somebody else to access that sensitive piece of Information and sometimes that backdoor is for debugging purposes.  
 通过反编译成 java 源代码，查看某些 activity 也许可以发现一些登录的后门。  
