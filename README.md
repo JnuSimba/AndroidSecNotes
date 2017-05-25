@@ -50,7 +50,10 @@
 	- [Android ART 运行时（上）](./Android%20调试工具/Android%20ART%20运行时（上）.md)
 	- [Android ART 运行时（下）](./Android%20调试工具/Android%20ART%20运行时（下）.md)
 
-## 学习方向
+## 移动app自动化审计
+![](../pictures/appaudit.png)  
+
+## 内核漏洞挖掘
 作者：Flanker Edward  
 链接：https://www.zhihu.com/question/45548548/answer/105379921  
 来源：知乎  
