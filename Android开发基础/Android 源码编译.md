@@ -285,3 +285,6 @@ $ sudo ln -s /usr/bin/g++-4.4 /usr/bin/g++
 
 解决方案：  
 `sudo apt-get install libxml2-utils`
+
+## Reference
+http://www.alonemonkey.com/2016/05/03/android-source-compile/  
