@@ -75,7 +75,8 @@ git checkout remotes/origin/Android-3.0
 `. build/envsetup.sh` 
 或者  
 `source build/envsetup.sh` 
-指定产品名和编译变量  
+
+指定产品名和编译变量    
 
 ```
 lunch
@@ -83,7 +84,8 @@ lunch
 ```
 编译源码：  
 `make -j8`  
-Mac环境配置：  
+
+Mac环境配置：    
 
 ```
 hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size 40g ~/android.dmg
@@ -244,17 +246,19 @@ make: *** [out/host/linux-x86/obj/STATIC_LIBRARIES/libandroidfw_intermediates/As
 Note: Some input files use or override a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
 ```
+
 解决方案：  
-`sudo apt-get install gcc-multilib`  
+`sudo apt-get install gcc-multilib` 
+ 
 出现错误：  
-
 `/home/monkey/android/4.1.1/prebuilts/gcc/linux-x86/host/i686-linux-glibc2.7-4.6/bin/../lib/gcc/i686-linux/4.6.x-google/../../../../i686-linux/bin/as: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory`
+
 解决方案：    
-
 `sudo apt-get install zlib1g:i386`
-出现错误：   
 
-`gcc: error trying to exec 'cc1plus': execvp: No such file or directory` 
+出现错误：   
+`gcc: error trying to exec 'cc1plus': execvp: No such file or directory`
+ 
 解决方案：  
 ```
 gcc和g++版本不匹配
@@ -263,20 +267,21 @@ $ sudo rm -f /usr/bin/gcc /usr/bin/g++
 $ sudo ln -s /usr/bin/gcc-4.4 /usr/bin/gcc
 $ sudo ln -s /usr/bin/g++-4.4 /usr/bin/g++
 ```
-出现错误：  
 
+出现错误：  
 `libstdc++.so.6: cannot open shared object file: No such file or directory`  
-解决方案：  
 
+解决方案：  
 `sudo apt-get install lib32stdc++6`  
-出现错误：  
 
+出现错误：  
 `Can't locate Switch.pm in @INC (you may need to install the Switch module)`  
+
 解决方案：  
-
 `sudo apt-get install libswitch-perl`  
-出现错误：  
 
+出现错误：  
 `/bin/bash: xmllint: command not found`  
+
 解决方案：  
 `sudo apt-get install libxml2-utils`
