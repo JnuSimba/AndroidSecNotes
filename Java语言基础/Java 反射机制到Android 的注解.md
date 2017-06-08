@@ -174,7 +174,7 @@ public @interface ContentView {
 ElementType.TYPE表示着这个注解作用于类；RetentionPolicy.RUNTIME表示这个注解在运行时可以通过反射获取到  
 
 ViewInject.java  
-```
+``` java
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ViewInject {
