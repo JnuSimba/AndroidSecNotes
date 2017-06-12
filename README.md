@@ -7,6 +7,7 @@
 	- [Java 反射机制到Android 的注解](./Java语言基础/Java%20反射机制到Android%20的注解.md)
 	
 * Android开发基础
+	- [Android 源码编译](./Android开发基础/Android%20源码编译.md)
 	- [Android开发基础知识](./Android开发基础/Android开发基础知识.md)
 	- [AndroidManifest.xml](./Android开发基础/AndroidManifest.xml.md)
 	- [Android 工程相关文件说明](./Android开发基础/Android%20工程相关文件说明.md)
@@ -49,6 +50,7 @@
 	- [Android 应用程序通用脱壳方法研究](./Android%20调试工具/Android%20应用程序通用脱壳方法研究.md)
 	- [Android ART 运行时（上）](./Android%20调试工具/Android%20ART%20运行时（上）.md)
 	- [Android ART 运行时（下）](./Android%20调试工具/Android%20ART%20运行时（下）.md)
+	- [初识JEBAPI](./Android%20调试工具/初识JEBAPI.md)
 
 ## 移动app自动化审计
 ![](./pictures/appaudi.png)  
