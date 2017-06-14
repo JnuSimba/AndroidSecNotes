@@ -1,3 +1,4 @@
+原文 by [manyface](http://manyface.github.io/2016/05/19/AndroidHeapUnlinkExploitPractice/?spm=a313e.7916648.0.0.ceAf31)  
 ## 前言
 最近学习了堆的管理，如何进行unlink利用。发现大多数文章在讲解利用unlink进行任意地址写时没有解释得很透彻，看得是云里雾里，直到看到了shellphish团队在github上的项目how2heap，才弄明白了利用unlink进行任意地址写的原理。于是自己在Android4.4模拟器上设计了一个Demo，用于练习unlink利用。下面基于这个Demo来具体分析unlink利用的原理。在继续阅读之前，可以先看一下这一篇博文。由于水平有限，不对的地方还请各位大牛赐教。  
 
@@ -166,7 +167,7 @@ system_addr
 note0_content = p32(0xE59F1000) + p32(0xE12FFF31) + p32(self.system_addr)
 self.__edit_note(0, 0xC, note0_content)
 ```
-ps:在unlink_demo中.got section所在segment的flags是可写的，但是一运行起来，从/proc/pid/maps得到的结果却是该segment只读，于是只好修改unlink_demo文件中代码段的属性为可读写，这样就可以运行时修改free@plt的指令了。  
+ps：在unlink_demo中.got section所在segment的flags是可写的，但是一运行起来，从/proc/pid/maps得到的结果却是该segment只读，于是只好修改unlink_demo文件中代码段的属性为可读写，这样就可以运行时修改free@plt的指令了。  
 其实本来想直接修改got中free的地址，苦于这段内存只读，不知道怎么设置为可写。  
 
 #### step 6. 新建并释放notes[2]，触发system(“/system/bin/sh”)
@@ -181,7 +182,7 @@ self.__free_note(2)
 
 ![](../pictures/heapunlink8.png)  
 
-ps:完整的利用代码和涉及到的工具可以在我的github[下载](https://github.com/ManyFace/AndroidHeap/tree/master/AndroidUnlinkExploit)    
+ps：完整的利用代码和涉及到的工具可以在我的github[下载](https://github.com/ManyFace/AndroidHeap/tree/master/AndroidUnlinkExploit)    
 将how2heap中unsafe_unlink.c修改为32位后在Android模拟器上是运行不成功的，通过对比Linux和Android unlink时的源码发现，在Android中多了一条检测条件：ok_address(M, F)，就是检查F地址的合法性，因为malloc/free绝对不会向一个静态地址写数据。于是将unsafe_unlink.c 中`uint32_t* pointer_vector[10];` 改为  `uint32_t** pointer_vector; pointer_vector=(uint32_t**)malloc(10*sizeof(uint32_t));` 就可以在Android上跑通了。  
 
 ## 参考
