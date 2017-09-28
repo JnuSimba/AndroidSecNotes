@@ -1,5 +1,8 @@
 # AndroidSecNotes
-此系列文章是本人关于学习 Android 安全时记录的一些笔记，部分原创，部分是对网上文章的理解整理。如果可以找到原始参考链接时则会在文末贴出（如 乌云很多链接已失效，或者记不起当时存档时的链接），或者在文章开头写上 by xx，如有侵权请联系我删除或加上reference，感谢在网上共享知识的师傅们。
+此系列文章是本人关于学习 Android 安全时记录的一些笔记，部分原创，部分是对网上文章的理解整理。如果可以找到原始参考链接时则会在文末贴出（如 乌云很多链接已失效，或者记不起当时存档时的链接），或者在文章开头写上 by xx，如有侵权请联系我删除或加上reference，感谢在网上共享知识的师傅们。  
+扫描二维码加入小密圈"开发与安全"，与大家一起交流：）    
+<img src="https://raw.githubusercontent.com/JnuSimba/WebSecNotes/master/pictures/%E5%BC%80%E5%8F%91%E4%B8%8E%E5%AE%89%E5%85%A8.jpg" width="250" height="300">    
+
 # 目录
 * Java语言基础
 	- [Java Basic](./Java语言基础/Java%20Basic.md)
