@@ -55,6 +55,7 @@
 	- [Android ART 运行时（上）](./Android%20调试工具/Android%20ART%20运行时（上）.md)
 	- [Android ART 运行时（下）](./Android%20调试工具/Android%20ART%20运行时（下）.md)
 	- [初识JEBAPI](./Android%20调试工具/初识JEBAPI.md)
+	- [常见app加固厂商脱壳方法](./Android%20调试工具/常见app加固厂商脱壳方法.md)
 
 ## 移动app自动化审计
 ![](./pictures/appaudi.png)  
