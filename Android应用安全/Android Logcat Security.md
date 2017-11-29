@@ -245,11 +245,11 @@ public class L
 }
 ```
 ## 0x07 参考
-http://www.jssec.org/dl/android_securecoding_en.pdf  
-http://source.android.com/source/code-style.html#log-sparingly
-http://developer.android.com/intl/zh-cn/reference/android/util/Log.html
-http://developer.android.com/intl/zh-cn/tools/debugging/debugging-log.html
-http://developer.android.com/intl/zh-cn/tools/help/proguard.html
-https://www.securecoding.cert.org/confluence/display/java/DRD04-J.+Do+not+log+sensitive+information
-https://android.googlesource.com/platform/frameworks/base.git/+/android-4.2.2_r1/core/jni/android_util_Log.cpp
+http://www.jssec.org/dl/android_securecoding_en.pdf    
+http://source.android.com/source/code-style.html#log-sparingly  
+http://developer.android.com/intl/zh-cn/reference/android/util/Log.html  
+http://developer.android.com/intl/zh-cn/tools/debugging/debugging-log.html  
+http://developer.android.com/intl/zh-cn/tools/help/proguard.html  
+https://www.securecoding.cert.org/confluence/display/java/DRD04-J.+Do+not+log+sensitive+information  
+https://android.googlesource.com/platform/frameworks/base.git/+/android-4.2.2_r1/core/jni/android_util_Log.cpp  
 
