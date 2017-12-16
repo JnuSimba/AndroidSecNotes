@@ -32,6 +32,7 @@ Where's My Water.zip\
 ### Dalvik字节码
 Dalvik是google专门为Android操作系统设计的一个虚拟机，经过深度的优化。虽然Android上的程序是使用java来开发的，但是Dalvik和标准的java虚拟机JVM还是两回事。Dalvik VM是基于寄存器的，而JVM是基于栈的；Dalvik有专属的文件执行格式dex（dalvik executable），而JVM则执行的是java字节码。Dalvik VM比JVM速度更快，占用空间更少。  
 通过Dalvik的字节码我们不能直接看到原来的逻辑代码，这时需要借助如Apktool或dex2jar+jd-gui工具来帮助查看。但是，注意的是最终我们修改APK需要操作的文件是.smali文件，而不是导出来的Java文件重新编译（况且这基本上不可能）。  
+Dalvik 虚拟机是用c/c++/asm 写的，即将字节码（smali 是其可读的表现语法）解释运行，最终的最底层还是转化成 机器如arm 的汇编（进而是完全的0 1 二进制）在android 机上运行。  
 
 ### smali文件      
 好了，对Dalvik有一定认识后，下面介绍重点：smali，及其语法。  
