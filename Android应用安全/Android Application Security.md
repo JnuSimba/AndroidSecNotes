@@ -2,7 +2,7 @@
 
 1. 建议下载的 Appie 版本为 [2.0](https://sourceforge.net/projects/appiefiles/files/Appie2.zip/download)，因为作者写这些文章时用的是2.0 版本，亲试使用3.1版本时 goat droid 等 app 的 db 都是损坏的。如果在 cmd 内 goatdroid 执行不了，可以找到 jar 文件并 java -jar xx.jar 启动它
 
-2. 在 drozer 启动时出现找不到java 的 错误，可以在用户家目录如 C:\Users\simbazhang 下建立 .drozer_config 文件，内容如下：
+2. 在 drozer 启动时出现找不到java 的 错误，可以在用户家目录如 C:\Users\s1mba 下建立 .drozer_config 文件，内容如下：
 ```
 [executables]
 java = D:\Java\jdk1.8.0_91\bin\java.exe
@@ -27,8 +27,8 @@ cd drozer 所在目录(如D:\Appie\Appie\vendor\drozer）再执行 drozer consol
 9. 单独使用 SDK Manager 时需要设置下代理。使用 android studio 时设置 auto detect proxy 让其找到 pac 文件即可，但编译时需
 要设置下 Gradle 的代理，在 gradle.properties 文件中配置 
 ```
-systemProp.https.proxyHost=***REMOVED***
-systemProp.http.proxyHost=***REMOVED***
+systemProp.https.proxyHost=proxy.example.com
+systemProp.http.proxyHost=proxy.example.com
 systemProp.https.proxyPort=8080
 systemProp.http.proxyPort=8080
 ```
