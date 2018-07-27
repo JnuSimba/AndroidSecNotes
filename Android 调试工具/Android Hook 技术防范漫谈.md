@@ -207,8 +207,7 @@ void OpcodeSample(int a ,int b){
 IDA PRO导出函数表如图：  
 ![](../pictures/android_anti_hooking11.png)  
 ![](../pictures/android_anti_hooking12.png)  
-![](../pictures/android_anti_hooking13.png)  
-![](../pictures/android_anti_hooking14.png)     
+![](../pictures/android_anti_hooking13.png)      
 
 
 第三次取样："55 57 56 53 E8 CC 14 ?? ?? 81 C3 DB ?? ?? ?? 8D 64 ?? ?? 8B 83 F4 ?? ?? ??"  
