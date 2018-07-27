@@ -16,15 +16,15 @@
 
 2. Inline Hook
 
-这两种技术路线本人都实践了一下，关于它们的对比，我在《Android Native Hook技术路线概述》中有介绍，所以这里就不多说了。最终，我用了Inline Hook来做这个项目。  
+这两种技术路线本人都实践了一下，关于它们的对比，我在《[Android Native Hook技术路线概述](https://github.com/JnuSimba/AndroidSecNotes/blob/master/Android%20%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/Android%20Native%20Hook%20%E6%8A%80%E6%9C%AF%E7%BA%BF%E8%B7%AF%E6%A6%82%E8%BF%B0.md)》中有介绍，所以这里就不多说了。最终，我用了Inline Hook来做这个项目。  
 
 本文篇幅已经较长，因此写了一些独立的学习笔记来对其中的细节问题进行解释：  
 
-《Android Native Hook技术路线概述》  
+《[Android Native Hook技术路线概述](https://github.com/JnuSimba/AndroidSecNotes/blob/master/Android%20%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/Android%20Native%20Hook%20%E6%8A%80%E6%9C%AF%E7%BA%BF%E8%B7%AF%E6%A6%82%E8%BF%B0.md)》  
 
-《Android Inline Hook中的指令修复》  
+《[Android Inline Hook中的指令修复](https://github.com/JnuSimba/AndroidSecNotes/blob/master/Android%20%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/Android%20Inline%20Hook%20%E7%9A%84%E6%8C%87%E4%BB%A4%E4%BF%AE%E5%A4%8D%E8%AF%A6%E8%A7%A3.md)》  
 
-[项目仓库）](https://github.com/GToad/Android_Inline_Hook)    
+[项目仓库](https://github.com/GToad/Android_Inline_Hook)    
 
 ## 目标效果
 
@@ -243,7 +243,7 @@ HOOK_ADDR + X
 ```
 ## 指令修复（概述）
 
-注：本部分内容较多且相关代码占了几乎本项目开发的一半时间，故此处仅给出概述，本人之后为这部分内容独立写一篇文章《Android Inline Hook中的指令修复》来详细介绍以方便读者更好地学习这方面内容。  
+注：本部分内容较多且相关代码占了几乎本项目开发的一半时间，故此处仅给出概述，本人之后为这部分内容独立写一篇文章《[Android Inline Hook中的指令修复](https://github.com/JnuSimba/AndroidSecNotes/blob/master/Android%20%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/Android%20Inline%20Hook%20%E7%9A%84%E6%8C%87%E4%BB%A4%E4%BF%AE%E5%A4%8D%E8%AF%A6%E8%A7%A3.md)》来详细介绍以方便读者更好地学习这方面内容。  
 
 在上文的处理中，我们很好地保存并恢复了寄存器原本的状态。那么，原本目标程序的汇编指令真的是在它原有的状态下执行的吗？依然不是。虽然寄存器的确一模一样，但是那几条被备份的指令是被移动到了另一个地址上。这样当执行它们的时候PC寄存器的值就改变了。因此，如果这条指令的操作如果涉及到PC的值，那这条指令的执行效果就很可能和原来不一样。所以，我们需要对备份的指令进行修复。在实际修复过程中，本人发现还有些指令也受影响，有如下几种：  
 
