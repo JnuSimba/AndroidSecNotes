@@ -61,7 +61,10 @@
 	- [初识JEBAPI](./Android%20调试工具/初识JEBAPI.md)
 	- [常见app加固厂商脱壳方法](./Android%20调试工具/常见app加固厂商脱壳方法.md)  
 	- [Android Hook 技术防范漫谈](./Android%20调试工具/Android%20Hook%20技术防范漫谈.md)   
+	- [Android Native Hook 技术线路概述](./Android%20调试工具/Android%20Native%20Hook%20技术线路概述.md)
 	- [Android Native Hook 工具实践](./Android%20调试工具/Android%20Native%20Hook%20工具实践.md)   
+	- [Android Inline Hook 的指令修复详解](./Android%20调试工具/Android%20Inline%20Hook%20的指令修复详解.md)   
+	
 
 ## 移动app自动化审计
 ![](./pictures/appaudi.png)  
