@@ -118,7 +118,7 @@ XposedBridge.log("Kevin-Loaded app: " + lpparam.packageName); }
 `import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;`  
 使用示例  
 ``` java
-findAndHookMethod("com.android.systemui.statusbar.policy.Clock"， lpparam.classLoader， "handleUpdateClock"， new XC_MethodHook() {
+findAndHookMethod("com.android.systemui.statusbar.policy.Clock", lpparam.classLoader, "handleUpdateClock", new XC_MethodHook() {
 @Override
 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
 // this will be called before the clock was updated by the original method }
@@ -151,12 +151,12 @@ Object... parameterTypesAndCallback
 因为 Xposed 工作原理是在/system/bin 目录下替换文件，在 install 的时候需要 root 权限，但是运行时不需要 root 权限。  
 
 2. log 统一管理，tag 显示包名  
-`Log.d(MYTAG+lpparam.packageName， "hello" + lpparam.packageName);`
+`Log.d(MYTAG+lpparam.packageName, "hello" + lpparam.packageName);`
 
 3. 植入广播接收器，动态执行指令  
 
 ``` java
-findAndHookMethod("android.app.Application"， lpparam.classLoader， "onCreate"， new XC_MethodHook() {
+findAndHookMethod("android.app.Application", lpparam.classLoader, "onCreate", new XC_MethodHook() {
 @Override
 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
 
@@ -184,11 +184,11 @@ String appClassName = this.getAppInfo().className;
 if (appClassName == null) {
 Method hookOncreateMethod = null;
 try {
-    hookOncreateMethod = Application.class.getDeclaredMethod("onCreate"， new Class[] {});
+    hookOncreateMethod = Application.class.getDeclaredMethod("onCreate", new Class[] {});
 } catch (NoSuchMethodException e) {
     e.printStackTrace();
 }
-hookhelper.hookMethod(hookOncreateMethod， new ApplicationOnCreateHook());
+hookhelper.hookMethod(hookOncreateMethod, new ApplicationOnCreateHook());
 ```
 6. 排除系统 app，排除自身，确定主线程
 
@@ -214,12 +214,12 @@ Class<?> hookMessageListenerClass = null;
 
 hookMessageListenerClass = lpparam.classLoader.loadClass("org.jivesoftware.smack.MessageListener");
 
-findAndHookMethod("org.jivesoftware.smack.ChatManager"， lpparam.classLoader， "createChat"， String.class ， hookMessageListenerClass ，new XC_MethodHook() {
+findAndHookMethod("org.jivesoftware.smack.ChatManager", lpparam.classLoader, "createChat", String.class, hookMessageListenerClass, new XC_MethodHook() {
 @Override
 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
 
     String sendTo = (String) param.args[0];
-    Log.i(tag ， "sendTo : + " + sendTo );
+    Log.i(tag, "sendTo : + " + sendTo );
 
 }
 
@@ -240,27 +240,26 @@ public OutputStream getOutputStream() throws IOException {
 }
 
 
-org.apache.http.impl.client.AbstractHttpClient extends CloseableHttpClient ，
+org.apache.http.impl.client.AbstractHttpClient extends CloseableHttpClient,
 方法在父类(注意，android的继承的 AbstractHttpClient implements org.apache.http.client.HttpClient)
 
 
 public CloseableHttpResponse execute(
-    final HttpHost target，
-    final HttpRequest request，
-    final HttpContext context) throws IOException， ClientProtocolException {
-return doExecute(target， request， context);
-}
+    final HttpHost target,
+    final HttpRequest request,
+    final HttpContext context) 
+    throws IOException, ClientProtocolException { return doExecute(target, request, context); }
 
 
-android.async.http复写HttpGet导致zjdroid hook org.apache.http.impl.client.AbstractHttpClient execute 无法获取到请求 
-url和method
+android.async.http复写HttpGet导致zjdroid hook org.apache.http.impl.client.AbstractHttpClient   
+execute 无法获取到请求 url和method
 ```
 
 11. hook 构造方法
 
 ``` java
-public static XC_MethodHook.Unhook findAndHookConstructor(String className， ClassLoader classLoader， Object... parameterTypesAndCallback) {
-return findAndHookConstructor(findClass(className， classLoader)， parameterTypesAndCallback);
+public static XC_MethodHook.Unhook findAndHookConstructor(String className, ClassLoader classLoader, Object... parameterTypesAndCallback) {
+return findAndHookConstructor(findClass(className, classLoader), parameterTypesAndCallback);
 }
 ```
 
@@ -289,10 +288,10 @@ return findAndHookConstructor(findClass(className， classLoader)， parameterTy
 不太了解 java 的 hook 前可以先看下基础的代码。    
 对 HttpClient的 hook 可以参考 贾志军大牛的Zjdroid  
 ``` java
-Method executeRequest = RefInvoke.findMethodExact("org.apache.http.impl.client.AbstractHttpClient"， ClassLoader.getSystemClassLoader()，
-    "execute"， HttpHost.class， HttpRequest.class， HttpContext.class);
+Method executeRequest = RefInvoke.findMethodExact("org.apache.http.impl.client.AbstractHttpClient", ClassLoader.getSystemClassLoader(),
+    "execute", HttpHost.class, HttpRequest.class, HttpContext.class);
 
-hookhelper.hookMethod(executeRequest， new AbstractBahaviorHookCallBack() {
+hookhelper.hookMethod(executeRequest, new AbstractBahaviorHookCallBack() {
 @Override
 public void descParam(HookParam param) {
     // TODO Auto-generated method stub
@@ -343,7 +342,7 @@ public void descParam(HookParam param) {
                 try {
                     byte[] data = new byte[(int) entity.getContentLength()];
                     entity.getContent().read(data);
-                    String content = new String(data， contentType.substring(contentType.lastIndexOf("=") + 1));
+                    String content = new String(data, contentType.substring(contentType.lastIndexOf("=") + 1));
                     Logger.log_behavior("HTTP POST Content : " + content);
                 } catch (IllegalStateException e) {
                     // TODO Auto-generated catch block
@@ -358,7 +357,7 @@ public void descParam(HookParam param) {
             byte[] data = new byte[(int) entity.getContentLength()];
             try {
                 entity.getContent().read(data);
-                String content = new String(data， HTTP.DEFAULT_CONTENT_CHARSET);
+                String content = new String(data, HTTP.DEFAULT_CONTENT_CHARSET);
                 Logger.log_behavior("HTTP POST Content : " + content);
             } catch (IllegalStateException e) {
                 // TODO Auto-generated catch block
@@ -393,7 +392,7 @@ public void afterHookedMethod(HookParam param) {
 ``` 
 对 HttpURLConnection 的 hook Zjdroid 未能提供完美的解决方案，想要取得除了 URL 之外的 data 字段必须对I/O流操作.    
 ``` java
-Method openConnectionMethod = RefInvoke.findMethodExact("java.net.URL"， ClassLoader.getSystemClassLoader()， "openConnection");
+Method openConnectionMethod = RefInvoke.findMethodExact("java.net.URL", ClassLoader.getSystemClassLoader(),"openConnection");
 hookhelper.hookMethod(openConnectionMethod， new AbstractBahaviorHookCallBack() {
 @Override
 public void descParam(HookParam param) {
@@ -406,15 +405,15 @@ public void descParam(HookParam param) {
 ```
 我采取的临时解决方法是对I/O 进行正则匹配，类似 url 的 data 字段就打印出来，代码如下(这段代码只能解决前文 HttpUtils而且会有误报，大家有啥好想法欢迎指点一二)    
 ``` java
-findAndHookMethod("java.io.PrintWriter"， lpparam.classLoader， "print"，String.class， new XC_MethodHook() {
+findAndHookMethod("java.io.PrintWriter", lpparam.classLoader, "print", String.class, new XC_MethodHook() {
 @Override
 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
     String print = (String) param.args[0];
     Pattern pattern = Pattern.compile("(\\w+=.*)");
     Matcher matcher = pattern.matcher(print);
     if (matcher.matches())
-        Log.i(tag+lpparam.packageName，"data : " + print);
-    //Log.d(tag，"A :" + print);
+        Log.i(tag+lpparam.packageName, "data : " + print);
+    //Log.d(tag, "A :" + print);
 }
 
 });
