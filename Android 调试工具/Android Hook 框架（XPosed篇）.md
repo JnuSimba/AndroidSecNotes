@@ -55,7 +55,6 @@ XposedBridge.log("Loaded app: " + lpparam.packageName);
 	}
 }
 ```
-
 5. 入口assets/xposed_init配置,声明需要加载到 XposedInstaller 的入口类:
 
 `de.robv.android.xposed.mods.tutorial.Tutorial`  //完整类名:包名+类名  
@@ -63,7 +62,6 @@ XposedBridge.log("Loaded app: " + lpparam.packageName);
 
 反编译目标程序,查看Smali代码  
 直接在AOSP(android源码)中查看  
-
 7. XposedBridge to hook it  
 
 指定要 hook 的包名  
@@ -74,7 +72,10 @@ XposedBridge.log("Loaded app: " + lpparam.packageName);
 ``` java
 package de.robv.android.xposed.mods.tutorial;
 
-import static de.robv.android.xposed.XposedHelpers.findAndHookMethod; import de.robv.android.xposed.IXposedHookLoadPackage; import de.robv.android.xposed.XC\_MethodHook; import de.robv.android.xposed.callbacks.XC\_LoadPackage.LoadPackageParam;
+import static de.robv.android.xposed.XposedHelpers.findAndHookMethod; 
+import de.robv.android.xposed.IXposedHookLoadPackage; 
+import de.robv.android.xposed.XC_MethodHook; 
+import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class Tutorial implements IXposedHookLoadPackage { public void handleLoadPackage(final LoadPackageParam lpparam) throws Throwable { if (!lpparam.packageName.equals("com.android.systemui")) return;
 
