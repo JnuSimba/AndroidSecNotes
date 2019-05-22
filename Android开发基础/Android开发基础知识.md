@@ -54,7 +54,7 @@ Stopped状态:
 (1) 将数据封装在Intent变量中。（使用Intent传递对象有一个局限性，就是不能传递不能序列化的对象）  
 (2) 使用系统的剪切板来传递数据。  
 获取剪切板的代码如下：    
-`ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);  `
+`ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);  `  
 (3) 使用全局变量来传递数据:  
 例如：  
 //myApp是一个应用级别的全局对象，在应用的任何地方都可以调用这个对象。   
