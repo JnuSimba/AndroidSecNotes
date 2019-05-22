@@ -8,7 +8,7 @@
 * 隐式Intent：没有指定component属性的Intent。这些Intent需要包含足够的信息，这些系统才能根据这些信息，在所有的可用组件中，确定满足此Intent的组件。
 
 6. Toast: Toast是android中用来显示信息的一种机制，和Dialog不一样的是Toast是没有焦点的，而且Toast显示的时间有限，过一定时间就会自动消失。
-7. Android 操作系统： Android是一种基于Linux的开源的收集操作系统。
+7. Android 操作系统： Android是一种基于Linux的开源的手机操作系统。
 8. APK是Android Package的缩写，即Android安装包（anapk）。
 APK文件其实是zip格式，但后缀名修改为APK，通过UnZip解压后，可以看到Dex文件，Dex是Dalvik VM executes的全称，即Android Dalvik执行程序，并非Java的字节码而是Dalvik的字节码。但如AndroidManifest.xml 等文件是查看不到原有内容的，需要用apktool 等工具反编译。
 9. Android 四大组件（Activity，Service，Broadcast Receiver,Content Provider）
