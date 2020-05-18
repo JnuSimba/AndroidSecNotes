@@ -1,6 +1,10 @@
 # AndroidSecNotes
 此系列文章是本人关于学习 Android 安全时记录的一些笔记，部分原创，部分是对网上文章的理解整理。如果可以找到原始参考链接时则会在文末贴出（如 乌云很多链接已失效，或者记不起当时存档时的链接 ），或者在文章开头写上 by xx，如有侵权请联系我（dameng34 at 163.com）删除或加上reference，感谢在网上共享知识的师傅们，觉得内容不错的朋友请不要吝啬您的 **star**。  
 
+欢迎扫描关注我的微信公众号
+
+![appsec](https://raw.githubusercontent.com/JnuSimba/MiscSecNotes/master/pictures/appsec.jpg)
+
 ## 文章目录
 * Java语言基础
 	- [Java Basic](./Java语言基础/Java%20Basic.md)
@@ -85,6 +89,6 @@ Android是一个基于Linux的复杂系统，想要熟练挖掘Android漏洞必�
 * 关注每个月的android security bulletin, 尝试从diff反推漏洞研究如何触发和利用  
 * 代码审计：经典书籍 The art of software security assessment  
 * fuzzing  
- 
+
 当然，只要掌握了计算机体系结构，熟悉了程序的运作方式，到达一定境界之后那么各种漏洞、各种系统之间的界限也就渐渐模糊了。我所知道的业界人士中有不少从Windows大牛跨界为Android大牛，例如Fireeye的王宇王老师，pjf大牛。毕竟触类旁通，运用之妙，存乎一心，与君共勉。	  
 	
