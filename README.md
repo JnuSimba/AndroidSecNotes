@@ -42,6 +42,7 @@
 	
 * Android系统安全
 	- [Android 中堆unlink 利用学习](./Android系统安全/Android%20中堆unlink%20利用学习.md)
+	- [Android 系统漏洞挖掘](./Android系统安全/Android%20系统漏洞挖掘.md)
 	
 * Android 调试工具
 	- [Smali Instrumentation](./Android%20调试工具/Smali%20Instrumentation.md)
